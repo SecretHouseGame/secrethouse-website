@@ -6,13 +6,15 @@ import { GameLobbyComponent } from './game-lobby/game-lobby.component';
 import { GameResidentsComponent } from './game-residents/game-residents.component';
 import { GameRoomsComponent } from './game-rooms/game-rooms.component';
 import { GameSecretsComponent } from './game-secrets/game-secrets.component';
+import { GameBuzzComponent } from './game-buzz/game-buzz.component';
 
 const routes: Routes = [
 	{path: 'create', component: GameCreateComponent},
 	{path: 'g/:gameId/lobby', component: GameLobbyComponent},
 	{path: 'g/:gameId/residents', component: GameResidentsComponent},
 	{path: 'g/:gameId/rooms', component: GameRoomsComponent},
-	{path: 'g/:gameId/secrets', component: GameSecretsComponent}
+	{path: 'g/:gameId/secrets', component: GameSecretsComponent},
+	{path: 'g/:gameId/buzz', component: GameBuzzComponent},
 ]
 
 @NgModule({
@@ -21,7 +23,8 @@ const routes: Routes = [
 		GameLobbyComponent,
 		GameResidentsComponent,
 		GameRoomsComponent,
-		GameSecretsComponent
+		GameSecretsComponent,
+		GameBuzzComponent
 	],
 	imports: [
 		CommonModule,
