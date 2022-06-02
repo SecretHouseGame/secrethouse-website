@@ -1,1 +1,27 @@
-<p>home works!</p>
+<div class="logo"></div>
+
+<div class="top-content">
+	<h1>Entrez dans la maison des secrets</h1>
+	<sh-button color="secondary" (click)="openLogin()">Connexion</sh-button>
+	<sh-button color="primary" (click)="openRegister()">Inscription</sh-button>
+</div>
+
+<sh-modal>
+	<div *ngIf="isRegister; else login" [formGroup]="registerFormGrp">
+		<h1>Inscription</h1>
+		<sh-input-text label="Pseudo" id="pseudo" [control]="registerFormPseudo"></sh-input-text>
+		<sh-input-text label="Email" id="email" [control]="registerFormEmail"></sh-input-text>
+		<sh-input-text label="Mot de passe" id="password" [control]="registerFormPassword"></sh-input-text>
+		<sh-input-text label="Confirmation du mot de passe" id="confirm-password"
+			[control]="registerFormConfirmPassword"></sh-input-text>
+		<sh-button color="primary">S'inscrire</sh-button>
+	</div>
+	<ng-template #login>
+		<div [formGroup]="loginFormGrp">
+			<h1>Connexion</h1>
+			<sh-input-text label="Pseudo ou email" id="pseudo-email" [control]="loginFormPseudoEmail"></sh-input-text>
+			<sh-input-text label="Mot de passe" id="password" [control]="loginFormPassword"></sh-input-text>
+			<sh-button color="primary">Se connecter</sh-button>
+		</div>
+	</ng-template>
+</sh-modal>

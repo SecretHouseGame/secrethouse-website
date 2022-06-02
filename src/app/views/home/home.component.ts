@@ -1,16 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ModalService } from 'ngx-ds-secret-house';
 
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.scss']
+	styleUrls: ['./home.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
+	isRegister: Boolean = true;
 
-	constructor () {
+	registerFormGrp: FormGroup = new FormGroup({
+		pseudo: new FormControl(),
+		email: new FormControl(),
+		password: new FormControl(),
+		confirmPassword: new FormControl(),
+	});
+
+	loginFormGrp: FormGroup = new FormGroup({
+		pseudoEmail: new FormControl(),
+		password: new FormControl(),
+	});
+
+	constructor (private modalService: ModalService) {
 	}
 
 	ngOnInit (): void {
+	}
+
+	openRegister() {
+		this.isRegister = true;
+		this.modalService.open();
+	}
+
+	openLogin() {
+		this.isRegister = false;
+		this.modalService.open();
+	}
+
+	get registerFormPseudo() {
+		return this.registerFormGrp.get('pseudo') as FormControl;
+	}
+	get registerFormEmail() {
+		return this.registerFormGrp.get('email') as FormControl;
+	}
+	get registerFormPassword() {
+		return this.registerFormGrp.get('password') as FormControl;
+	}
+	get registerFormConfirmPassword() {
+		return this.registerFormGrp.get('confirmPassword') as FormControl;
+	}
+	get loginFormPseudoEmail() {
+		return this.loginFormGrp.get('pseudoEmail') as FormControl;
+	}
+	get loginFormPassword() {
+		return this.loginFormGrp.get('password') as FormControl;
 	}
 
 }
