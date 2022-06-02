@@ -33,10 +33,15 @@ const routes: Routes = [
 			.then((module) => module.GamesModule)
 	},
 	{
+		path: 'unauthorized',
+		loadChildren: () => import('./views/error/unauthorized/unauthorized.module')
+			.then((module) => module.UnauthorizedModule)
+	},
+	{
 		path: '**', pathMatch: 'full',
-		loadChildren: () => import('./views/error/error.module')
-			.then((module) => module.ErrorModule)
-	}
+		loadChildren: () => import('./views/error/not-found/not-found.module')
+			.then((module) => module.NotFoundModule)
+	},
 ];
 
 @NgModule({

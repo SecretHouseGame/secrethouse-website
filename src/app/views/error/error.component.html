@@ -1,1 +1,13 @@
-<p>error works!</p>
+<div id="error-page">
+    <div class="error-container">
+        <span class="error-subtitle">Erreur {{ code }}</span>
+        <div class="error-content">
+            <h1 class="error-title">{{ title }}</h1>
+            <p class="error-description">
+                <ng-content></ng-content>
+            </p>
+        </div>
+        <sh-button color="primary" routerLink="..">Retour</sh-button>
+    </div>
+    <img class="error-image" [src]="img" alt="" />
+</div>

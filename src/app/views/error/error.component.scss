@@ -1,0 +1,46 @@
+#error-page{
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+
+	.error-image{
+		position: absolute;
+		width: 100vw;
+		height: 70vh;
+		object-fit: cover;
+		top: 0;
+		left: 0;
+		z-index: -1;
+	}
+
+	.error-content{
+		margin-bottom: 20px;
+	}
+
+	.error-container{
+		color: white;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		height: 70vh;
+		background-color: black;
+		padding: 0 5rem 0 3rem;
+		position: relative;
+		min-width: 30%;
+
+		&:before {
+			content: "";
+			position: absolute;
+			display: block;
+			left: -100px;
+			width: 100px;
+			height: 100%;
+			background: linear-gradient(to left, black 0%, transparent 100%);
+		}
+	}
+
+	.error-subtitle{
+		text-transform: uppercase;
+		font-size: 12px;
+	}
+}

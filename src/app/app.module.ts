@@ -6,14 +6,15 @@ import { NgxDsSecretHouseModule } from 'ngx-ds-secret-house';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
-		NgxDsSecretHouseModule
+		NgxDsSecretHouseModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]
