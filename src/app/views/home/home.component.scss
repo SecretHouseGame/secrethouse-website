@@ -1,0 +1,74 @@
+@import "/node_modules/ngx-ds-secret-house/assets/scss/variables";
+
+body {
+	background-color: black;
+	position: relative;
+
+	h1 {
+		color: $yellow;
+	}
+}
+
+app-home {
+	display: flex;
+	align-items: flex-end;
+    width: 100vw;
+    height: 100vh;
+}
+
+.logo {
+	position: absolute;
+	top: 5vh;
+	right: 5vh;
+    width: calc(100vw - 5vh);
+    height: calc(100vh - 5vh);
+	background-image: url('/assets/logo.png');
+	background-position: top right;
+	background-repeat: no-repeat;
+	background-size: 55vw auto;
+}
+
+.top-content {
+	margin: 15vh 15vh 25vh;
+	max-width: 35vw;
+
+	.btn {
+		margin-right: 30px;
+	}
+}
+
+.modal-container .modal-content {
+	width: unset !important;
+    min-width: 500px;
+	padding: 70px 100px !important;
+
+	h1 {
+		text-align: center;
+		margin-top: 0;
+		margin-bottom: 50px;
+	}
+
+	sh-input-text {
+		margin-bottom: 30px;
+		display: block;
+	}
+
+	sh-field-container {
+		input {
+			width: 100%;
+		}
+
+		label {
+			padding-right: 40px;
+		}
+	}
+
+	.btn {
+		margin-top: 10px;
+		width: 100%;
+
+		&__content {
+			justify-content: center;
+		}
+	}
+}
