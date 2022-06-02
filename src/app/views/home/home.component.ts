@@ -12,14 +12,13 @@ export class HomeComponent implements OnInit {
 	isRegister: Boolean = true;
 
 	registerFormGrp: FormGroup = new FormGroup({
-		pseudo: new FormControl(),
 		email: new FormControl(),
 		password: new FormControl(),
 		confirmPassword: new FormControl(),
 	});
 
 	loginFormGrp: FormGroup = new FormGroup({
-		pseudoEmail: new FormControl(),
+		email: new FormControl(),
 		password: new FormControl(),
 	});
 
@@ -39,9 +38,6 @@ export class HomeComponent implements OnInit {
 		this.modalService.open();
 	}
 
-	get registerFormPseudo() {
-		return this.registerFormGrp.get('pseudo') as FormControl;
-	}
 	get registerFormEmail() {
 		return this.registerFormGrp.get('email') as FormControl;
 	}
@@ -51,8 +47,8 @@ export class HomeComponent implements OnInit {
 	get registerFormConfirmPassword() {
 		return this.registerFormGrp.get('confirmPassword') as FormControl;
 	}
-	get loginFormPseudoEmail() {
-		return this.loginFormGrp.get('pseudoEmail') as FormControl;
+	get loginFormEmail() {
+		return this.loginFormGrp.get('email') as FormControl;
 	}
 	get loginFormPassword() {
 		return this.loginFormGrp.get('password') as FormControl;
