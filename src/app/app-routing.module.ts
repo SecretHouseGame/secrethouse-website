@@ -32,6 +32,11 @@ const routes: Routes = [
 		loadChildren: () => import('./views/games/games.module')
 			.then((module) => module.GamesModule)
 	},
+	{
+		path: '**', pathMatch: 'full',
+		loadChildren: () => import('./views/error/error.module')
+			.then((module) => module.ErrorModule)
+	}
 ];
 
 @NgModule({
