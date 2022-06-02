@@ -1,0 +1,11 @@
+@import "/node_modules/ngx-ds-secret-house/assets/scss/variables";
+
+body {
+	background-color: black;
+	position: relative;
+
+	h1 {
+		color: $yellow;
+	}
+}
+
