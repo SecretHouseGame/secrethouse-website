@@ -14,12 +14,12 @@ const routes: Routes = [
 			},
 			{
 				path: 'dashboard',
-				loadChildren: () => import('../views/dashboard/dashboard.module')
+				loadChildren: () => import('../../views/dashboard/dashboard.module')
 					.then((module) => module.DashboardModule)
 			},
 			{
 				path: 'account',
-				loadChildren: () => import('../views/account/account.module')
+				loadChildren: () => import('../../views/account/account.module')
 					.then((module) => module.AccountModule)
 			},
 			{
@@ -29,7 +29,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'games',
-				loadChildren: () => import('../views/games/games.module')
+				loadChildren: () => import('../../views/games/games.module')
 					.then((module) => module.GamesModule)
 			}
 		]
