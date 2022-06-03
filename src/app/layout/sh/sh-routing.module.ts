@@ -9,11 +9,6 @@ const routes: Routes = [
 		children: [
 			{
 				path: '',
-				redirectTo: 'dashboard',
-				pathMatch: 'full'
-			},
-			{
-				path: 'dashboard',
 				loadChildren: () => import('../../views/dashboard/dashboard.module')
 					.then((module) => module.DashboardModule)
 			},
@@ -23,12 +18,7 @@ const routes: Routes = [
 					.then((module) => module.AccountModule)
 			},
 			{
-				path: 'games',
-				redirectTo: 'dashboard',
-				pathMatch: 'full'
-			},
-			{
-				path: 'games',
+				path: 'play',
 				loadChildren: () => import('../../views/games/games.module')
 					.then((module) => module.GamesModule)
 			}
