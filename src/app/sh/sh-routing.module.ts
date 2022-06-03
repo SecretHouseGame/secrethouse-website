@@ -23,11 +23,6 @@ const routes: Routes = [
 					.then((module) => module.AccountModule)
 			},
 			{
-				path: 'contact',
-				loadChildren: () => import('../views/contact/contact.module')
-					.then((module) => module.ContactModule)
-			},
-			{
 				path: 'games',
 				redirectTo: 'dashboard',
 				pathMatch: 'full'
