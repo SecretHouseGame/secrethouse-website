@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
 	{
-		path: 'sh',
+		path: 'game',
 		loadChildren: () => import('./layout/sh/sh.module')
 			.then((module) => module.ShModule)
 	},
