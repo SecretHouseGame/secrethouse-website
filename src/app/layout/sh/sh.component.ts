@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShComponent implements OnInit {
 
-	navbarSection: any = [
+	navbarSections: any = [
 		{
 			title: 'La maison des secrets',
 			elements: [
@@ -15,7 +15,7 @@ export class ShComponent implements OnInit {
 					title: 'Habitants',
 					icon: 'people-outline',
 					isActive: false,
-					url: '/habitants',
+					url: '/residents',
 				},
 				{
 					title: 'Rooms',
@@ -38,48 +38,13 @@ export class ShComponent implements OnInit {
 			],
 		},
 		{
-			title: 'Le prime',
-			elements: [
-				{
-					title: 'Nominations',
-					icon: 'megaphone-outline',
-					isActive: false,
-					url: '/nominations',
-				},
-				{
-					title: 'Pépites de la semaine',
-					icon: 'diamond-outline',
-					isActive: false,
-					url: '/pepites',
-				},
-				{
-					title: 'Éliminations',
-					icon: 'skull-outline',
-					isActive: false,
-					url: '/eliminations',
-				},
-			],
-		},
-		{
 			title: 'Mon profil',
 			elements: [
-				{
-					title: 'Mon personnage',
-					icon: 'happy-outline',
-					isActive: false,
-					url: '/mon-personnage',
-				},
 				{
 					title: 'Mon compte',
 					icon: 'person-outline',
 					isActive: false,
-					url: '/mon-compte',
-				},
-				{
-					title: 'Paramètres',
-					icon: 'settings-outline',
-					isActive: false,
-					url: '/parametres',
+					url: '/account',
 				},
 			],
 		},
@@ -90,19 +55,13 @@ export class ShComponent implements OnInit {
 					title: 'Règles du jeu',
 					icon: 'information-circle-outline',
 					isActive: false,
-					url: '/regles',
-				},
-				{
-					title: 'FAQ',
-					icon: 'help-circle-outline',
-					isActive: false,
-					url: '/faq',
+					url: '/rules',
 				},
 				{
 					title: 'Contacter un admin',
 					icon: 'chatbubble-ellipses-outline',
 					isActive: false,
-					url: '/contacter-admin',
+					url: '/contact',
 				},
 			],
 		},
