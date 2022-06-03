@@ -4,6 +4,11 @@
 	box-sizing: border-box;
 }
 
-body {
+html, body {
 	margin: 0;
+}
+
+.main-content {
+	background-color: #171717;
+	color: $white;
 }
