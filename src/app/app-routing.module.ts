@@ -3,14 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
 	{
-		path: '',
-		loadChildren: () => import('./views/home/home.module')
-			.then((module) => module.HomeModule)
+		path: 'sh',
+		loadChildren: () => import('./layout/sh/sh.module')
+			.then((module) => module.ShModule)
 	},
 	{
-		path: 'sh',
-		loadChildren: () => import('./sh/sh.module')
-			.then((module) => module.ShModule)
+		path: '',
+		loadChildren: () => import('./layout/sp/sp.module')
+			.then((module) => module.SpModule)
 	},
 ];
 

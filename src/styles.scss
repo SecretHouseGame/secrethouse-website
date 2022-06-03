@@ -1,13 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import "node_modules/ngx-ds-secret-house/assets/styles";
+
+$bg-black: #121212;
+
+* {
+	box-sizing: border-box;
+}
 
 html, body {
 	margin: 0;
-}
-
-.main-content {
-	background-color: #171717;
+    background: $bg-black;
 	color: $white;
 }
 
+.main-content {
+	margin: 0 20px;
+}
+
+.flex{
+	display: flex;
+}
+
+.flex-center{
+	justify-content: center;
+	align-items: center;
+}
