@@ -8,6 +8,9 @@ import { GameRoomsComponent } from './game-rooms/game-rooms.component';
 import { GameSecretsComponent } from './game-secrets/game-secrets.component';
 import { GameBuzzComponent } from './game-buzz/game-buzz.component';
 
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { SwiperModule } from 'swiper/angular';
+
 const routes: Routes = [
 	// TODO : Si on a pas join de game : on arrive sur créer / rejoindre une game
 	{path: '', component: GameCreateComponent},
@@ -30,7 +33,9 @@ const routes: Routes = [
 	],
 	imports: [
 		CommonModule,
-		RouterModule.forChild(routes)
+        NgxSkeletonLoaderModule,
+		RouterModule.forChild(routes),
+        SwiperModule
 	]
 })
 export class GamesModule {

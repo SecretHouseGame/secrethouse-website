@@ -19,7 +19,9 @@
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
     "ngx-ds-secret-house": "^1.1.2",
+    "ngx-skeleton-loader": "^5.0.0",
     "rxjs": "~7.5.0",
+    "swiper": "^8.2.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

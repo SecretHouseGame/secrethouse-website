@@ -1,1 +1,45 @@
-<p>game-buzz works!</p>
+<div class="game-buzz">
+	<h1>
+		Vous pensez avoir trouvé un secret ?
+	</h1>
+
+	<p>
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur tempora impedit accusantium odio dolorem, voluptates, perferendis excepturi soluta vero placeat aspernatur suscipit id nisi amet alias nam, adipisci corporis reiciendis!
+	</p>
+
+	<h2>
+		Qui souhaitez-vous buzzer ?
+	</h2>
+
+	<p>
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, perspiciatis doloribus. Facilis eligendi asperiores nihil sapiente alias nam tenetur unde, eaque adipisci vel fuga porro ipsum veritatis! Impedit, necessitatibus et?
+	</p>
+
+	<div class="cards-list">
+		<div *ngIf="!contentLoaded">
+			<ngx-skeleton-loader  class="player-card" count="3" appearance="line" animation="pulse" 
+			[theme]="{
+				height: '400px',
+				width: '275px',
+				'border-radius': 0,
+				'margin-right': '20px'
+			}">
+			</ngx-skeleton-loader>
+		</div>
+
+		<swiper
+			[slidesPerView]="3"
+			[spaceBetween]="50"
+			[config]="config"
+			(swiper)="onSwiper($event)"
+			(slideChange)="onSlideChange()"
+			*ngIf="playersList"
+		>
+			<ng-template swiperSlide *ngFor="let player of playersList" class="player-card">
+				<div>
+					{{ player.name }}
+				</div>
+			</ng-template>
+		</swiper>
+	</div>
+</div>

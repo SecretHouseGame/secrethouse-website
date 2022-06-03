@@ -27,6 +27,7 @@ html, body {
 }
 
 .sidebar {
+    min-height: 100vh;
 	width: $sidebarWidth !important;
 }
 
