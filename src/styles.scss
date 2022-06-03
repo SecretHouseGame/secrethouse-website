@@ -13,7 +13,8 @@ $bg-black: #121212;
 	box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
 	margin: 0;
 	background: $bg-black;
 	color: $white;
@@ -31,7 +32,7 @@ html, body {
 body {
 	app-sh {
 		#sh-content {
-			transition: all .3s;
+			transition: all 0.3s;
 			margin-left: 50px;
 		}
 	}
@@ -49,9 +50,12 @@ input {
 	color: $black;
 }
 
-sh-field-container input:focus, sh-field-container input:active,
-sh-field-container textarea:focus, sh-field-container textarea:active,
-sh-field-container select:focus, sh-field-container select:active {
+sh-field-container input:focus,
+sh-field-container input:active,
+sh-field-container textarea:focus,
+sh-field-container textarea:active,
+sh-field-container select:focus,
+sh-field-container select:active {
 	border-width: 1px !important;
 }
 
@@ -74,12 +78,12 @@ sh-card.card-secondary {
 sh-navbar {
 	.sidebar-sections {
 		h3 {
-			margin-bottom: .25rem;
+			margin-bottom: 0.25rem;
 		}
 	}
 
 	sh-navbar-section {
-		margin-bottom: .25rem;
+		margin-bottom: 0.25rem;
 	}
 }
 
@@ -129,12 +133,11 @@ sh-navbar {
 
 // Page buzz
 
-
 .cards-swiper {
 	width: 100%;
 	height: 100%;
 	cursor: pointer;
-	transition: all .2s;
+	transition: all 0.2s;
 
 	&.cards-loading {
 		min-width: 100%;
@@ -162,7 +165,6 @@ sh-navbar {
 
 #secret-form {
 	.field-group {
-
 		.field-label {
 			font-size: 13px;
 			color: $yellow;
@@ -219,7 +221,6 @@ sh-navbar {
 	}
 }
 
-
 /* width */
 ::-webkit-scrollbar {
 	width: 10px;
@@ -227,7 +228,7 @@ sh-navbar {
 
 /* Track */
 ::-webkit-scrollbar-track {
-	background: rgba(255, 255, 255, .15);
+	background: rgba(255, 255, 255, 0.15);
 }
 
 /* Handle */
@@ -239,13 +240,35 @@ sh-navbar {
 	}
 }
 
-sh-chat-message{
-	.message-content{
+sh-chat-message {
+	.message-content {
 		margin: 10px 0;
 		color: black;
 
-		&.right{
+		&.right {
 			float: right;
+			/* You can add global styles to this file, and also import other style files */
+			.form {
+				sh-input-text {
+					margin-bottom: 30px;
+					display: block;
+				}
+
+				sh-field-container {
+					label {
+						padding-right: 40px;
+					}
+				}
+
+				.btn {
+					margin-top: 10px;
+					width: 100%;
+
+					&__content {
+						justify-content: center;
+					}
+				}
+			}
 		}
 	}
 }

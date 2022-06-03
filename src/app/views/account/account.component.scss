@@ -9,3 +9,11 @@ body {
 	}
 }
 
+.account-content {
+	display: flex;
+	justify-content: space-between;
+
+	.form {
+		width: 45%;
+	}
+}
