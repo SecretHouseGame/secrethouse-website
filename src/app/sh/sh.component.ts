@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-sh',
-  templateUrl: './sh.component.html',
-  styleUrls: ['./sh.component.scss']
+	selector: 'app-sh',
+	templateUrl: './sh.component.html',
+	styleUrls: ['./sh.component.scss']
 })
 export class ShComponent implements OnInit {
 
-  constructor() { }
+	constructor () {
+	}
 
-  ngOnInit(): void {
-  }
+	ngOnInit (): void {
+	}
 
 }
