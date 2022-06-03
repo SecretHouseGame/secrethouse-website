@@ -1,20 +1,39 @@
 @import "/node_modules/ngx-ds-secret-house/assets/scss/variables";
 
 #footer{
-    background: black;
     padding: 0 4em;
 
     .footer-container{
         display: flex;
         justify-content: space-between;
         border-top: 1px solid $yellow;
-        padding: 15px;
+        padding: 25px 15px;
     
         .brand{
             max-width: 150px;
         
             .brand-img{
                 width: 100%;
+            }
+        }
+
+        .nav-list{
+            margin: 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+
+            .link{
+                color: white;
+                fill: white;
+                margin: 10px;
+                text-decoration: none;
+                text-transform: uppercase;
+                align-items: center;
+
+                svg{
+                    margin-right: 7px;
+                }
             }
         }
     }

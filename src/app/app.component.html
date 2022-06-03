@@ -1,2 +1,7 @@
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<div id="app">
+    <app-nav *ngIf="displayNav"></app-nav>
+    <div class="main-content">
+        <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+</div>
