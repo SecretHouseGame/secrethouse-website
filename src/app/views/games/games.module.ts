@@ -9,12 +9,14 @@ import { GameSecretsComponent } from './game-secrets/game-secrets.component';
 import { GameBuzzComponent } from './game-buzz/game-buzz.component';
 
 const routes: Routes = [
-	{path: 'create', component: GameCreateComponent},
-	{path: 'g/:gameId/lobby', component: GameLobbyComponent},
-	{path: 'g/:gameId/residents', component: GameResidentsComponent},
-	{path: 'g/:gameId/rooms', component: GameRoomsComponent},
-	{path: 'g/:gameId/secrets', component: GameSecretsComponent},
-	{path: 'g/:gameId/buzz', component: GameBuzzComponent},
+	// TODO : Si on a pas join de game : on arrive sur créer / rejoindre une game
+	{path: '', component: GameCreateComponent},
+	// TODO : Si on a join une game : on est redirect dans le lobby
+	{path: ':gameId/lobby', component: GameLobbyComponent},
+	{path: ':gameId/residents', component: GameResidentsComponent},
+	{path: ':gameId/rooms', component: GameRoomsComponent},
+	{path: ':gameId/secrets', component: GameSecretsComponent},
+	{path: ':gameId/buzz', component: GameBuzzComponent},
 ]
 
 @NgModule({
