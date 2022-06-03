@@ -8,29 +8,9 @@ const routes: Routes = [
 			.then((module) => module.HomeModule)
 	},
 	{
-		path: 'dashboard',
-		loadChildren: () => import('./views/dashboard/dashboard.module')
-			.then((module) => module.DashboardModule)
-	},
-	{
-		path: 'account',
-		loadChildren: () => import('./views/account/account.module')
-			.then((module) => module.AccountModule)
-	},
-	{
-		path: 'contact',
-		loadChildren: () => import('./views/contact/contact.module')
-			.then((module) => module.ContactModule)
-	},
-	{
-		path: 'games',
-		redirectTo: 'dashboard',
-		pathMatch: 'full'
-	},
-	{
-		path: 'games',
-		loadChildren: () => import('./views/games/games.module')
-			.then((module) => module.GamesModule)
+		path: 'sh',
+		loadChildren: () => import('./sh/sh.module')
+			.then((module) => module.ShModule)
 	},
 	{
 		path: 'unauthorized',
