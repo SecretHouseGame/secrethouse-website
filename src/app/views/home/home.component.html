@@ -1,10 +1,14 @@
-<div class="logo"></div>
-
-<div class="top-content">
-	<h1>Entrez dans la maison des secrets</h1>
-	<sh-button color="secondary" (click)="openLogin()">Connexion</sh-button>
-	<sh-button color="primary" (click)="openRegister()">Inscription</sh-button>
-</div>
+<section class="hero">
+	<div class="top-content">
+		<h1>Entrez dans <br> la maison des secrets</h1>
+		<sh-button color="secondary" (click)="openLogin()">Connexion</sh-button>
+		<sh-button color="primary" (click)="openRegister()">Inscription</sh-button>
+	</div>
+	
+	<div class="logo">
+		<img src="/assets/images/logo.png" alt="" />
+	</div>
+</section>
 
 <sh-modal>
 	<div *ngIf="isRegister; else login" [formGroup]="registerFormGrp">

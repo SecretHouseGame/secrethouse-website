@@ -1,38 +1,32 @@
 @import "/node_modules/ngx-ds-secret-house/assets/scss/variables";
 
 body {
-	background-color: #121212;
-	position: relative;
-
 	h1 {
 		color: $yellow;
+		font-size: 3rem;
 	}
-}
 
-app-home {
-	display: flex;
-	align-items: flex-end;
-    height: 100vh;
-}
+	.hero{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 15vh;
 
-.logo {
-	position: absolute;
-	top: 5vh;
-	right: 5vh;
-    width: calc(100vw - 5vh);
-    height: calc(100vh - 5vh);
-	background-image: url('/assets/images/logo.png');
-	background-position: top right;
-	background-repeat: no-repeat;
-	background-size: 55vw auto;
-}
+		.logo {
+			max-width: 600px;
+			width: 50vw;
 
-.top-content {
-	margin: 15vh 15vh 25vh;
-	max-width: 35vw;
+			img{
+				width: 100%;
+				object-fit: contain;
+			}
+		}
 
-	.btn {
-		margin-right: 30px;
+		.top-content {
+			.btn {
+				margin-right: 30px;
+			}
+		}
 	}
 }
 
@@ -70,8 +64,4 @@ app-home {
 			justify-content: center;
 		}
 	}
-}
-
-#nav{
-	display: none;
 }
