@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "node_modules/ngx-ds-secret-house/assets/styles";
+
+html, body {
+	margin: 0;
+}
+
+.main-content {
+	background-color: #171717;
+	color: $white;
+}
+
