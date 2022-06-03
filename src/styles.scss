@@ -81,6 +81,27 @@ sh-navbar {
 			margin-bottom: 0.25rem;
 		}
 	}
+}
+
+h1 {
+	color: $yellow;
+}
+
+.form {
+	sh-input-text {
+		margin-bottom: 30px;
+		display: block;
+	}
+
+	sh-field-container {
+		input {
+			width: 100%;
+		}
+
+		label {
+			padding-right: 40px;
+		}
+	}
 
 	sh-navbar-section {
 		margin-bottom: 0.25rem;

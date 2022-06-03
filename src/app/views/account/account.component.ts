@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
 	selector: 'app-account',
 	templateUrl: './account.component.html',
 	styleUrls: ['./account.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 export class AccountComponent implements OnInit {
 	generalFormGrp: FormGroup = new FormGroup({

@@ -9,13 +9,42 @@ export class ShComponent implements OnInit {
 
 	navbarSections: any = [
 		{
+			title: 'La maison des secrets',
+			elements: [
+				{
+					title: 'Habitants',
+					icon: 'people-outline',
+					isActive: false,
+					url: '/sh/residents',
+				},
+				{
+					title: 'Rooms',
+					icon: 'home-outline',
+					isActive: false,
+					url: '/sh/rooms',
+				},
+				{
+					title: 'Buzz',
+					icon: 'hand-left-outline',
+					isActive: false,
+					url: '/sh/buzz',
+				},
+				{
+					title: 'Secrets',
+					icon: 'eye-outline',
+					isActive: false,
+					url: '/sh/secrets',
+				},
+			],
+		},
+		{
 			title: 'Mon profil',
 			elements: [
 				{
 					title: 'Mon compte',
 					icon: 'person-outline',
 					isActive: false,
-					url: '/game/account',
+					url: '/sh/account',
 				},
 			],
 		},
