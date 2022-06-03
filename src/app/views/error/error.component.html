@@ -7,7 +7,7 @@
                 <ng-content></ng-content>
             </p>
         </div>
-        <sh-button color="primary" routerLink="..">Retour</sh-button>
+        <sh-button color="primary" (click)="returnPreviousPage()">Retour</sh-button>
     </div>
     <img class="error-image" [src]="img" alt="" />
 </div>

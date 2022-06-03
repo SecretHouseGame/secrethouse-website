@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {Location} from '@angular/common';
 
 @Component({
 	selector: 'app-error',
@@ -11,9 +12,13 @@ export class ErrorComponent implements OnInit {
 	@Input() title: string = "";
 	@Input() img: string = "";
 
-	constructor() { }
+	constructor(private _location: Location) { }
 
 	ngOnInit(): void {
+	}
+
+	returnPreviousPage() {
+		this._location.back();
 	}
 
 }
