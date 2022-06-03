@@ -1,12 +1,14 @@
 @import "node_modules/ngx-ds-secret-house/assets/styles";
 
+$bg-black: #121212;
+
 * {
 	box-sizing: border-box;
 }
 
 html, body {
 	margin: 0;
-    background: #121212;
+    background: $bg-black;
 	color: $white;
 }
 
