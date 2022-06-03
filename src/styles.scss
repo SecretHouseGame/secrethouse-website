@@ -45,6 +45,12 @@ body {
 	}
 }
 
+sh-field-container input:focus, sh-field-container input:active,
+sh-field-container textarea:focus, sh-field-container textarea:active,
+sh-field-container select:focus, sh-field-container select:active {
+	border-width: 1px !important;
+}
+
 // Style des slides SwiperJs
 .swiper-wrapper{
 	padding: 10px 25px;
@@ -72,7 +78,7 @@ body {
 	min-width: 275px;
 }
 
-// Permet d'éviter le surlignage 
+// Permet d'éviter le surlignage
 
 .noselect {
 	-webkit-touch-callout: none; /* iOS Safari */
@@ -125,7 +131,7 @@ body {
 			color: $yellow;
 			text-align: left;
 		}
-	
+
 		input{
 			box-sizing: content-box;
 			width: 90%;
@@ -151,16 +157,16 @@ body {
 		.alert-main{
 			margin-top: 25px;
 			background-color: $bg-black;
-			
+
 			.alert-title{
 				padding-top: 10px;
 				line-height: 1.4;
 			}
-			
+
 			.alert-text{
 				padding-bottom: 10px;
 				line-height: 1.4;
 			}
-		}	
+		}
 	}
 }
