@@ -4,6 +4,7 @@ export interface Player {
     cagnotte : number,
     secret : string,
     avatar: string,
+    genre: string,
     // userId : User,
     // gameId : Game,
 

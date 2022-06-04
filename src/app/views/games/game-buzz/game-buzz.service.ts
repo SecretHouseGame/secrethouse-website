@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 
 export class GameBuzzService {
-	private url = 'https://mocki.io/v1/0f5fda6c-e156-4d4f-9b9f-de7bc5c8791d';
+	private url = 'https://mocki.io/v1/7da6a7b5-2422-4feb-b5e8-9bb8d71b3e26';
 
 	constructor(private httpClient: HttpClient) { }
 
