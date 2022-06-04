@@ -11,7 +11,7 @@ jobs:
       - name: release-please-action
         uses: google-github-actions/release-please-action@v2.19.2
         with:
-          token: ${{ secrets.TOKEN_REPO }}
+          token: ${{ secrets.TOKEN_GITHUB }}
           release-type: node
           default-branch: master
   merge:
@@ -24,4 +24,4 @@ jobs:
         uses: pascalgn/automerge-action@v0.14.2
         env:
           MERGE_LABELS: 'autorelease: pending'
-          GITHUB_TOKEN: ${{ secrets.TOKEN_REPO }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
