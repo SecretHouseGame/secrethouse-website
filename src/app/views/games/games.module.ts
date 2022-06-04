@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxDsSecretHouseModule } from 'ngx-ds-secret-house';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { SwiperModule } from 'swiper/angular';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// Pages enfant
 import { RouterModule, Routes } from "@angular/router";
 import { GameCreateComponent } from './game-create/game-create.component';
 import { GameLobbyComponent } from './game-lobby/game-lobby.component';
@@ -7,9 +13,6 @@ import { GameResidentsComponent } from './game-residents/game-residents.componen
 import { GameRoomsComponent } from './game-rooms/game-rooms.component';
 import { GameSecretsComponent } from './game-secrets/game-secrets.component';
 import { GameBuzzComponent } from './game-buzz/game-buzz.component';
-
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { SwiperModule } from 'swiper/angular';
 
 const routes: Routes = [
 	// TODO : Si on a pas join de game : on arrive sur créer / rejoindre une game
@@ -35,8 +38,12 @@ const routes: Routes = [
 		CommonModule,
         NgxSkeletonLoaderModule,
 		RouterModule.forChild(routes),
-        SwiperModule
+        SwiperModule,
+		NgxDsSecretHouseModule,
+		FormsModule,
+		ReactiveFormsModule
 	]
 })
+
 export class GamesModule {
 }

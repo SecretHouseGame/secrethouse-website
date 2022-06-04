@@ -8,11 +8,18 @@ import { Observable } from 'rxjs';
 })
 
 export class GameBuzzService {
-	private url = 'https://mocki.io/v1/7da6a7b5-2422-4feb-b5e8-9bb8d71b3e26';
+	private url = 'https://my-json-server.typicode.com/SecretHouseGame/secrethouse-website/players';
 
 	constructor(private httpClient: HttpClient) { }
 
 	public getPlayers(): Observable<Player[]> {
 		return this.httpClient.get<Player[]>(this.url);
 	}
+
+	public sendBuzz(formValues: any) {
+		// TODO
+		console.log(formValues);
+	}
+
+
 }

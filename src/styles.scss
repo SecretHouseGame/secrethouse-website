@@ -7,7 +7,6 @@
 @import "~swiper/css";
 
 $bg-black: #121212;
-$full-black : #000;
 
 * {
 	box-sizing: border-box;
@@ -55,6 +54,9 @@ body {
 }
 
 // Style des slides SwiperJs
+.swiper-wrapper{
+	padding: 10px 25px;
+}
 
 .swiper-slide {
 	text-align: center;
@@ -75,12 +77,45 @@ body {
 	align-items: center;
 	height: 400px;
 	width: 275px;
+}
 
-	.slide-container{
-		height: 400px;
-		width: 275px;
-		min-height: 400px;
-		border: 1px solid $full-black;
-		padding: 0px 25px;
+// Permet d'éviter le surlignage 
+
+.noselect {
+	-webkit-touch-callout: none; /* iOS Safari */
+	  -webkit-user-select: none; /* Safari */
+	   -khtml-user-select: none; /* Konqueror HTML */
+		 -moz-user-select: none; /* Old versions of Firefox */
+		  -ms-user-select: none; /* Internet Explorer/Edge */
+			  user-select: none; /* Non-prefixed version, currently
+									supported by Chrome, Edge, Opera and Firefox */
+  }
+
+  #secret-form{
+	.field-group{
+
+		.field-label{
+			font-size: 13px;
+			color: $yellow;
+			text-align: left;
+		}
+	
+		input{
+			box-sizing: content-box;
+			width: 90%;
+			margin-bottom: 10px;
+		}
+	}
+
+	sh-button{
+		width: 245px;
+
+		.btn{
+			width: 100%;
+
+			.btn__content{
+				justify-content: center;
+			}
+		}
 	}
 }
