@@ -13,7 +13,7 @@ jobs:
         with:
           token: ${{ secrets.TOKEN_GITHUB }}
           release-type: node
-          default-branch: master
+          default-branch: main
   merge:
     runs-on: ubuntu-latest
     needs: release
