@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 
 export class GameBuzzService {
 	private url = 'https://my-json-server.typicode.com/SecretHouseGame/secrethouse-website/players';
+	private error = '';
 
 	constructor(private httpClient: HttpClient) { }
 
@@ -17,8 +18,16 @@ export class GameBuzzService {
 	}
 
 	public sendBuzz(formValues: any) {
-		// TODO
-		console.log(formValues);
+		// TODO call api pour save le buzz et définir le player 1 comme buzzeur et l'autre comme buzzéconsole.log(formValues);
+		// Currentplayer
+		// selectedplayer
+		// selectedplayersecret
+		if(1){
+			return true;
+		} else {
+			this.error = "test";
+			return this.error;
+		}
 	}
 
 

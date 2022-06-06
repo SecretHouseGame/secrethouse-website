@@ -1,17 +1,33 @@
 <div class="game-buzz">
 	<div class="page-introduction">
 		<h1 class="sh-yellow">
-			Vous pensez avoir trouvé un secret ?
+			<span *ngIf="step === 1">
+				Vous pensez avoir trouvé un secret ?
+			</span>
+			<span *ngIf="step === 2">
+				Vous avez buzzé un secret
+			</span>
 		</h1>
 	
 		<p class="leading-5">
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur tempora impedit accusantium odio dolorem, voluptates, perferendis excepturi soluta vero placeat aspernatur suscipit id nisi amet alias nam, adipisci corporis reiciendis!
+			<span *ngIf="step === 1">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur tempora impedit accusantium odio dolorem, voluptates, perferendis excepturi soluta vero placeat aspernatur suscipit id nisi amet alias nam, adipisci corporis reiciendis!
+			</span>
+			<span *ngIf="step === 2">
+				Parsem perferendis excepturi soluta vero placeat aspernatur suscipit id nisi amet alias nam, adipisci corporis reiciendis! 5000€ ont été retirés de votre cagnotte
+			</span>
+			
 		</p>
 
 		<br>
 	
 		<h2 class="sh-yellow text-xl mt-5">
-			Qui souhaitez-vous buzzer ?
+			<span *ngIf="step === 1">
+				Qui souhaitez-vous buzzer ?
+			</span>
+			<span *ngIf="step === 2">
+				Confrontation avec le candidat visé
+			</span>
 		</h2>
 	</div>
 
@@ -30,6 +46,7 @@
 
 			<swiper
 				class="cards-swiper"
+				[ngClass]="{'locked': step === 2}"
 				[config]="swiperConfig"
 				*ngIf="playersList"
 			>
@@ -45,13 +62,22 @@
 			</swiper>
 
 			<div id="secret-form" [ngClass]="{'hidden' : !formSelectedPlayer.value}">
-				<sh-input-text [label]="'Je pense que son secret est...'" name="selectedPlayerSecret" name="selectedPlayerSecret" id="selectedPlayerSecret" [control]="formSelectedPlayerSecret" required></sh-input-text>
-				<sh-button color="primary" type="submit">Valider</sh-button>
+				<sh-input-text *ngIf="step === 1" [label]="'Je pense que son secret est...'" name="selectedPlayerSecret" name="selectedPlayerSecret" id="selectedPlayerSecret" [control]="formSelectedPlayerSecret" required></sh-input-text>
+				<sh-button *ngIf="step === 1" color="primary" type="submit">Valider</sh-button>
+				<p *ngIf="step === 2">
+					Je pense que son secret est...
+					<br>
+					{{ formSelectedPlayerSecret.value }}
+				</p>
+			</div>
+
+			<div class="chatroom" *ngIf="step === 2">
+				ici c'est le chat
 			</div>
 		</div>
 		
 
-		<div class="swiper-instruction">
+		<div class="swiper-instruction" *ngIf="step === 1">
 			<div class="menu-indicator">
 				<div class="indicator-wrapper">
 					<div class="box-wrapper">

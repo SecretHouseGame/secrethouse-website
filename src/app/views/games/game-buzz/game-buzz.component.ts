@@ -21,9 +21,12 @@ export class GameBuzzComponent implements OnInit {
     @ViewChild('swiper') swiper: any; // Swiper
     contentLoaded : boolean = false; // Chargement
     playersList : Array<Player> = []; // Liste des habitants
+    error : string = "";
+    step : number = 1 ;
 
     // Formulaire envoyé
     buzzForm : FormGroup = new FormGroup({
+        currentPlayer: new FormControl(99, Validators.required),
         selectedPlayer: new FormControl(0, Validators.required),
         selectedPlayerSecret: new FormControl('', Validators.required),
     });
@@ -65,6 +68,22 @@ export class GameBuzzComponent implements OnInit {
     }
 
     submit(){
-        this.gameBuzzService.sendBuzz(this.buzzForm.value);
+        let result = this.gameBuzzService.sendBuzz(this.buzzForm.value);
+        console.log(result);
+        if( result === true ) {
+            this.confrontation();
+        } else {
+            this.error = result;
+        }
+    }
+
+    confrontation(){
+        this.step = 2;
+        let selectedPlayer = this.playersList.filter(player => {
+            return player.id === this.formSelectedPlayer.value;
+        })
+        this.swiperConfig.slidesPerView = 1;
+        this.swiperConfig.slideClass = "locked";
+        this.playersList = selectedPlayer;
     }
 }
