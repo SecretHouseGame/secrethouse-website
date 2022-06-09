@@ -1,1 +1,16 @@
-<p>game-lobby works!</p>
+<div class="game-lobby-page">
+	<div class="stepper">
+		<div class="step step-1" [ngClass]="{ 'active': activeStep == 1, 'done': activeStep > 1 }">
+			<div class="step-indicator">1</div>
+			<div class="step-label">Paramètres de la partie</div>
+		</div>
+		<div class="step step-2" [ngClass]="{ 'active': activeStep == 2, 'done': activeStep > 2 }">
+			<div class="step-indicator">2</div>
+			<div class="step-label">Création du personnage</div>
+		</div>
+		<div class="step step-3" [ngClass]="{ 'active': activeStep == 3, 'done': activeStep > 3 }">
+			<div class="step-indicator">3</div>
+			<div class="step-label">Lobby</div>
+		</div>
+	</div>
+</div>

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./game-lobby.component.scss']
 })
 export class GameLobbyComponent implements OnInit {
+	activeStep: number = 2;
 
 	constructor () {
 	}
