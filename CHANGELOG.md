@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.0.0...v1.0.1) (2022-06-09)
+
+
+### Bug Fixes
+
+* ci to build app and deploy it ([ac97c1d](https://www.github.com/SecretHouseGame/secrethouse-website/commit/ac97c1d2b29f138a57a964f62792a6e38ad64194))
+
 ## 1.0.0 (2022-06-04)
 
 
