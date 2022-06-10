@@ -47,7 +47,7 @@ export class GameBuzzComponent implements OnInit {
         this.gameBuzzService.getPlayers()
             .subscribe(response => {
                 this.playersList = response;
-                this.contentLoaded = true;
+               //  this.contentLoaded = true;
         });
     }
 

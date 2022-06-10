@@ -33,8 +33,8 @@
 
 	<form class="form-container" [formGroup]="buzzForm" (ngSubmit)="submit()">
 		<div class="cards-list">
-			<div *ngIf="!contentLoaded">
-				<ngx-skeleton-loader  class="player-card" count="3" appearance="line" animation="pulse" 
+			<div *ngIf="!contentLoaded" class="cards-swiper cards-loading">
+				<ngx-skeleton-loader  class="player-card" count="5" appearance="line" animation="pulse" 
 				[theme]="{
 					height: '400px',
 					width: '275px',
