@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.2](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.0.1...v1.0.2) (2022-06-11)
+
+
+### Reverts
+
+* typo ([07e090e](https://www.github.com/SecretHouseGame/secrethouse-website/commit/07e090ed465d9689156b2eebb96fbbf69247c66f))
+
 ### [1.0.1](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.0.0...v1.0.1) (2022-06-09)
 
 
