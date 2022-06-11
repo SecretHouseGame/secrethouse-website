@@ -13,6 +13,19 @@ $full-black : #000;
     max-width: 800px;
 }
 
+#ongoing-buzz{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+
+    .ongoing-icon{
+        fill: $yellow;
+        margin-bottom: 20px;
+    }
+}
+
 .game-buzz{
     z-index: 1;
 
@@ -20,7 +33,7 @@ $full-black : #000;
         content: "";
         position: fixed;
         bottom: 0;
-        left: 0;
+        left: 0px;
         width: 50%;
         height: 750px;
         background-size: contain;

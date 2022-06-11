@@ -26,7 +26,8 @@ export class GameBuzzComponent implements OnInit {
     ongoingBuzz : Buzz = {
         buzzId : 4545
     };
-    currentPlayer : number = 1;
+    currentPlayer : number = 15; // Catherine (1) Sabrina (15) Louis (8)
+    // Dans le cas du test avec fakedb > Catherine a buzzé Sabrina (respectivement step 2 et 3) et Louis n'est donc pas concerné 
 
     // Formulaire envoyé
     buzzForm : FormGroup = new FormGroup({
@@ -47,29 +48,60 @@ export class GameBuzzComponent implements OnInit {
         
 	}
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.gameBuzzService.getPlayers()
             .subscribe(response => {
                 this.playersList = response;
-                this.contentLoaded = true;
         });
 
         this.gameBuzzService.getOngoingBuzz()
             .subscribe(response => {
                 this.ongoingBuzz = response;
-                if(this.ongoingBuzz && this.ongoingBuzz.acterPlayerId == this.currentPlayer) {
-                    // buzz en cours, on doit donc afficher les boutons refuser / confirmer 
-                    // et changer le texte des titres etc..
-                    this.step = 3;
-                    this.buzzForm = new FormGroup({
-                        currentPlayer: new FormControl(this.ongoingBuzz.targetPlayerId, Validators.required),
-                        selectedPlayer: new FormControl(this.ongoingBuzz.acterPlayerId, Validators.required),
-                        selectedPlayerSecret: new FormControl(this.ongoingBuzz.secretGuessed, Validators.required),
-                    });
-                    
-                    this.confrontation(3);
-                    this.selectPlayer('player-slide-' + this.ongoingBuzz.acterPlayerId);
-                }
+                setTimeout(() => {
+                    if(this.ongoingBuzz && this.ongoingBuzz.acterPlayerId) {
+                        if(this.ongoingBuzz.acterPlayerId === this.currentPlayer) {
+
+                            // ANCHOR Cas où l'user A buzzé
+
+                            // buzz en cours, on doit donc afficher les boutons refuser / confirmer 
+                            // et changer le texte des titres etc..
+                            this.step = 2;
+                            this.buzzForm = new FormGroup({
+                                currentPlayer: new FormControl(this.ongoingBuzz.acterPlayerId, Validators.required),
+                                selectedPlayer: new FormControl(this.ongoingBuzz.targetPlayerId, Validators.required),
+                                selectedPlayerSecret: new FormControl(this.ongoingBuzz.secretGuessed, Validators.required),
+                            });
+                            
+                            // Chargement delayed pour éviter un bug d'affichage (slides non chargées)
+                            this.confrontation(this.step);
+                            this.selectPlayer('player-slide-' + this.ongoingBuzz.targetPlayerId);
+
+                        } else if (this.ongoingBuzz.targetPlayerId === this.currentPlayer) {
+
+                            // ANCHOR Cas où l'user EST buzzé
+
+                            this.step = 3;
+                            this.buzzForm = new FormGroup({
+                                currentPlayer: new FormControl(this.ongoingBuzz.targetPlayerId, Validators.required),
+                                selectedPlayer: new FormControl(this.ongoingBuzz.acterPlayerId, Validators.required),
+                                selectedPlayerSecret: new FormControl(this.ongoingBuzz.secretGuessed, Validators.required),
+                            });
+                            
+                            // Chargement delayed pour éviter un bug d'affichage (slides non chargées)
+                            this.confrontation(this.step);
+                            this.selectPlayer('player-slide-' + this.ongoingBuzz.acterPlayerId);
+
+                        } else if (this.ongoingBuzz.acterPlayerId != this.currentPlayer 
+                            && this.ongoingBuzz.targetPlayerId != this.currentPlayer  ) {
+                            
+                            // ANCHOR Cas où un buzz est en cours mais que l'utilisateur n'est pas concerné
+                            // Il faut bloquer l'accès
+
+                            this.step = -1;
+                        }
+                    }
+                    this.contentLoaded = true;
+                }, 1000);
         });
     }
 
@@ -105,7 +137,6 @@ export class GameBuzzComponent implements OnInit {
     }
 
     respondBuzz(type: string){
-        console.log('reponse');
         if(this.ongoingBuzz.buzzId){
             this.gameBuzzService.respondBuzz(type, this.ongoingBuzz.buzzId);
         }
