@@ -105,5 +105,11 @@
          "cagnotte":0,
          "secret":""
       }
-   ]
+   ],
+   "buzz" : {
+      "targetPlayerId" : 15,
+      "acterPlayerId" : 1,
+      "secretGuessed" : "elle a fait le djihad"
+   }
+}
 }
