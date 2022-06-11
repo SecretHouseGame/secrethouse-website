@@ -32,6 +32,11 @@ html, body {
 	align-items: center;
 }
 
+.flex-between{
+	justify-content: space-between;
+	align-items: center;
+}
+
 .sidebar {
     min-height: 620px;
 	width: $sidebarWidth !important;

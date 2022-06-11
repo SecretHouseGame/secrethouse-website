@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, ViewChild} from '@angular/core';
 import { Player } from '../../../interfaces/player';
+import { Buzz } from '../../../interfaces/buzz';
 import { GameBuzzService } from './game-buzz.service';// import Swiper core and required modules
 import SwiperCore, { SwiperOptions, Navigation, Mousewheel, Keyboard} from 'swiper';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators} from '@angular/forms';
-import { CheckboxOption } from 'ngx-ds-secret-house';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 SwiperCore.use([
     Navigation,
@@ -23,6 +23,10 @@ export class GameBuzzComponent implements OnInit {
     playersList : Array<Player> = []; // Liste des habitants
     error : string = "";
     step : number = 1 ;
+    ongoingBuzz : Buzz = {
+        buzzId : 4545
+    };
+    currentPlayer : number = 1;
 
     // Formulaire envoyé
     buzzForm : FormGroup = new FormGroup({
@@ -47,7 +51,25 @@ export class GameBuzzComponent implements OnInit {
         this.gameBuzzService.getPlayers()
             .subscribe(response => {
                 this.playersList = response;
-               //  this.contentLoaded = true;
+                this.contentLoaded = true;
+        });
+
+        this.gameBuzzService.getOngoingBuzz()
+            .subscribe(response => {
+                this.ongoingBuzz = response;
+                if(this.ongoingBuzz && this.ongoingBuzz.acterPlayerId == this.currentPlayer) {
+                    // buzz en cours, on doit donc afficher les boutons refuser / confirmer 
+                    // et changer le texte des titres etc..
+                    this.step = 3;
+                    this.buzzForm = new FormGroup({
+                        currentPlayer: new FormControl(this.ongoingBuzz.targetPlayerId, Validators.required),
+                        selectedPlayer: new FormControl(this.ongoingBuzz.acterPlayerId, Validators.required),
+                        selectedPlayerSecret: new FormControl(this.ongoingBuzz.secretGuessed, Validators.required),
+                    });
+                    
+                    this.confrontation(3);
+                    this.selectPlayer('player-slide-' + this.ongoingBuzz.acterPlayerId);
+                }
         });
     }
 
@@ -59,31 +81,33 @@ export class GameBuzzComponent implements OnInit {
 		return this.buzzForm.get('selectedPlayerSecret') as FormControl;
 	}
 
-    selectPlayer(input: any) {
-        let targetSlide = input.parentNode;
-        console.log(document.getElementById('secret-form'));
-        if(targetSlide){
-            targetSlide.appendChild( document.getElementById('secret-form') );
+    selectPlayer(target: string) {
+        let targetSlide = document.getElementById(target);
+        let targetForm = document.getElementById('secret-form');
+        if( targetSlide && targetForm ) {
+            targetSlide.parentNode?.appendChild( targetForm );
         }
     }
 
     submit(){
-        let result = this.gameBuzzService.sendBuzz(this.buzzForm.value);
-        console.log(result);
-        if( result === true ) {
-            this.confrontation();
-        } else {
-            this.error = result;
-        }
+        this.gameBuzzService.sendBuzz(this.buzzForm.value);
+        this.confrontation(2);
     }
 
-    confrontation(){
-        this.step = 2;
+    confrontation(newStep : number){
+        this.step = newStep;
         let selectedPlayer = this.playersList.filter(player => {
             return player.id === this.formSelectedPlayer.value;
         })
         this.swiperConfig.slidesPerView = 1;
         this.swiperConfig.slideClass = "locked";
         this.playersList = selectedPlayer;
+    }
+
+    respondBuzz(type: string){
+        console.log('reponse');
+        if(this.ongoingBuzz.buzzId){
+            this.gameBuzzService.respondBuzz(type, this.ongoingBuzz.buzzId);
+        }
     }
 }

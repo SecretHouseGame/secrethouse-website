@@ -1,4 +1,4 @@
-<div class="game-buzz">
+<div class="game-buzz" [ngClass]="{'buzzed' : step > 1}">
 	<div class="page-introduction">
 		<h1 class="sh-yellow">
 			<span *ngIf="step === 1">
@@ -6,6 +6,9 @@
 			</span>
 			<span *ngIf="step === 2">
 				Vous avez buzzé un secret
+			</span>
+			<span *ngIf="step === 3">
+				Quelqu’un pense avoir découvert votre secret ! 
 			</span>
 		</h1>
 	
@@ -16,7 +19,9 @@
 			<span *ngIf="step === 2">
 				Parsem perferendis excepturi soluta vero placeat aspernatur suscipit id nisi amet alias nam, adipisci corporis reiciendis! 5000€ ont été retirés de votre cagnotte
 			</span>
-			
+			<span *ngIf="step === 3">
+				Lorem ipsum truc bidule chouette
+			</span>
 		</p>
 
 		<br>
@@ -27,6 +32,9 @@
 			</span>
 			<span *ngIf="step === 2">
 				Confrontation avec le candidat visé
+			</span>
+			<span *ngIf="step === 3">
+				Confrontez le et validez ou non ses soupsons
 			</span>
 		</h2>
 	</div>
@@ -46,15 +54,15 @@
 
 			<swiper
 				class="cards-swiper"
-				[ngClass]="{'locked': step === 2}"
+				[ngClass]="{'locked': step > 1}"
 				[config]="swiperConfig"
 				*ngIf="playersList"
 			>
 				<ng-template swiperSlide *ngFor="let player of playersList">
-					<label [for]="player.id" >
-						<div class="slide-container noselect" [ngClass]="{'is-selected' : formSelectedPlayer.value === player.id}">
+					<label [for]="'player-slide-' + player.id" >
+						<div class="slide-container noselect" [ngClass]="{'is-selected' : formSelectedPlayer.value === player.id || ongoingBuzz.targetPlayerId == player.id }" >
 							<img class="player-image" [src]="player.avatar" alt="" />
-							<input [formControl]="formSelectedPlayer" (change)="selectPlayer($event.target)" class="player-input" type="radio" [id]="player.id" [value]="player.id" name="target" hidden /> 
+							<input [formControl]="formSelectedPlayer" (change)="selectPlayer('player-slide-' + player.id)" class="player-input" type="radio" [id]="'player-slide-' + player.id" [value]="player.id" name="target" hidden /> 
 							<h3 class="player-name text-xl">{{ player.name }}</h3>
 						</div>
 					</label>
@@ -67,12 +75,42 @@
 				<p *ngIf="step === 2">
 					Je pense que son secret est...
 					<br>
-					{{ formSelectedPlayerSecret.value }}
+					<i>{{ formSelectedPlayerSecret.value }}</i>
+				</p>
+				<p *ngIf="step === 3">
+					Pense que votre secret est : 
+					<br>
+					<i>{{ ongoingBuzz.secretGuessed }}</i>
 				</p>
 			</div>
 
-			<div class="chatroom" *ngIf="step === 2">
-				ici c'est le chat
+			<div *ngIf="step > 1" class="chatroom-container">
+				<div class="chatroom">
+					<!-- ANCHOR Chatroom de Nico -->
+					<div class="card">
+						<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+							<li class="nav-item" role="presentation">
+								<button class="nav-link active" id="tab-general" data-type="private_message" data-channel_id="tab-general"  data-bs-toggle="pill" data-bs-target="#zone-chat-tab-general"
+										type="button" role="tab" aria-controls="pills-home" aria-selected="true" onclick="setChannel(this)">Général
+								</button>
+							</li>
+						</ul>
+						<div class="tab-content" id="pills-tabContent">
+							<div class="tab-pane fade card-body show active" id="zone-chat-tab-general" data-room="tag-general" role="tabpanel" aria-labelledby="tab-general" tabindex="0"></div>
+						</div>
+						<form action="/" id="formulaire_chat" class="card-footer" method='post'>
+							<div class="form-group d-flex">
+								<input type="text" id="message" name='message' class="form-control flex-5" placeholder='Votre message...' autocomplete="off" >
+								<input type="submit" id="envoi_message" class="btn btn-primary" value='Envoyer'>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="buzz-actions flex flex-between" *ngIf="step === 3" >
+					<sh-button color="primary"(click)="respondBuzz('false')">Refuser</sh-button>
+					<sh-button color="secondary" (click)="respondBuzz('almost')">C'est presque ça !</sh-button>
+					<sh-button color="primary"(click)="respondBuzz('true')">Confirmer</sh-button>
+				</div>
 			</div>
 		</div>
 		

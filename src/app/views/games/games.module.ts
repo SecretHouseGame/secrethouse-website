@@ -32,7 +32,7 @@ const routes: Routes = [
 		GameResidentsComponent,
 		GameRoomsComponent,
 		GameSecretsComponent,
-		GameBuzzComponent
+		GameBuzzComponent,
 	],
 	imports: [
 		CommonModule,

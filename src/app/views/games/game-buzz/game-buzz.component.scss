@@ -9,7 +9,58 @@ $full-black : #000;
 }
 
 .page-introduction{
+    z-index: 1;
     max-width: 800px;
+}
+
+.game-buzz{
+    z-index: 1;
+
+    &::before{
+        content: "";
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 50%;
+        height: 750px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url('/assets/images/svg/secret-crop-01.svg');
+        opacity: 0;
+        filter: contrast(0.75);
+        display: flex;
+        justify-content: flex-start;
+        transition: all .15s;
+        z-index: 0;
+    }
+
+    &::after{
+        content: "";
+        position: fixed;
+        bottom: 0;
+        right: -100px;
+        width: 600px;
+        height: 750px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url('/assets/images/svg/secret-crop-02.svg');
+        opacity: 0;
+        filter: contrast(0.75);
+        display: flex;
+        justify-content: flex-end;
+        transition: all .15s;
+        z-index: 0;
+    }
+
+    &.buzzed{
+        &::before, &::after {
+            opacity: .25;
+        }
+
+        .cards-list{
+	        align-items: flex-start;
+        }
+    }
 }
 
 .cards-list {
@@ -19,6 +70,7 @@ $full-black : #000;
 	justify-content: space-around;
 	flex-wrap: nowrap;
     position: relative;
+    z-index: 2;
 
     // La classe ".swiper-slide" se trouve dans styles.scss (sinon ça ne marche pas)
 
@@ -39,6 +91,10 @@ $full-black : #000;
 
         .field-label{
             color: $yellow;
+        }
+
+        p{
+            line-height: 1.3;
         }
     }
 
@@ -88,6 +144,7 @@ $full-black : #000;
             letter-spacing: 1px;
             z-index: 1;
             color: $white;
+            margin-top: 20px;
         }
     
         .player-image{
@@ -98,9 +155,24 @@ $full-black : #000;
             width: 120%;
             z-index: 0;
             transition: all .5s;
+            max-width: none;
         }
 	}
 
+    .chatroom-container{
+        min-width: 50%;
+
+        .chatroom{
+            width: 100%;
+            min-height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba($full-black, .5);
+            z-index: 1;
+            margin-bottom: 20px;
+        }
+    }
 }
 
 // Swiper indication
