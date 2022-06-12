@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.3](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.0.2...v1.0.3) (2022-06-12)
+
+
+### Bug Fixes
+
+* auto-release ([7aee19b](https://www.github.com/SecretHouseGame/secrethouse-website/commit/7aee19b8569fdbbd47fe9c56acb6fddc1077b2e6))
+
 ### [1.0.2](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.0.1...v1.0.2) (2022-06-11)
 
 
