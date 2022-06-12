@@ -24,7 +24,7 @@
          "avatar":"/assets/images/players/charlene.png",
          "cagnotte":0,
          "secret":"",
-         "canBuzz": true,
+         "canBuzz": false,
          "canBeBuzzed": true
       },
       {
@@ -43,7 +43,7 @@
          "cagnotte":0,
          "secret":"",
          "canBuzz": true,
-         "canBeBuzzed": true
+         "canBeBuzzed": false
       },
       {
          "id":6,
@@ -124,7 +124,7 @@
          "cagnotte":0,
          "secret":"",
          "canBuzz": true,
-         "canBeBuzzed": true
+         "canBeBuzzed": false
       },
       {
          "id":15,

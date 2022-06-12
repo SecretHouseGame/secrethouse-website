@@ -38,7 +38,7 @@ export class GameBuzzComponent implements OnInit {
 
     // Identifiant de l'utilisateur connecté
     // Dans le cas du test avec fakedb > Catherine a buzzé Sabrina (respectivement step 2 et 3) et Louis n'est donc pas concerné 
-    currentPlayer : number = 5; // Catherine (1) Sabrina (15) Louis (8)
+    currentPlayer : number = 1; // Catherine (1) Sabrina (15) Louis (8)
 
     // Etat de la fin confrontation , si le secret est découvert ou non
     confrontationState = {
