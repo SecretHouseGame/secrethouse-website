@@ -16,31 +16,34 @@ export class GameBuzzService {
 
 	constructor(private httpClient: HttpClient) { }
 
+	/** Récupérer tous les habitants */
 	public getPlayers(): Observable<Player[]> {
 		return this.httpClient.get<Player[]>(this.getPlayersURL);
 	}
 
+	/** Vérifie si un buzz est en cours */
 	public getOngoingBuzz(): Observable<Buzz> {
-		// TODO call api pour vérifier s'il y a un buzz en cours
 		return this.httpClient.get<Buzz>(this.getBuzzURL);
 	}
 
+	/** Sauvegarde le buzz */
 	public sendBuzz(formValues: any) {
-		// TODO call api pour save le buzz et définir le player 1 comme buzzeur et l'autre comme buzz
-
-		// doit retirer cagnotte et bloquer autres buzz
+		// TODO Back : doit retirer cagnotte et bloquer autres buzz
 
 		console.log(formValues);
-		// doit contenir : 
-		// - currentplayer
-		// - selectedplayer
-		// - selectedplayersecret
+		// formValues contient ces valeurs : 
+		// - currentplayer : number (celui qui buzz)
+		// - selectedplayer : number (celui qui est buzzé)
+		// - selectedplayersecret : string
 
 		return this.httpClient.post<Buzz>(this.postBuzzURL, {formValues : formValues});
 	}
 
 	public respondBuzz(confirmState : string, buzzId : number): Observable<any> {
-		// string "true", "false", "almost"
+		// TODO Back : Ajouter notif aux autres utilisateurs !
+		// TODO Back : Clore le buzz pour permettre de buzzer à nouveau
+
+		// renvoit une string : "true", "false", "almost"
 		return this.httpClient.post<string>(this.postBuzzURL, {confirmState : confirmState, buzzId : buzzId});
 	}
 }

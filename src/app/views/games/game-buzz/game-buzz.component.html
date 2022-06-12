@@ -65,14 +65,15 @@
 
 			<swiper class="cards-swiper" [ngClass]="{'locked': step > 1}" [config]="swiperConfig" *ngIf="playersList">
 				<ng-template swiperSlide *ngFor="let player of playersList">
-					<label [for]="'player-slide-' + player.id">
+					<label [for]="'player-slide-' + player.id" [ngClass]="{'cannot-be-buzzed': !player.canBeBuzzed}">
 						<div class="slide-container noselect"
 							[ngClass]="{'is-selected' : formSelectedPlayer.value === player.id || ongoingBuzz.targetPlayerId == player.id }">
 							<img class="player-image" [src]="player.avatar" alt="" />
-							<input [formControl]="formSelectedPlayer"
+							<input [formControl]="formSelectedPlayer" [disabled]="!player.canBeBuzzed"
 								(change)="selectPlayer('player-slide-' + player.id)" class="player-input" type="radio"
 								[id]="'player-slide-' + player.id" [value]="player.id" name="target" hidden />
 							<h3 class="player-name text-xl">{{ player.name }}</h3>
+							<p class="secret-discovered" *ngIf="!player.canBeBuzzed">Secret découvert</p>
 						</div>
 					</label>
 				</ng-template>

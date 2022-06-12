@@ -11,6 +11,7 @@ export interface Player {
     isReady ?: boolean,
     isBuzzed ?: boolean,
     canBuzz ?: boolean,
+    canBeBuzzed ?: boolean,
     isNominated ?: boolean,
     isEliminated ?: boolean,
 }

@@ -5,105 +5,135 @@
          "name":"Catherine",
          "avatar":"/assets/images/players/catherine.png",
          "cagnotte":0,
-         "secret":""
+         "secret":"",
+         "canBuzz": true,
+         "canBeBuzzed": true
       },
       {
          "id":2,
          "name":"Lucien",
          "avatar":"/assets/images/players/lucien.png",
          "cagnotte":0,
-         "secret":""
+         "secret":"",
+         "canBuzz": true,
+         "canBeBuzzed": true
       },
       {
          "id":3,
          "name":"Charlene",
          "avatar":"/assets/images/players/charlene.png",
          "cagnotte":0,
-         "secret":""
+         "secret":"",
+         "canBuzz": true,
+         "canBeBuzzed": true
       },
       {
          "id":4,
          "name":"Emeline",
          "avatar":"/assets/images/players/emeline.png",
          "cagnotte":0,
-         "secret":""
+         "secret":"",
+         "canBuzz": true,
+         "canBeBuzzed": true
       },
       {
          "id":5,
          "name":"Esteban",
          "avatar":"/assets/images/players/esteban.png",
          "cagnotte":0,
-         "secret":""
+         "secret":"",
+         "canBuzz": true,
+         "canBeBuzzed": true
       },
       {
          "id":6,
          "name":"Julie",
          "avatar":"/assets/images/players/julie.png",
          "cagnotte":0,
-         "secret":""
+         "secret":"",
+         "canBuzz": true,
+         "canBeBuzzed": true
       },
       {
          "id":7,
          "name":"Kamila",
          "avatar":"/assets/images/players/kamila.png",
          "cagnotte":0,
-         "secret":""
+         "secret":"",
+         "canBuzz": true,
+         "canBeBuzzed": true
       },
       {
          "id":8,
          "name":"Louis",
          "avatar":"/assets/images/players/louis.png",
          "cagnotte":0,
-         "secret":""
+         "secret":"",
+         "canBuzz": true,
+         "canBeBuzzed": true
       },
       {
          "id":9,
          "name":"Lucien",
          "avatar":"/assets/images/players/lucien.png",
          "cagnotte":0,
-         "secret":""
+         "secret":"",
+         "canBuzz": true,
+         "canBeBuzzed": true
       },
       {
          "id":10,
          "name":"Lydia",
          "avatar":"/assets/images/players/lydia.png",
          "cagnotte":0,
-         "secret":""
+         "secret":"",
+         "canBuzz": true,
+         "canBeBuzzed": true
       },
       {
          "id":11,
          "name":"Mickael",
          "avatar":"/assets/images/players/mickael.png",
          "cagnotte":0,
-         "secret":""
+         "secret":"",
+         "canBuzz": true,
+         "canBeBuzzed": true
       },
       {
          "id":12,
          "name":"Nathan",
          "avatar":"/assets/images/players/nathan.png",
          "cagnotte":0,
-         "secret":""
+         "secret":"",
+         "canBuzz": true,
+         "canBeBuzzed": true
       },
       {
          "id":13,
          "name":"Nicolas",
          "avatar":"/assets/images/players/nicolas.png",
          "cagnotte":0,
-         "secret":""
+         "secret":"",
+         "canBuzz": true,
+         "canBeBuzzed": true
       },
       {
          "id":14,
          "name":"Romain",
          "avatar":"/assets/images/players/romain.png",
          "cagnotte":0,
-         "secret":""
+         "secret":"",
+         "canBuzz": true,
+         "canBeBuzzed": true
       },
       {
          "id":15,
          "name":"Sabrina",
          "avatar":"/assets/images/players/sabrina.png",
          "cagnotte":0,
-         "secret":""
+         "secret":"",
+         "canBuzz": true,
+         "canBeBuzzed": true
       }
    ],
    "buzz" : {

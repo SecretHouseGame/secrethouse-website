@@ -111,6 +111,23 @@ $full-black : #000;
         }
     }
 
+    .cannot-be-buzzed{
+        pointer-events: none;
+        opacity: .5;
+
+        .slide-container{
+            .secret-discovered{
+                text-align: left;
+                z-index: 5;
+            }
+    
+            .player-image{
+                z-index: -1;
+            }
+        }
+
+    }
+
     // Slides
 	.slide-container{
 		height: 400px;
