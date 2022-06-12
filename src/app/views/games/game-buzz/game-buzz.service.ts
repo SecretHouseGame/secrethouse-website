@@ -39,10 +39,8 @@ export class GameBuzzService {
 		return this.httpClient.post<Buzz>(this.postBuzzURL, {formValues : formValues});
 	}
 
-	public respondBuzz(confirmState : string, buzzId : number){
+	public respondBuzz(confirmState : string, buzzId : number): Observable<any> {
 		// string "true", "false", "almost"
-		return this.httpClient.post<string>(this.postBuzzURL, {confirmState : confirmState, buzzId : buzzId}).subscribe(data => {
-			console.log(data);
-		});
+		return this.httpClient.post<string>(this.postBuzzURL, {confirmState : confirmState, buzzId : buzzId});
 	}
 }

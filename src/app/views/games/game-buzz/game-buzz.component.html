@@ -1,5 +1,5 @@
 <div class="game-buzz" [ngClass]="{'buzzed' : step != 1}">
-	<div class="page-introduction" *ngIf="step != -1">
+	<div class="page-introduction" *ngIf="step != -1 && step != -2">
 		<h1 class="sh-yellow">
 			<span *ngIf="step === 1">
 				Vous pensez avoir trouvé un secret ?
@@ -51,7 +51,7 @@
 		</h2>
 	</div>
 
-	<form class="form-container" [formGroup]="buzzForm" (ngSubmit)="submit()" *ngIf="step != -1">
+	<form class="form-container" [formGroup]="buzzForm" (ngSubmit)="submit()" *ngIf="step != -1 && step != -2">
 		<div class="cards-list">
 			<div *ngIf="!contentLoaded" class="cards-swiper cards-loading">
 				<ngx-skeleton-loader class="player-card" count="5" appearance="line" animation="pulse" [theme]="{
@@ -184,6 +184,36 @@
 		<h2 class="sh-yellow text-xl mt-5">
 			<span>
 				Pour buzzer, revenez plus tard !
+			</span>
+		</h2>
+	</div>
+
+	<div *ngIf="step === -2" id="closed-buzz">
+		<div class="ongoing-icon">
+			<svg width="150" height="150" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 336.7 383.54" xmlns:v="https://vecta.io/nano"><path d="M142.9 383.54c-6.64-2.48-8.94-7.36-8.93-14.29l.2-168c0-3.28-.89-4.33-4.17-4.92-58.12-10.56-101-41.66-127.33-94.88-4.31-8.72-3.61-11.69 3.62-18.31C28.29 63 50 42.51 74.42 25.3a237.28 237.28 0 0 1 33.31-19.83c18.15-8.76 36.41-6.42 53.83 2.92 4.79 2.56 8.87 2.68 13.69.09 18.2-9.81 36.89-11.28 56-2.39 18.36 8.57 34.52 20.49 49.86 33.46 17.43 14.73 34.34 30.06 51.41 45.22 4.79 4.25 5.41 8.82 2.27 15.62a166.37 166.37 0 0 1-24 37.76c-23.06 27.39-52.22 45.09-86.61 54.47-1.07.29-2.13.62-3.89 1.13l26.52 10.78L297 224.81c17.38 7.08 26.21 20 26 38.83-.12 13.2.24 26.53-1.41 39.57-4.95 39.08-38.25 72.62-77.12 78.84l-8.81 1.49zm13.88-22.73a8.64 8.64 0 0 0 1.48.25c24.57 0 49.16.59 73.71-.21 33.23-1.09 62.43-27 67.22-59.69 1.75-11.88 1.21-24.11 1.43-36.18.2-11.26-2.94-15.7-13.33-19.9l-88.64-35.83c-6.49-2.63-8.61-5.76-8.61-12.84l-.08-59.12c-.43-18.7-10.4-31.42-26.89-39.4a51.72 51.72 0 0 0-6.29-2zM40.66 82.11a10.74 10.74 0 0 0 1.65.41l89.39-.08a4.16 4.16 0 0 0 2.92-2.28c2.1-5.2 5.8-8 11.41-8a66.67 66.67 0 0 1 33.22 8.74 11.74 11.74 0 0 0 5.56 1.55q53.87.14 107.72.06c1 0 2.09-.13 3.13-.2l.52-.87a25.9 25.9 0 0 1-2.43-1.65l-26.1-22.41C253.64 46 239.33 35 223 26.93c-12.84-6.31-25.3-5.3-37.52 1.47-11.3 6.28-22.47 6.3-33.81.13a52.35 52.35 0 0 0-9.91-4.22c-11.46-3.43-22-.89-32.26 4.85-18.93 10.61-35.6 24.25-52 38.21-5.62 4.71-11.02 9.63-16.84 14.74zm93.28 23.1H30.78c12.29 30.18 72.72 70.28 103.16 68.47zm172.82.07H204.17c1.84 4.49 3.77 8.66 5.28 13 3.17 9.1 3.23 18.58 3.12 28.08v26c40.43-9.81 71.94-31.47 94.19-67.08z"/></svg>
+		</div>
+
+		<h1 class="sh-yellow">
+			<span *ngIf="confrontationState.success">
+				Le secret a été découvert !
+			</span>
+			<span *ngIf="!confrontationState.success && confrontationState.close">
+				Le secret a presque été découvert !
+			</span>
+			<span *ngIf="!confrontationState.success && !confrontationState.close">
+				Le secret n'a pas été découvert !
+			</span>
+		</h1>
+
+		<p class="leading-5">
+			<span>
+				Lorem ipsum truc bidule chouette
+			</span>
+		</p>
+
+		<h2 class="sh-yellow text-xl mt-5">
+			<span>
+				Pour buzzer à nouveau, rafraichissez la page !
 			</span>
 		</h2>
 	</div>

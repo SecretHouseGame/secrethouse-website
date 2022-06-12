@@ -27,6 +27,10 @@ export class GameBuzzComponent implements OnInit {
         buzzId : 4545
     };
     currentPlayer : number = 15; // Catherine (1) Sabrina (15) Louis (8)
+    confrontationState = {
+        success : false,
+        close : false
+    }
     // Dans le cas du test avec fakedb > Catherine a buzzé Sabrina (respectivement step 2 et 3) et Louis n'est donc pas concerné 
 
     // Formulaire envoyé
@@ -137,8 +141,27 @@ export class GameBuzzComponent implements OnInit {
     }
 
     respondBuzz(type: string){
-        if(this.ongoingBuzz.buzzId){
-            this.gameBuzzService.respondBuzz(type, this.ongoingBuzz.buzzId);
-        }
+        this.gameBuzzService.respondBuzz(type, 4545 /*this.ongoingBuzz.buzzId*/).subscribe(
+            response => {
+                console.log(response);
+              if(response.confirmState === "almost"){
+                this.confrontationState = {
+                    success: false, // true ou false
+                    close: true, // true ou false
+                }
+            } else if (response.confirmState === "true") {
+                this.confrontationState = {
+                    success: true, // true ou false
+                    close: true, // true ou false
+                }
+            } else {
+                this.confrontationState = {
+                    success: false, // true ou false
+                    close: false, // true ou false
+                }
+            };
+            
+            this.step = -2;
+        });
     }
 }
