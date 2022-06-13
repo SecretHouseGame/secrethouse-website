@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ChatServerService } from './chat-server.service';
 
 @Component({
@@ -7,7 +8,9 @@ import { ChatServerService } from './chat-server.service';
   styleUrls: ['./chat-server.component.scss']
 })
 export class ChatServerComponent implements OnInit {
-  newMessage: any = "";
+  messageForm : FormGroup = new FormGroup({
+    newMessage: new FormControl('', Validators.required)
+  }); 
   messageList: string[] = [];
 
   @Input() type : string = "general";
@@ -31,9 +34,17 @@ export class ChatServerComponent implements OnInit {
     })
   }
 
+	get formNewMessage() {
+		return this.messageForm.get('newMessage') as FormControl;
+	}
+
   sendMessage() {
-    this.chatService.sendMessage(this.newMessage);
-    this.newMessage = '';
+    if(this.messageForm.get('newMessage') != null){
+      this.chatService.sendMessage( this.messageForm.value );
+    }
+    this.messageForm = new FormGroup({
+      newMessage: new FormControl('', Validators.required)
+  });
   }
 
 }
