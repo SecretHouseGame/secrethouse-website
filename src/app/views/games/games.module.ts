@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxDsSecretHouseModule } from 'ngx-ds-secret-house';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { SwiperModule } from 'swiper/angular';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// Pages enfant
 import { RouterModule, Routes } from "@angular/router";
 import { GameCreateComponent } from './game-create/game-create.component';
 import { GameLobbyComponent } from './game-lobby/game-lobby.component';
@@ -26,12 +32,18 @@ const routes: Routes = [
 		GameResidentsComponent,
 		GameRoomsComponent,
 		GameSecretsComponent,
-		GameBuzzComponent
+		GameBuzzComponent,
 	],
 	imports: [
 		CommonModule,
-		RouterModule.forChild(routes)
+        NgxSkeletonLoaderModule,
+		RouterModule.forChild(routes),
+        SwiperModule,
+		NgxDsSecretHouseModule,
+		FormsModule,
+		ReactiveFormsModule
 	]
 })
+
 export class GamesModule {
 }

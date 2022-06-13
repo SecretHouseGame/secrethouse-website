@@ -1,0 +1,10 @@
+<div id="chatroom">
+    <div *ngFor="let message of messageList">
+        <li>
+            {{message}}
+        </li>  
+    </div>
+    
+    <sh-input-text (keyup)="$event.keyCode == 13 && sendMessage()" name="newMessage" name="newMessage" id="selectedPlayerSecret" [control]="formNewMessage" required></sh-input-text>
+    <sh-button (click)="sendMessage()">Send Message</sh-button>
+</div>

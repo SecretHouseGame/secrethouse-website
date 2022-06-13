@@ -1,9 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "~tailwindcss/base";
+@import "~tailwindcss/components";
+@import "~tailwindcss/utilities";
 
 @import "node_modules/ngx-ds-secret-house/assets/styles";
 @import "node_modules/ngx-ds-secret-house/assets/scss/navbar";
+
+@import "~swiper/css";
 
 $bg-black: #121212;
 
@@ -21,16 +23,8 @@ html, body {
     padding: 0 4em;
 }
 
-.flex{
-	display: flex;
-}
-
-.flex-center{
-	justify-content: center;
-	align-items: center;
-}
-
 .sidebar {
+    min-height: 620px;
 	width: $sidebarWidth !important;
 }
 
@@ -48,5 +42,125 @@ body {
 				margin-left: $sidebarWidth;
 			}
 		}
+	}
+}
+
+// Style des slides SwiperJs
+.swiper-wrapper{
+	padding: 10px 25px;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	height: 400px;
+	width: 275px;
+	min-width: 275px;
+}
+
+// Permet d'éviter le surlignage 
+
+.noselect {
+	-webkit-touch-callout: none; /* iOS Safari */
+	  -webkit-user-select: none; /* Safari */
+	   -khtml-user-select: none; /* Konqueror HTML */
+		 -moz-user-select: none; /* Old versions of Firefox */
+		  -ms-user-select: none; /* Internet Explorer/Edge */
+			  user-select: none; /* Non-prefixed version, currently
+									supported by Chrome, Edge, Opera and Firefox */
+  }
+
+// Page buzz
+
+
+.cards-swiper {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	transition: all .2s;
+
+	&.cards-loading{
+		min-width: 100%;
+
+		.loader{
+			background: #000000 no-repeat;
+		}
+	}
+
+	&.locked{
+		cursor: default;
+		pointer-events: none;
+		margin-left: 0;
+		margin-right: 20px;
+		width: 320px;
+		transform-origin: top left;
+		transform: scale(1.2);
+
+		.slide-container{
+			cursor: default;
+			pointer-events: none;
+		}
+	}
+}
+
+  #secret-form{
+	.field-group{
+
+		.field-label{
+			font-size: 13px;
+			color: $yellow;
+			text-align: left;
+		}
+	
+		input{
+			box-sizing: content-box;
+			width: 90%;
+			margin-bottom: 10px;
+		}
+	}
+
+	sh-button{
+		width: 245px;
+
+		.btn{
+			width: 100%;
+
+			.btn__content{
+				justify-content: center;
+			}
+		}
+	}
+}
+
+.game-buzz{
+	sh-alert{
+		.alert-main{
+			margin-top: 25px;
+			background-color: $bg-black;
+			
+			.alert-title{
+				padding-top: 10px;
+				line-height: 1.4;
+			}
+			
+			.alert-text{
+				padding-bottom: 10px;
+				line-height: 1.4;
+			}
+		}	
 	}
 }

@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -14,6 +16,7 @@ import { RouterModule } from '@angular/router';
 		BrowserModule,
 		AppRoutingModule,
 		NgxDsSecretHouseModule,
+        HttpClientModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]
