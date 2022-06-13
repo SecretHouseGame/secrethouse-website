@@ -85,6 +85,14 @@ $full-black : #000;
     position: relative;
     z-index: 2;
 
+    &.cannot-buzz{
+
+        label{
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+
     // La classe ".swiper-slide" se trouve dans styles.scss (sinon ça ne marche pas)
 
     // Formulaire

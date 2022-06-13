@@ -145,3 +145,22 @@ body {
 		}
 	}
 }
+
+.game-buzz{
+	sh-alert{
+		.alert-main{
+			margin-top: 25px;
+			background-color: $bg-black;
+			
+			.alert-title{
+				padding-top: 10px;
+				line-height: 1.4;
+			}
+			
+			.alert-text{
+				padding-bottom: 10px;
+				line-height: 1.4;
+			}
+		}	
+	}
+}

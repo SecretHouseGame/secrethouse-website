@@ -25,20 +25,19 @@ export class GameBuzzComponent implements OnInit {
      // Permet de changer d'écran 
     step : number = 1;
     /*
-        Step -1 : Un buzz est en cours et je ne suis ni le buzzeur ni la personne visée par le buzz
         Step 1 : Pas de buzz en cours, sélection personnage déverouillée, on peux buzzer 
         Step 2 : J'ai buzzé : je suis en chat avec la personne visée
         Step 3 : Je suis buzzé : je suis en chat avec la personne qui m'a buzzéé
-        Step -2 : Fin de la confrontation, écran finale indiquant si le secret est découvert ou non
 
+        Step -1 : Un buzz est en cours et je ne suis ni le buzzeur ni la personne visée par le buzz
+        Step -2 : Fin de la confrontation, écran finale indiquant si le secret est découvert ou non
     */
 
     // Permet d'identifier si un buzz en cours
     ongoingBuzz : Buzz = {};
 
-    // Identifiant de l'utilisateur connecté
-    // Dans le cas du test avec fakedb > Catherine a buzzé Sabrina (respectivement step 2 et 3) et Louis n'est donc pas concerné 
-    currentPlayer : number = 1; // Catherine (1) Sabrina (15) Louis (8)
+    // Utilisateur actuel
+    currentPlayer : Player = {};
 
     // Etat de la fin confrontation , si le secret est découvert ou non
     confrontationState = {
@@ -56,7 +55,7 @@ export class GameBuzzComponent implements OnInit {
     // Config Swiper
     public swiperConfig : SwiperOptions = {
         slidesPerView: 5,
-        spaceBetween: 40,
+        spaceBetween: 0,
         navigation: true,
         mousewheel: true,
         keyboard: true,
@@ -72,13 +71,22 @@ export class GameBuzzComponent implements OnInit {
 		return this.buzzForm.get('selectedPlayerSecret') as FormControl;
 	}
 
+    isBuzzVisible(): boolean {
+        return this.step != -1 && this.step != -2;
+    }
+
     ngOnInit(): void {
+
+        this.gameBuzzService.getCurrentPlayer()
+            .subscribe(response => {
+                this.currentPlayer = response;
+                console.log(this.currentPlayer);
+        });
 
         // On récupère la liste des habitants pour les afficher dans le swiper (même si celui-ci est verrouillé !)
         this.gameBuzzService.getPlayers()
             .subscribe(response => {
                 this.playersList = response;
-
                 // TODO Front : condition "canBuzz" et si son secret est découvert ou non
         });
 
@@ -87,46 +95,45 @@ export class GameBuzzComponent implements OnInit {
             .subscribe(response => {
                 this.ongoingBuzz = response;
                 setTimeout(() => {
+
                     // Si un buzz est en cours
-                    if(this.ongoingBuzz && this.ongoingBuzz.acterPlayerId) {
-                        if(this.ongoingBuzz.acterPlayerId === this.currentPlayer) {
+                    if(this.ongoingBuzz.acterPlayerId === this.currentPlayer.id) {
 
-                            // ANCHOR Cas où l'user connecté A buzzé
+                        // ANCHOR Cas où l'user connecté A buzzé
 
-                            // buzz en cours, on doit donc afficher les boutons refuser / confirmer 
-                            this.step = 2;
-                            this.buzzForm = new FormGroup({
-                                currentPlayer: new FormControl(this.ongoingBuzz.acterPlayerId, Validators.required),
-                                selectedPlayer: new FormControl(this.ongoingBuzz.targetPlayerId, Validators.required),
-                                selectedPlayerSecret: new FormControl(this.ongoingBuzz.secretGuessed, Validators.required),
-                            });
-                            
-                            // Chargement delayed pour éviter un bug d'affichage (slides non chargées)
-                            this.confrontation(this.step);
-                            this.selectPlayer('player-slide-' + this.ongoingBuzz.targetPlayerId);
+                        // buzz en cours, on doit donc afficher les boutons refuser / confirmer 
+                        this.step = 2;
+                        this.buzzForm = new FormGroup({
+                            currentPlayer: new FormControl(this.ongoingBuzz.acterPlayerId, Validators.required),
+                            selectedPlayer: new FormControl(this.ongoingBuzz.targetPlayerId, Validators.required),
+                            selectedPlayerSecret: new FormControl(this.ongoingBuzz.secretGuessed, Validators.required),
+                        });
+                        
+                        // Chargement delayed pour éviter un bug d'affichage (slides non chargées)
+                        this.confrontation(this.step);
+                        this.selectPlayer('player-slide-' + this.ongoingBuzz.targetPlayerId);
 
-                        } else if (this.ongoingBuzz.targetPlayerId === this.currentPlayer) {
+                    } else if (this.ongoingBuzz.targetPlayerId === this.currentPlayer.id) {
 
-                            // ANCHOR Cas où l'user connecté EST buzzé
+                        // ANCHOR Cas où l'user connecté EST buzzé
 
-                            this.step = 3;
-                            this.buzzForm = new FormGroup({
-                                currentPlayer: new FormControl(this.ongoingBuzz.targetPlayerId, Validators.required),
-                                selectedPlayer: new FormControl(this.ongoingBuzz.acterPlayerId, Validators.required),
-                                selectedPlayerSecret: new FormControl(this.ongoingBuzz.secretGuessed, Validators.required),
-                            });
-                            
-                            // Chargement delayed pour éviter un bug d'affichage (slides non chargées)
-                            this.confrontation(this.step);
-                            this.selectPlayer('player-slide-' + this.ongoingBuzz.acterPlayerId);
+                        this.step = 3;
+                        this.buzzForm = new FormGroup({
+                            currentPlayer: new FormControl(this.ongoingBuzz.targetPlayerId, Validators.required),
+                            selectedPlayer: new FormControl(this.ongoingBuzz.acterPlayerId, Validators.required),
+                            selectedPlayerSecret: new FormControl(this.ongoingBuzz.secretGuessed, Validators.required),
+                        });
+                        
+                        // Chargement delayed pour éviter un bug d'affichage (slides non chargées)
+                        this.confrontation(this.step);
+                        this.selectPlayer('player-slide-' + this.ongoingBuzz.acterPlayerId);
 
-                        } else if (this.ongoingBuzz.acterPlayerId != this.currentPlayer 
-                            && this.ongoingBuzz.targetPlayerId != this.currentPlayer  ) {
-                            
-                            // ANCHOR Cas où un buzz est en cours mais que l'utilisateur n'est pas concerné
-                            // Blocage de l'accès
-                            this.step = -1;
-                        }
+                    } else if (this.ongoingBuzz.acterPlayerId != this.currentPlayer .id
+                        && this.ongoingBuzz.targetPlayerId != this.currentPlayer.id  ) {
+                        
+                        // ANCHOR Cas où un buzz est en cours mais que l'utilisateur n'est pas concerné
+                        // Blocage de l'accès
+                        this.step = -1;
                     }
 
                     // Fin du chargement

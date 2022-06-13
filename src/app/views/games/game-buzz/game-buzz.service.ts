@@ -10,14 +10,20 @@ import { Observable } from 'rxjs';
 
 export class GameBuzzService {
 	private getPlayersURL = 'https://my-json-server.typicode.com/SecretHouseGame/secrethouse-fakedb/players';
+	private getCurrentPlayersURL = 'https://my-json-server.typicode.com/SecretHouseGame/secrethouse-fakedb/currentPlayer';
 	private getBuzzURL = 'https://my-json-server.typicode.com/SecretHouseGame/secrethouse-fakedb/buzz';
 	private postBuzzURL = 'https://my-json-server.typicode.com/SecretHouseGame/secrethouse-fakedb/buzz';
 
 	constructor(private httpClient: HttpClient) { }
 
-	/** Récupérer tous les habitants */
+	/** Récupérer un habitant */
 	public getPlayers(): Observable<Player[]> {
 		return this.httpClient.get<Player[]>(this.getPlayersURL);
+	}
+
+	/** Récupérer tous les habitants */
+	public getCurrentPlayer(): Observable<Player> {
+		return this.httpClient.get<Player>(this.getCurrentPlayersURL);
 	}
 
 	/** Vérifie si un buzz est en cours */

@@ -1,5 +1,5 @@
 <div class="game-buzz" [ngClass]="{'buzzed' : step != 1}">
-	<div class="page-introduction" *ngIf="step != -1 && step != -2">
+	<div class="page-introduction" *ngIf="isBuzzVisible()">
 		<h1 class="sh-yellow">
 			<span *ngIf="step === 1">
 				Vous pensez avoir trouvé un secret ?
@@ -51,8 +51,10 @@
 		</h2>
 	</div>
 
-	<form class="form-container" [formGroup]="buzzForm" (ngSubmit)="submit()" *ngIf="step != -1 && step != -2">
-		<div class="cards-list">
+	<sh-alert content="Vous ne pouvez pas buzzer !" type="info" title="Attention," *ngIf="!this.currentPlayer.canBuzz"></sh-alert>
+
+	<form class="form-container" [formGroup]="buzzForm" (ngSubmit)="submit()" *ngIf="isBuzzVisible()">
+		<div class="cards-list" [ngClass]="{'cannot-buzz': !this.currentPlayer.canBuzz}">
 			<div *ngIf="!contentLoaded" class="cards-swiper cards-loading">
 				<ngx-skeleton-loader class="player-card" count="5" appearance="line" animation="pulse" [theme]="{
 					height: '400px',
@@ -67,7 +69,7 @@
 				<ng-template swiperSlide *ngFor="let player of playersList">
 					<label [for]="'player-slide-' + player.id" [ngClass]="{'cannot-be-buzzed': !player.canBeBuzzed}">
 						<div class="slide-container noselect"
-							[ngClass]="{'is-selected' : formSelectedPlayer.value === player.id || ongoingBuzz.targetPlayerId == player.id }">
+							[ngClass]="{'is-selected' : (formSelectedPlayer.value === player.id || ongoingBuzz.targetPlayerId == player.id) && step > 1 }">
 							<img class="player-image" [src]="player.avatar" alt="" />
 							<input [formControl]="formSelectedPlayer" [disabled]="!player.canBeBuzzed"
 								(change)="selectPlayer('player-slide-' + player.id)" class="player-input" type="radio"
