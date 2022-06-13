@@ -10,12 +10,12 @@ import { ChatServerService } from './chat-server.service';
 export class ChatServerComponent implements OnInit {
   messageForm : FormGroup = new FormGroup({
     newMessage: new FormControl('', Validators.required)
-  }); 
+  });
   messageList: string[] = [];
 
   @Input() type : string = "general";
   @Input() channel : string = "tab-general";
-  
+
   // Variables de Nico
   socketId : any;
   currentUser : string = ''; // pseudo de l'utilisateur connecté
@@ -45,6 +45,19 @@ export class ChatServerComponent implements OnInit {
     this.messageForm = new FormGroup({
       newMessage: new FormControl('', Validators.required)
   });
-  }
+
+	// feat/chat <---- Nico, ce que j'ai fais hier et ça marche, mais Aimee a rajouter ça au dessus depuis
+  // onChange(event: Event) {
+	//   console.debug(event.target);
+  // }
+  //
+  // sendMessage() {
+	//   console.debug(this);
+
+	  // let test = this.chatService.sendMessage(this.newMessage);
+    // this.newMessage = '';
+
+	// return false;
+  // }
 
 }

@@ -1,20 +1,26 @@
+@import "/node_modules/ngx-ds-secret-house/assets/scss/variables";
+
 #chatroom{
-    .card {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        min-width: 0;
-        word-wrap: break-word;
-        background-color: #fff;
-        background-clip: border-box;
-        border: 1px solid rgba(0, 0, 0, .125);
-        border-radius: 15px;
-        width: 100%;
-    }
+	&.card {
+		position: fixed;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		min-width: 0;
+		word-wrap: break-word;
+		background-color: $blue-dark;
+		background-clip: border-box;
+		border: 1px solid rgba(0, 0, 0, .125);
+		border-radius: .25rem;
+		margin: auto;
+		bottom: -15px;
+		right: 3em;
+		width: 60%;
+	}
     .card-body {
         height: 60vh;
-        overflow: scroll;
+        overflow-y: scroll;
         display: flex;
         flex-direction: column-reverse;
         padding: 0.5em 1.25em;
@@ -65,8 +71,8 @@
     }
     .chat-header {
         padding: 1em;
-        background-color: #f7f7f7f7;
-        border-bottom: 1px solid #ced4da;
+        background-color: $blue;
+        border-bottom: 1px solid $yellow;
     }
     .chat {
         position: absolute;
@@ -79,16 +85,18 @@
         top: 5em;
         padding: 1em
     }
-    .chat-footer {
-        border-top: 1px solid #ced4da;
-        padding: 1em;
-        background-color: #f7f7f7;
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-    }
-    .form-group {
-        margin-bottom: 0;
-    }
+
+	form#formulaire_chat.card-footer {
+		display: flex;
+		flex-direction: row;
+		border-top: 2px solid $yellow;
+		padding: 1em;
+		background-color: $blue;
+		bottom: 0;
+		right: 0;
+		width: 100%;
+	}
+}
+input#message-chat {
+	background-color: $blue-dark;
 }

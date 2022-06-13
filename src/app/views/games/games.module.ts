@@ -13,6 +13,7 @@ import { GameResidentsComponent } from './game-residents/game-residents.componen
 import { GameRoomsComponent } from './game-rooms/game-rooms.component';
 import { GameSecretsComponent } from './game-secrets/game-secrets.component';
 import { GameBuzzComponent } from './game-buzz/game-buzz.component';
+import {ChatServerModule} from "../../chat/chat-server.module";
 
 const routes: Routes = [
 	// TODO : Si on a pas join de game : on arrive sur créer / rejoindre une game
@@ -34,15 +35,16 @@ const routes: Routes = [
 		GameSecretsComponent,
 		GameBuzzComponent,
 	],
-	imports: [
-		CommonModule,
+    imports: [
+        CommonModule,
         NgxSkeletonLoaderModule,
-		RouterModule.forChild(routes),
+        RouterModule.forChild(routes),
         SwiperModule,
-		NgxDsSecretHouseModule,
-		FormsModule,
-		ReactiveFormsModule
-	]
+        NgxDsSecretHouseModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ChatServerModule
+    ]
 })
 
 export class GamesModule {

@@ -11,8 +11,10 @@ import { ChatServerComponent } from './chat-server.component';
     CommonModule,
     NgxDsSecretHouseModule
   ],
-  exports: [
-    
-  ]
+	exports: [
+		ChatServerComponent,
+		ChatServerComponent
+
+	]
 })
 export class ChatServerModule { }
