@@ -123,7 +123,7 @@
 						</form>
 					</div>
 				</div>
-				<div class="buzz-actions flex flex-between" *ngIf="step === 3">
+				<div class="buzz-actions flex justify-between items-center" *ngIf="step === 3">
 					<sh-button color="primary" (click)="respondBuzz('false')">Refuser</sh-button>
 					<sh-button color="secondary" (click)="respondBuzz('almost')">C'est presque ça !</sh-button>
 					<sh-button color="primary" (click)="respondBuzz('true')">Confirmer</sh-button>
