@@ -87,13 +87,15 @@ export class GameBuzzComponent implements OnInit {
         this.gameBuzzService.getPlayers()
             .subscribe(response => {
                 this.playersList = response;
-                // TODO Front : condition "canBuzz" et si son secret est découvert ou non
         });
 
         // On regarde si un buzz est en cours dans la maison
         this.gameBuzzService.getOngoingBuzz()
             .subscribe(response => {
                 this.ongoingBuzz = response;
+
+                // On doit recevoir dans tous les cas une réponse !
+                
                 setTimeout(() => {
 
                     // Si un buzz est en cours

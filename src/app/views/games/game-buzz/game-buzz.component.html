@@ -51,7 +51,7 @@
 		</h2>
 	</div>
 
-	<sh-alert content="Vous ne pouvez pas buzzer !" type="info" title="Attention," *ngIf="!this.currentPlayer.canBuzz"></sh-alert>
+	<sh-alert content="Vous ne pouvez pas buzzer !" type="info" title="Attention," *ngIf="!this.currentPlayer.canBuzz && this.contentLoaded"></sh-alert>
 
 	<form class="form-container" [formGroup]="buzzForm" (ngSubmit)="submit()" *ngIf="isBuzzVisible()">
 		<div class="cards-list" [ngClass]="{'cannot-buzz': !this.currentPlayer.canBuzz}">
