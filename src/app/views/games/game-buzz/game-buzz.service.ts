@@ -9,10 +9,9 @@ import { Observable } from 'rxjs';
 })
 
 export class GameBuzzService {
-	private getPlayersURL = 'https://my-json-server.typicode.com/SecretHouseGame/secrethouse-website/players';
-	private getBuzzURL = 'https://my-json-server.typicode.com/SecretHouseGame/secrethouse-website/buzz';
-	private postBuzzURL = 'https://my-json-server.typicode.com/SecretHouseGame/secrethouse-website/buzz';
-	private error = '';
+	private getPlayersURL = 'https://my-json-server.typicode.com/SecretHouseGame/secrethouse-fakedb/players';
+	private getBuzzURL = 'https://my-json-server.typicode.com/SecretHouseGame/secrethouse-fakedb/buzz';
+	private postBuzzURL = 'https://my-json-server.typicode.com/SecretHouseGame/secrethouse-fakedb/buzz';
 
 	constructor(private httpClient: HttpClient) { }
 
