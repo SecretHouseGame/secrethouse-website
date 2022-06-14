@@ -1,11 +1,9 @@
 @import "src/styles";
 
-:host {
-	text-align: center;
-	margin: 2rem;
-
+#dashboard {
 	.header {
 		margin: 4rem;
+		text-align: center;
 
 		h1, h2 {
 			margin-top: 0;
@@ -23,17 +21,19 @@
 
 	.content {
 		display: flex;
-		align-items: stretch;
+		align-items: center;
 		justify-content: center;
+		column-gap: 4rem;
 
 		sh-card {
 			min-width: 425px;
 			max-width: 600px;
 			width: 100%;
-			margin: 0 1rem;
 
 			h2 {
+				text-align: center;
 				color: $brand-primary;
+				margin: 1rem 0 1.5rem;
 			}
 
 			p {
@@ -45,14 +45,41 @@
 			.card__action {
 				margin: 0 2rem 1rem;
 				display: flex;
-				align-items: flex-end;
-				justify-content: center;
+			}
 
-				label {
-					color: $brand-primary !important;
+			&#create-game {
+				.card__action {
+					justify-content: center;
+				}
+			}
+
+			&#join-game {
+				.card {
+					background-color: $overlay;
+					border-color: $overlay;
+
+					p {
+						color: $white;
+					}
+
+					.card__action {
+						align-items: flex-end;
+						justify-content: space-between;
+
+						sh-input-text {
+							flex: 2;
+
+							.field-group {
+								text-align: left;
+
+								label {
+									color: $brand-primary !important;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
 	}
-
 }

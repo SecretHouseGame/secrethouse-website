@@ -45,11 +45,25 @@ body {
 	}
 }
 
+input {
+	color: $black;
+}
+
 sh-field-container input:focus, sh-field-container input:active,
 sh-field-container textarea:focus, sh-field-container textarea:active,
 sh-field-container select:focus, sh-field-container select:active {
 	border-width: 1px !important;
 }
+
+sh-field-container input {
+	min-height: 36px;
+	max-height: 36px;
+}
+
+sh-button button .btn__content {
+	line-height: 1;
+}
+
 
 // Style des slides SwiperJs
 .swiper-wrapper{
