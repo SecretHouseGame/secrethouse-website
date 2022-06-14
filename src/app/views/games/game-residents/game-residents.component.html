@@ -1,1 +1,22 @@
-<p>game-residents works!</p>
+<div class="game-residents">
+	<div class="header">
+		<h1 class="sh-yellow">Les résidents de la maison</h1>
+		<p>Retouvez ici la liste de tous les résidents de la maison ainsi que leurs informations respectives</p>
+	</div>
+	<div class="content">
+		<div id="residents-list">
+			<sh-list>
+				<sh-list-item
+					*ngFor="let item of items; let index = index" [item]="item"
+					[ngClass]="{'selected' : (index + 1) === selectedResident.id}"
+					(click)="selectResident(index + 1)">
+				</sh-list-item>
+			</sh-list>
+		</div>
+		<div id="residents-preview" *ngIf="selectedResident">
+			<sh-card class="card-secondary">
+				<h2 class="leading-none">{{ selectedResident.name }}</h2>
+			</sh-card>
+		</div>
+	</div>
+</div>

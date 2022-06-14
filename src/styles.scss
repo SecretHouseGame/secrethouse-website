@@ -64,8 +64,15 @@ sh-button button .btn__content {
 	line-height: 1;
 }
 
+sh-card.card-secondary {
+	.card {
+		background-color: $overlay;
+		border-color: $overlay;
+	}
+}
+
 .sh-yellow{
-    color: $yellow;
+	color: $yellow;
 }
 
 // Style des slides SwiperJs

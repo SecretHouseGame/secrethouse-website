@@ -1,0 +1,56 @@
+@import "src/styles";
+
+.game-residents {
+	.header {
+		margin-bottom: 2rem;
+
+		h1 {
+			color: $brand-primary;
+			margin-bottom: 1rem;
+		}
+	}
+
+	.content {
+		display: flex;
+		align-items: flex-start;
+		column-gap: 6rem;
+		width: 100%;
+
+		#residents-list {
+			min-width: 250px;
+
+			sh-list {
+				sh-list-item {
+					margin-bottom: 1rem;
+
+					.list__item {
+						background-color: transparent;
+						border: 1px solid $white;
+
+						color: $white;
+
+						transition: $transition;
+					}
+
+					&:hover, &.selected {
+						.list__item {
+							border-color: $brand-primary;
+						}
+					}
+				}
+			}
+		}
+
+		#residents-preview {
+			flex: 2;
+
+			.card {
+				h2 {
+
+				}
+			}
+		}
+
+
+	}
+}
