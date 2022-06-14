@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild} from '@angular/core';
 import { Player } from '../../../interfaces/player';
 import { Buzz } from '../../../interfaces/buzz';
-import { GameBuzzService } from './game-buzz.service';// import Swiper core and required modules
+import { GameBuzzService } from './game-buzz.service';
 import SwiperCore, { SwiperOptions, Navigation, Mousewheel, Keyboard} from 'swiper';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 

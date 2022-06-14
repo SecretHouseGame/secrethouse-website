@@ -1,12 +1,65 @@
+@import "/node_modules/ngx-ds-secret-house/assets/scss/variables";
+
+$bg-black: #121212;
+
+$full-black : #000;
+
+.page-introduction{
+    margin-bottom: 50px;
+}
+
+.room-image{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: .15;
+}
+
+.room-selected{
+    margin-top: 30px;
+}
+
+.room-players{
+    display: flex;
+    flex-direction: column;
+
+    .room-player{
+        padding: 7px 15px;
+        margin: 5px 0;
+        background-color: rgba($full-black, .5);
+    }
+}
+
+.chatroom-container{
+    min-width: 50%;
+
+    .chatroom{
+        width: 100%;
+        min-height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba($full-black, .5);
+        z-index: 1;
+        margin-bottom: 20px;
+    }
+}
+
 #house-model {
     width: 500px;
+    height: 700px;
     margin: 0 auto;
     display: flex;
-    align-items: center;
     justify-content: center;
 
     .house-container{
-        transform: scale(.9);
+        transform: scale(.8);
+        min-width: 700px;
 
         :root {
             --bg1: 12, 20, 84;
@@ -3223,7 +3276,7 @@
             transition: all .2s;
     
             &:hover{
-                background-color: red !important;
+                background-color: rgba($yellow, .5) !important;
             }
         }
         

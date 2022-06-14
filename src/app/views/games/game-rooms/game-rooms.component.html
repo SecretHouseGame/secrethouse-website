@@ -1,7 +1,80 @@
-<p>game-rooms works!</p>
+<div class="page-introduction">
+	<h1 class="sh-yellow text-center">
+		La maison des secrets
+	</h1>
 
-<div>
-	<div id="house-model">
+	<p class="leading-5 text-center">
+		Choisissez une pièce de la maison pour y accéder et discuter avec les autres habitants.
+	</p>
+</div>
+
+<div *ngIf="selectedRoom" class="room-selected">
+	<img [src]="selectedRoom.image" class="room-image" alt="" />
+	<div class="grid grid-cols-3 gap-4" *ngIf="selectedRoom">
+		<div class="col-span-2">
+			<h2 class="sh-yellow">
+				{{ selectedRoom.name }}
+			</h2>
+			<div class="chatroom">
+				<!-- Chatroom -->
+			</div>
+			<div class="chatroom-container">
+				<div class="chatroom">
+					<!-- ANCHOR Chatroom de Nico -->
+					<div class="card">
+						<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+							<li class="nav-item" role="presentation">
+								<button class="nav-link active" id="tab-general" data-type="private_message"
+									data-channel_id="tab-general" data-bs-toggle="pill"
+									data-bs-target="#zone-chat-tab-general" type="button" role="tab"
+									aria-controls="pills-home" aria-selected="true" onclick="setChannel(this)">Général
+								</button>
+							</li>
+						</ul>
+						<div class="tab-content" id="pills-tabContent">
+							<div class="tab-pane fade card-body show active" id="zone-chat-tab-general"
+								data-room="tag-general" role="tabpanel" aria-labelledby="tab-general" tabindex="0">
+							</div>
+						</div>
+						<form action="/" id="formulaire_chat" class="card-footer" method='post'>
+							<div class="form-group d-flex">
+								<input type="text" id="message" name='message' class="form-control flex-5"
+									placeholder='Votre message...' autocomplete="off">
+								<input type="submit" id="envoi_message" class="btn btn-primary" value='Envoyer'>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div>
+				<sh-button (click)="resetRoom()" color="secondary">Sortir de la pièce</sh-button>
+			</div>
+		</div>
+		<div>
+			<h3>
+				Joueurs dans la salle
+			</h3>
+			<div *ngIf="playersInRoom" class="room-players">
+				<div *ngFor="let player of playersInRoom" class="room-player">
+					{{player.name}}
+				</div>
+			</div>
+			<div *ngIf="!playersInRoom" class="room-players">
+				<p>Aucun joueur dans la salle !</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- lorsque l'on a pas sélectionné de pièce -->
+<div class="grid grid-cols-4 gap-4" *ngIf="!selectedRoom">
+	<div class="flex flex-col items-end">
+		<sh-button color="primary" (click)="accessRoom('salle de bain')">Salle de bain</sh-button>
+		<sh-button color="primary" (click)="accessRoom('salon')">Salon</sh-button>
+		<sh-button color="primary" (click)="accessRoom('terrasse')">Terrasse</sh-button>
+		<sh-button color="primary" (click)="accessRoom('piscine')">Piscine</sh-button>
+	</div>
+	<div id="house-model" class="col-span-2">
 		<div class="house-container">
 			<div class="shadows h">
 			</div>
@@ -117,11 +190,11 @@
 					<div class="b5__top face"> </div>
 					<div class="b5__bottom face"> </div>
 				</div>
-				<div class="bc2 crystal" id="room-terrasse">
+				<div class="bc2 crystal" id="room-terrasse" (click)="accessRoom('patio')">
 					<div class="bc2__front face"> </div>
 					<div class="bc2__left face"> </div>
 				</div>
-				<div class="bc3 crystal" id="room-piscine">
+				<div class="bc3 crystal" id="room-piscine" (click)="accessRoom('pool')">
 					<div class="bc3__front face"> </div>
 					<div class="bc3__right face"> </div>
 				</div>
@@ -297,22 +370,22 @@
 					<div class="c4__bottom face"> </div>
 				</div>
 				<div class="cc1 window">
-					<div class="cc1__front face" id="room-cuisine"> </div>
+					<div class="cc1__front face" id="room-salon" (click)="accessRoom('salon')"> </div>
 					<div class="cc1__back face"> </div>
-					<div class="cc1__right face" id="room-confessionnal"> </div>
+					<div class="cc1__right face" id="room-confessionnal" (click)="accessRoom('confessionnal')"> </div>
 					<div class="cc1__left face"> </div>
 					<div class="cc1__top face"> </div>
 					<div class="cc1__bottom face face-b"> </div>
 				</div>
 				<div class="cc2 window">
-					<div class="cc2__front face" id="room-salon"> </div>
+					<div class="cc2__front face" id="room-cuisine" (click)="accessRoom('cuisine')"> </div>
 					<div class="cc2__back face"> </div>
 					<div class="cc2__right face"> </div>
 					<div class="cc2__left face"> </div>
 					<div class="cc2__top face"> </div>
 					<div class="cc2__bottom face face-b"> </div>
 				</div>
-				<div class="cc3 crystal" id="room-balcon">
+				<div class="cc3 crystal" id="room-balcon" (click)="accessRoom('balcony')">
 					<div class="cc3__front face"> </div>
 					<div class="cc3__back face"> </div>
 					<div class="cc3__right face"> </div>
@@ -398,11 +471,11 @@
 					<div class="e3__bottom face"> </div>
 				</div>
 				<div class="e4 window">
-					<div class="e4__right face" id="room-chambre"> </div>
+					<div class="e4__right face" id="room-chambre" (click)="accessRoom('bedroom')"> </div>
 				</div>
 				<div class="e5 window">
-                    <div class="e5__front face room-sdb"></div>
-                    <div class="e5__right face room-sdb"> </div>
+                    <div class="e5__front face room-sdb" (click)="accessRoom('bathroom')"></div>
+                    <div class="e5__right face room-sdb" (click)="accessRoom('bathroom')"> </div>
 					<div class="e5__bottom face"> </div>
 				</div>
 			</div>
@@ -413,46 +486,10 @@
 		</div>
 	</div>
 
-	<script>
-		const root = document.documentElement;
-		const b = document.body;
-		const h = document.querySelectorAll(".h");
-		const ch = document.querySelector("#ch");
-		const off = document.querySelectorAll(".off");
-
-
-		let base = (e) => {
-			var x = e.pageX / window.innerWidth - 0.5;
-			var y = e.pageY / window.innerHeight - 0.5;
-
-			h.forEach((item, i) => {
-				h[i].style.transform = `
-                    perspective(10000px)
-                    rotateX(${ y * 4  + 60}deg)
-                    rotateZ(${ -x * 4 + 45}deg)
-                    translateZ(-9.5vw)
-                `;
-			});
-
-		}
-		let toggle = (e) => {
-
-			if (ch.checked) {
-				root.style.setProperty('--window', '208, 226, 226');
-				root.style.setProperty('--lamp', '184, 210, 210');
-				off.forEach((item, i) => off[i].style.display = "none");
-
-			} else {
-				/* Colores base */
-				root.style.setProperty('--window', '185, 250, 250');
-				root.style.setProperty('--lamp', '214, 249, 249');
-				off.forEach((item, i) => off[i].style.display = "inherit");
-
-			}
-		}
-
-		ch.addEventListener("click", toggle);
-		b.addEventListener("pointermove", base);
-
-	</script>
+	<div class="flex flex-col">
+		<sh-button color="primary" (click)="accessRoom('chambre')">Chambres</sh-button>
+		<sh-button color="primary" (click)="accessRoom('balcon')">Balcon</sh-button>
+		<sh-button color="primary" (click)="accessRoom('cuisine')">Cuisine</sh-button>
+		<sh-button color="primary" (click)="accessRoom('confessionnal')">Confessionnal</sh-button>
+	</div>
 </div>

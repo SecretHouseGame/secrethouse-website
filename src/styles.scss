@@ -45,6 +45,12 @@ body {
 	}
 }
 
+// Color by classname
+
+.sh-yellow{
+    color: $yellow;
+}
+
 // Style des slides SwiperJs
 .swiper-wrapper{
 	padding: 10px 25px;
