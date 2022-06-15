@@ -66,6 +66,37 @@ $full-black : #000;
     }
 }
 
+// ANCHOR Modal pour voir un joueur
+
+#view-player-modal{
+    .player-modal-line{
+        padding-bottom: 4px;
+        border-bottom: 1px solid $yellow;
+        margin-bottom: 10px;
+        &.label{
+            letter-spacing: 1px;
+        }
+
+        line-height: 1.5;
+    }
+
+    .player-avatar-container{
+        background-color: $yellow;
+        position: relative;
+        min-height: 400px;
+        display: flex;
+        justify-content: center;
+
+        .player-avatar{
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
 // ANCHOR Style de la maison
 
 #house-model {

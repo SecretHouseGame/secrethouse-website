@@ -3,6 +3,7 @@ import { GameRoomsService } from './game-rooms.service';
 import { Room } from '../../../interfaces/room';
 import { RoomGame } from '../../../interfaces/room_game';
 import { Player } from '../../../interfaces/player';
+import { ModalService } from 'ngx-ds-secret-house';
 
 @Component({
 	selector: 'app-game-rooms',
@@ -15,7 +16,7 @@ export class GameRoomsComponent implements OnInit {
 	playersInRoom : Array<Player> = [];
 	viewPlayer : Player | null = null;
 
-	constructor (private gameRoomsService : GameRoomsService ) {}
+	constructor (private gameRoomsService : GameRoomsService, private modalService : ModalService ) {}
 
 	ngOnInit (): void {
 
@@ -72,7 +73,7 @@ export class GameRoomsComponent implements OnInit {
         this.playersInRoom.filter(player => {
 			if( player.id === playerId ){
 				this.viewPlayer = player;
-				console.log(player);
+				this.modalService.open();
 			}
         })
 	}
