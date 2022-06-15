@@ -19,8 +19,8 @@ export class GameRoomsService {
 		return this.httpClient.get<Room[]>(this.getRoomsURL);
 	}
 
-  /** Récupérer tous les pièces */
-  public getRoomPlayers(): Observable<Player[]> {
+  	/** Récupérer tous les pièces */
+ 	public getRoomPlayers(): Observable<Player[]> {
 		return this.httpClient.get<Player[]>(this.getRoomPlayersURL);
 	}
 

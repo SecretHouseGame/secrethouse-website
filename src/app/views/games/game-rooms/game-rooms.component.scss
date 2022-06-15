@@ -1,12 +1,7 @@
 @import "/node_modules/ngx-ds-secret-house/assets/scss/variables";
 
 $bg-black: #121212;
-
 $full-black : #000;
-
-.page-introduction{
-    margin-bottom: 50px;
-}
 
 .room-image{
     position: absolute;
@@ -18,48 +13,71 @@ $full-black : #000;
     object-fit: cover;
     z-index: 0;
     opacity: .15;
+    pointer-events: none;
 }
 
-.room-selected{
-    margin-top: 30px;
-}
+.game-rooms{
+    z-index: 1;
 
-.room-players{
-    display: flex;
-    flex-direction: column;
-
-    .room-player{
-        padding: 7px 15px;
-        margin: 5px 0;
-        background-color: rgba($full-black, .5);
+    .page-introduction{
+        margin-bottom: 50px;
     }
-}
 
-.chatroom-container{
-    min-width: 50%;
+    .room-selected, .room-not-selected{
+        opacity: 0;
+        transition: all .3s;
 
-    .chatroom{
-        width: 100%;
-        min-height: 500px;
+        &.viewable{
+            opacity: 1;
+        }
+    }
+
+    .room-selected{
+        margin-top: 30px;
+    }
+    
+    .room-players{
         display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba($full-black, .5);
-        z-index: 1;
-        margin-bottom: 20px;
+        flex-direction: column;
+        cursor: pointer;
+        max-height: 500px;
+        overflow-y: scroll;
+    
+        .room-player{
+            padding: 7px 15px;
+            margin: 5px 0;
+            background-color: rgba($full-black, .5);
+        }
+    }
+    
+    .chatroom-container{
+        min-width: 50%;
+    
+        .chatroom{
+            width: 100%;
+            min-height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            z-index: 1;
+            margin-bottom: 20px;
+        }
     }
 }
+
+// ANCHOR Style de la maison
 
 #house-model {
-    width: 500px;
-    height: 700px;
-    margin: 0 auto;
+    width: 400px;
+    height: 400px;
     display: flex;
     justify-content: center;
+    min-width: 100%;
 
     .house-container{
-        transform: scale(.8);
-        min-width: 700px;
+        transform: scale(.75);
+        min-width: 100%;
 
         :root {
             --bg1: 12, 20, 84;
@@ -3271,12 +3289,14 @@ $full-black : #000;
             }
         }
 
+        // ANCHOR Animation de sélection
 
-        #room-cuisine, #room-piscine, #room-chambre, #room-balcon, .room-sdb, #room-salon, #room-terrasse, #room-salon, #room-confessionnal{
+        .room-cuisine, .room-piscine, .room-chambre, .room-balcon, .room-sdb, .room-salon, .room-terrasse, .room-salon, .room-confessionnal{
             transition: all .2s;
+            cursor: pointer;
     
-            &:hover{
-                background-color: rgba($yellow, .5) !important;
+            &.hover{
+                background-color: rgba($yellow, .8) !important;
             }
         }
         
