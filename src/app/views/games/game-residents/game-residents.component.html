@@ -16,6 +16,42 @@
 		<div id="residents-preview" *ngIf="selectedResident">
 			<sh-card class="card-secondary">
 				<h2 class="leading-none">{{ selectedResident.name }}</h2>
+				<div class="resident-details">
+					<div class="resident-avatar">
+						<div class="resident-avatar__block">
+							<img [src]="selectedResident.avatar" [alt]="selectedResident.name" />
+						</div>
+					</div>
+					<div class="resident-description">
+						<div id="resident-description__bio" class="mb-8">
+							<h3 class="resident-description__title mb-3">Biographie</h3>
+							<p class="text-sm mb-2">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus turpis eros,
+								venenatis eu dapibus sed, feugiat vitae odio. Morbi et faucibus sapien.
+							</p>
+							<p class="text-sm">
+								Cras molestie lacus nulla, ac sollicitudin neque placerat vitae.
+								Pellentesque non odio tempor, porttitor sem et, vestibulum enim.
+							</p>
+						</div>
+						<div class="flex align-top mb-8">
+							<div id="resident-description__age">
+								<h3 class="resident-description__title mb-3">Âge</h3>
+								<p class="text-sm">25 ans</p>
+							</div>
+							<div id="resident-description__gender">
+								<h3 class="resident-description__title mb-3">Genre</h3>
+								<p class="text-sm">{{ getResidentGenderTranslation(selectedResident.genre ?? '') }}</p>
+							</div>
+						</div>
+						<div id="resident-description__secret" class="mb-8">
+							<h3 class="resident-description__title mb-3">Secret</h3>
+							<p class="text-sm" [ngClass]="{ 'italic': !selectedResident.isEliminated }">
+								{{ selectedResident.isEliminated ? selectedResident.secret : 'Secret non découvert' }}
+							</p>
+						</div>
+					</div>
+				</div>
 			</sh-card>
 		</div>
 	</div>
