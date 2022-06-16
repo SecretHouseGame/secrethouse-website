@@ -1,5 +1,5 @@
 export interface Player {
-    id ?: number,
+    id : number,
     name ?: string,
     cagnotte ?: number,
     secret ?: string,

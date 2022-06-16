@@ -45,6 +45,12 @@ body {
 	}
 }
 
+// Color by classname
+
+.sh-yellow{
+    color: $yellow;
+}
+
 // Style des slides SwiperJs
 .swiper-wrapper{
 	padding: 10px 25px;
@@ -162,5 +168,16 @@ body {
 				line-height: 1.4;
 			}
 		}	
+	}
+}
+
+.game-rooms{
+	.room-not-selected{
+		sh-button{
+			.btn{
+				font-size: 20px;
+				max-height: none;
+			}
+		}
 	}
 }
