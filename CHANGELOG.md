@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.5](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.0.4...v1.0.5) (2022-06-16)
+
+
+### Bug Fixes
+
+* github action missing Angular-cli ([dda9ee9](https://www.github.com/SecretHouseGame/secrethouse-website/commit/dda9ee9ef396bea5bbbe4559807f9c5114929240))
+
 ### [1.0.4](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.0.3...v1.0.4) (2022-06-16)
 
 
