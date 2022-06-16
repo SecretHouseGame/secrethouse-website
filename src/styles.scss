@@ -64,6 +64,9 @@ sh-button button .btn__content {
 	line-height: 1;
 }
 
+.sh-yellow{
+    color: $yellow;
+}
 
 // Style des slides SwiperJs
 .swiper-wrapper{
@@ -180,6 +183,17 @@ sh-button button .btn__content {
 			.alert-text{
 				padding-bottom: 10px;
 				line-height: 1.4;
+			}
+		}
+	}
+}
+
+.game-rooms{
+	.room-not-selected{
+		sh-button{
+			.btn{
+				font-size: 20px;
+				max-height: none;
 			}
 		}
 	}
