@@ -20,9 +20,14 @@ jobs:
       - name: install libraries
         run: npm install
         working-directory: ${{env.working-directory}}
+
       - name: install firebase
         run: npm i firebase-tools -g
+
+      - name: install angular-cli
+        run: npm install -g @angular/cli
       - name: build app
         run: npm run build
+
       - name: deploy
         run: firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
