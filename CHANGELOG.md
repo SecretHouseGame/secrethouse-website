@@ -1,5 +1,16 @@
 # Changelog
 
+### [1.0.4](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.0.3...v1.0.4) (2022-06-16)
+
+
+### Bug Fixes
+
+* chat component newMessage into formgroup ([31c6a3f](https://www.github.com/SecretHouseGame/secrethouse-website/commit/31c6a3f7ca4ef4762f8e31496ce33a372f5cf618))
+* must alert if user cannot buzz & function for condition by step ([4136b33](https://www.github.com/SecretHouseGame/secrethouse-website/commit/4136b33842f6a5f85b1300bfbd5ccbf099140336))
+* remove duplicate tailwind classes ([953b81a](https://www.github.com/SecretHouseGame/secrethouse-website/commit/953b81aeabe8e68a255ec91f887686880e3b894b))
+* script to auto-deploy ([2a8cec1](https://www.github.com/SecretHouseGame/secrethouse-website/commit/2a8cec12f4745b46ebfd1161e7c333c855dbfe63))
+* switch url for my-json-server fakedb ([ed3a0ef](https://www.github.com/SecretHouseGame/secrethouse-website/commit/ed3a0ef713e0d599c6bf4307bbb8ae2a01a0b07f))
+
 ### [1.0.3](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.0.2...v1.0.3) (2022-06-12)
 
 
