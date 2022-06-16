@@ -14,7 +14,7 @@
 		border: 1px solid rgba(0, 0, 0, .125);
 		border-radius: .25rem;
 		margin: auto;
-		bottom: -15px;
+		bottom: 0;
 		right: 3em;
 		width: 60%;
 	}
@@ -95,8 +95,23 @@
 		bottom: 0;
 		right: 0;
 		width: 100%;
+
+		div.form-group {
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+
+			input#message-chat {
+				width: 80%;
+				background-color: $blue-dark;
+				padding: 0.25rem 0.5rem;
+			}
+			button {
+				background-color: $yellow;
+				padding: 0.25rem 0.5rem;
+			}
+		}
 	}
-}
-input#message-chat {
-	background-color: $blue-dark;
 }

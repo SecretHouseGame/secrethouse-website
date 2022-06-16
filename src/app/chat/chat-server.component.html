@@ -8,17 +8,15 @@
 	</ul>
 	<div class="tab-content" id="pills-tabContent">
 		<div class="tab-pane fade card-body show active" id="zone-chat-tab-general" data-room="tag-general" role="tabpanel" aria-labelledby="tab-general" tabindex="0">
-			<div *ngFor="let message of messageList">
-				<li>
-					{{message}}
-				</li>
+			<div *ngFor="let msg of messageList">
+				<sh-chat-message [isCurrentUser]="msg.isCurrentUser" content="{{msg.content}}" imageUrl="{{msg.imageUrl}}">{{msg.content}}</sh-chat-message>
 			</div>
 		</div>
 	</div>
 	<div id="formulaire_chat" class="card-footer">
 		<div class="form-group d-flex">
-			<input type="text" [(ngModel)]="newMessage" (keyup)="$event.keyCode == 13 && sendMessage()" (change)="onChange($event)" name="newMessage" id="message-chat" autocomplete="off" required />
-			<button (click)="sendMessage()">Send Message</button>
+			<input type="text" [(ngModel)]="newMessage" (keyup)="$event.keyCode == 13 && sendMessage()" name="newMessage" id="message-chat" autocomplete="off" required />
+			<button class="btn btn-primary" (click)="sendMessage()">Send Message</button>
 		</div>
 	</div>
 </div>

@@ -21,7 +21,7 @@ export class ChatServerComponent implements OnInit {
 	currentUser: string = ''; // pseudo de l'utilisateur connecté
 	party = '';
 	arrayDiscussion = [];
-	messageList: string[] = [];
+	messageList: { content: string, isCurrentUser: boolean, imageUrl:string }[] = [];
 
 	constructor(private chatService: ChatServerService) {
 	}
@@ -31,8 +31,7 @@ export class ChatServerComponent implements OnInit {
 		localStorage.setItem('channel', this.channel);
 
 		this.chatService.getNewMessage().subscribe((message: string) => {
-			this.messageList.push();
-			console.log(this.messageList);
+			this.messageList.push({content: message, isCurrentUser: false, imageUrl: 'https://pkimgcdn.peekyou.com/dfd8bab38ab56d2b89dac1dad40b9e1e.jpeg'});
 		})
 	}
 
@@ -40,15 +39,11 @@ export class ChatServerComponent implements OnInit {
 		return this.messageForm.get('newMessage') as FormControl;
 	}
 
-	onChange(event: Event) {
-		console.debug(event.target);
-	}
-
 	sendMessage() {
 		this.chatService.sendMessage(this.newMessage);
 		console.log(this.messageList);
 
-		this.messageList.push(this.newMessage)
+		this.messageList.push({content:this.newMessage, isCurrentUser: true, imageUrl: 'https://pkimgcdn.peekyou.com/dfd8bab38ab56d2b89dac1dad40b9e1e.jpeg'})
 
 		this.newMessage = '';
 
