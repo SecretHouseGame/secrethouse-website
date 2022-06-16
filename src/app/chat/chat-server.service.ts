@@ -14,14 +14,14 @@ export class ChatServerService {
   socket = io('http://localhost:3000');
 
   public sendMessage(message : string) {
-    this.socket.emit('message', message);
+    this.socket.emit('tab-general', 'fake-username', 'fake-userIdTo', 'fake-userIdfrom', message, 'fake-partyId');
   }
 
   public getNewMessage = () => {
     this.socket.on('message', (message) =>{
       this.message$.next(message);
     });
-    
+
     return this.message$.asObservable();
   };
 }

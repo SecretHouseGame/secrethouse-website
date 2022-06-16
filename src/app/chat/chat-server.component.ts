@@ -1,63 +1,58 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ChatServerService } from './chat-server.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ChatServerService} from './chat-server.service';
 
 @Component({
-  selector: 'app-chat-server',
-  templateUrl: './chat-server.component.html',
-  styleUrls: ['./chat-server.component.scss']
+	selector: 'app-chat-server',
+	templateUrl: './chat-server.component.html',
+	styleUrls: ['./chat-server.component.scss']
 })
 export class ChatServerComponent implements OnInit {
-  messageForm : FormGroup = new FormGroup({
-    newMessage: new FormControl('', Validators.required)
-  });
-  messageList: string[] = [];
+	messageForm: FormGroup = new FormGroup({
+		newMessage: new FormControl('', Validators.required)
+	});
 
-  @Input() type : string = "general";
-  @Input() channel : string = "tab-general";
+	@Input() type: string = "general";
+	@Input() channel: string = "tab-general";
 
-  // Variables de Nico
-  socketId : any;
-  currentUser : string = ''; // pseudo de l'utilisateur connecté
-  party = '';
-  arrayDiscussion = [];
+	// Variables de Nico
+	newMessage!: string;
+	socketId: any;
+	currentUser: string = ''; // pseudo de l'utilisateur connecté
+	party = '';
+	arrayDiscussion = [];
+	messageList: string[] = [];
 
-  constructor(private chatService: ChatServerService) { }
+	constructor(private chatService: ChatServerService) {
+	}
 
-  ngOnInit(){
+	ngOnInit() {
+		localStorage.setItem('type', this.type);
+		localStorage.setItem('channel', this.channel);
 
-    localStorage.setItem('type', this.type);
-    localStorage.setItem('channel', this.channel);
-
-    this.chatService.getNewMessage().subscribe((message: string) => {
-      this.messageList.push(message);
-    })
-  }
+		this.chatService.getNewMessage().subscribe((message: string) => {
+			this.messageList.push();
+			console.log(this.messageList);
+		})
+	}
 
 	get formNewMessage() {
 		return this.messageForm.get('newMessage') as FormControl;
 	}
 
-  sendMessage() {
-    if(this.messageForm.get('newMessage') != null){
-      this.chatService.sendMessage( this.messageForm.value );
-    }
-    this.messageForm = new FormGroup({
-      newMessage: new FormControl('', Validators.required)
-  });
+	onChange(event: Event) {
+		console.debug(event.target);
+	}
 
-	// feat/chat <---- Nico, ce que j'ai fais hier et ça marche, mais Aimee a rajouter ça au dessus depuis
-  // onChange(event: Event) {
-	//   console.debug(event.target);
-  // }
-  //
-  // sendMessage() {
-	//   console.debug(this);
+	sendMessage() {
+		this.chatService.sendMessage(this.newMessage);
+		console.log(this.messageList);
 
-	  // let test = this.chatService.sendMessage(this.newMessage);
-    // this.newMessage = '';
+		this.messageList.push(this.newMessage)
 
-	// return false;
-  // }
+		this.newMessage = '';
+
+		return false;
+	}
 
 }

@@ -1,31 +1,24 @@
-<div>
-    <div *ngFor="let message of messageList">
-        <li>
-            {{message}}
-        </li>
-    </div>
-
-    <sh-input-text (keyup)="$event.keyCode == 13 && sendMessage()" name="newMessage" name="newMessage" id="selectedPlayerSecret" [control]="formNewMessage" required></sh-input-text>
-    <sh-button (click)="sendMessage()">Send Message</sh-button>
+<div class="card" id="chatroom">
+	<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+		<li class="nav-item" role="presentation">
+			<button class="nav-link active" id="tab-general" data-type="private_message" data-channel_id="tab-general"  data-bs-toggle="pill" data-bs-target="#zone-chat-tab-general"
+					type="button" role="tab" aria-controls="pills-home" aria-selected="true" onclick="setChannel(this)">Général
+			</button>
+		</li>
+	</ul>
+	<div class="tab-content" id="pills-tabContent">
+		<div class="tab-pane fade card-body show active" id="zone-chat-tab-general" data-room="tag-general" role="tabpanel" aria-labelledby="tab-general" tabindex="0">
+			<div *ngFor="let message of messageList">
+				<li>
+					{{message}}
+				</li>
+			</div>
+		</div>
+	</div>
+	<div id="formulaire_chat" class="card-footer">
+		<div class="form-group d-flex">
+			<input type="text" [(ngModel)]="newMessage" (keyup)="$event.keyCode == 13 && sendMessage()" (change)="onChange($event)" name="newMessage" id="message-chat" autocomplete="off" required />
+			<button (click)="sendMessage()">Send Message</button>
+		</div>
+	</div>
 </div>
-
-// feat/chat <---- Nico, ce que j'ai fais hier et ça marche, mais Aimee a rajouter ça au dessus depuis
-<!--<div class="card" id="chatroom">-->
-<!--	<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">-->
-<!--		<li class="nav-item" role="presentation">-->
-<!--			<button class="nav-link active" id="tab-general" data-type="private_message" data-channel_id="tab-general"  data-bs-toggle="pill" data-bs-target="#zone-chat-tab-general"-->
-<!--					type="button" role="tab" aria-controls="pills-home" aria-selected="true" onclick="setChannel(this)">Général-->
-<!--			</button>-->
-<!--		</li>-->
-<!--	</ul>-->
-<!--	<div class="tab-content" id="pills-tabContent">-->
-<!--		<div class="tab-pane fade card-body show active" id="zone-chat-tab-general" data-room="tag-general" role="tabpanel" aria-labelledby="tab-general" tabindex="0"></div>-->
-<!--	</div>-->
-<!--	<form action="/" id="formulaire_chat" class="card-footer" method='post'>-->
-<!--		<p>{{newMessage}}</p>-->
-<!--		<div class="form-group d-flex">-->
-<!--			<sh-input-text [(ngModel)]="newMessage" (keyup)="$event.keyCode == 13 && sendMessage()" (change)="onChange($event)" name="newMessage" id="message-chat" [control]="newMessage" autocomplete="off" required></sh-input-text>-->
-<!--			<button (click)="sendMessage()">Send Message</button>-->
-<!--		</div>-->
-<!--	</form>-->
-<!--</div>-->
