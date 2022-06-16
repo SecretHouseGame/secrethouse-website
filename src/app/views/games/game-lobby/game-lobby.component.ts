@@ -6,12 +6,11 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./game-lobby.component.scss']
 })
 export class GameLobbyComponent implements OnInit {
-	activeStep: number = 2;
+	activeStep: number = 1;
 
 	constructor () {
 	}
 
 	ngOnInit (): void {
 	}
-
 }

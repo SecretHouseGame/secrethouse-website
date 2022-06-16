@@ -13,4 +13,17 @@
 			<div class="step-label">Lobby</div>
 		</div>
 	</div>
+
+	<div class="content">
+		<div *ngIf="activeStep == 1">
+			<sh-input-text label="Nombre maximum de joueurs" id="maxPlayers"></sh-input-text>
+			<sh-input-text label="Interval entre les évènements (en heures)" id="intervalEvent"></sh-input-text>
+		</div>
+		<div *ngIf="activeStep == 2">
+			<sh-input-text label="Nom" id="name"></sh-input-text>
+			<sh-input-text label="Age" id="age"></sh-input-text>
+			<sh-input-text label="Sexe" id="sexe"></sh-input-text>
+			<sh-input-text label="Secret" id="secret"></sh-input-text>
+		</div>
+	</div>
 </div>
