@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.6](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.0.5...v1.0.6) (2022-06-16)
+
+
+### Bug Fixes
+
+* public folder to firebase ([a13ecae](https://www.github.com/SecretHouseGame/secrethouse-website/commit/a13ecae7ca8e6656ad2e339d1195ab2e9269579f))
+
 ### [1.0.5](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.0.4...v1.0.5) (2022-06-16)
 
 
