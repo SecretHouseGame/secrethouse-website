@@ -238,3 +238,14 @@ sh-navbar {
 		background: $brand-primary-light;
 	}
 }
+
+sh-chat-message{
+	.message-content{
+		margin: 10px 0;
+		color: black;
+
+		&.right{
+			float: right;
+		}
+	}
+}
