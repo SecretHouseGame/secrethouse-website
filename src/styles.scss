@@ -227,7 +227,7 @@ sh-navbar {
 
 /* Track */
 ::-webkit-scrollbar-track {
-	background: $bg-black;
+	background: rgba(255, 255, 255, .15);
 }
 
 /* Handle */
