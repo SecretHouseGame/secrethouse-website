@@ -47,7 +47,7 @@ export class ShComponent implements OnInit {
 	}
 
 	ngOnInit (): void {
-		const playingMenuElements = this.isUserPlayingGame() ? [
+		const menuElements = this.isUserPlayingGame() ? [
 			{
 				title: 'Habitants',
 				icon: 'people-outline',
@@ -81,7 +81,7 @@ export class ShComponent implements OnInit {
 
 		this.navbarSections.unshift({
 			title: 'La maison des secrets',
-			elements: playingMenuElements
+			elements: menuElements
 		},)
 	}
 
