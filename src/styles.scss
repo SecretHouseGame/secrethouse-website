@@ -45,6 +45,36 @@ body {
 	}
 }
 
+input {
+	color: $black;
+}
+
+sh-field-container input:focus, sh-field-container input:active,
+sh-field-container textarea:focus, sh-field-container textarea:active,
+sh-field-container select:focus, sh-field-container select:active {
+	border-width: 1px !important;
+}
+
+sh-field-container input {
+	min-height: 36px;
+	max-height: 36px;
+}
+
+sh-button button .btn__content {
+	line-height: 1;
+}
+
+sh-card.card-secondary {
+	.card {
+		background-color: $overlay;
+		border-color: $overlay;
+	}
+}
+
+.sh-yellow{
+	color: $yellow;
+}
+
 // Style des slides SwiperJs
 .swiper-wrapper{
 	padding: 10px 25px;
@@ -72,7 +102,7 @@ body {
 	min-width: 275px;
 }
 
-// Permet d'éviter le surlignage 
+// Permet d'éviter le surlignage
 
 .noselect {
 	-webkit-touch-callout: none; /* iOS Safari */
@@ -125,7 +155,7 @@ body {
 			color: $yellow;
 			text-align: left;
 		}
-	
+
 		input{
 			box-sizing: content-box;
 			width: 90%;
@@ -151,17 +181,48 @@ body {
 		.alert-main{
 			margin-top: 25px;
 			background-color: $bg-black;
-			
+
 			.alert-title{
 				padding-top: 10px;
 				line-height: 1.4;
 			}
-			
+
 			.alert-text{
 				padding-bottom: 10px;
 				line-height: 1.4;
 			}
-		}	
+		}
+	}
+}
+
+.game-rooms{
+	.room-not-selected{
+		sh-button{
+			.btn{
+				font-size: 20px;
+				max-height: none;
+			}
+		}
+	}
+}
+
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: $bg-black;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: $brand-primary;
+
+	&:hover {
+		background: $brand-primary-light;
 	}
 }
 

@@ -1,0 +1,115 @@
+@import "src/styles";
+
+$residentHeight: 500px;
+
+.game-residents {
+	.header {
+		margin-bottom: 2rem;
+
+		h1 {
+			color: $brand-primary;
+			margin-bottom: 1rem;
+		}
+	}
+
+	.content {
+		display: flex;
+		align-items: flex-start;
+		column-gap: 6rem;
+		width: 100%;
+
+		#residents-list {
+			min-width: 250px;
+
+			sh-list {
+				sh-list-item {
+					margin-bottom: 1rem;
+
+					.list__item {
+						background-color: transparent;
+						border: 1px solid $white;
+
+						color: $white;
+
+						transition: $transition;
+
+						.list__item__icon ion-icon {
+							transition: all .5s;
+						}
+					}
+
+					&:hover, &.selected {
+						.list__item {
+							border-color: $brand-primary;
+
+							.list__item__icon {
+								color: $brand-primary;
+
+								ion-icon {
+									transform: rotate(180deg);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		#residents-preview {
+			flex: 2;
+
+			.card {
+				min-height: $residentHeight;
+
+				h2 {
+					margin: 1.5rem 2rem 0;
+				}
+
+				.resident-details {
+					min-height: inherit;
+					display: flex;
+					align-items: flex-start;
+
+					.resident-avatar {
+						min-height: inherit;
+						width: 45%;
+						position: relative;
+
+						&__block {
+							position: absolute;
+							bottom: -4rem;
+							left: -4rem;
+
+							border: 2px solid $brand-primary;
+							background-color: rgba(255, 255, 255, .25);
+
+							min-height: $residentHeight;
+
+							img {
+								min-height: inherit;
+								max-height: $residentHeight;
+							}
+						}
+					}
+
+					.resident-description {
+						min-height: inherit;
+						width: 55%;
+
+						padding: 1rem 2rem;
+
+						&__title {
+							color: $brand-primary;
+						}
+
+						#resident-description__age, #resident-description__gender {
+							width: 50%;
+						}
+					}
+				}
+			}
+		}
+
+
+	}
+}
