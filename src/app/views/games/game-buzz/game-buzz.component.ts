@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild} from '@angular/core';
 import { Player } from '../../../interfaces/player';
 import { Buzz } from '../../../interfaces/buzz';
-import { GameBuzzService } from './game-buzz.service';// import Swiper core and required modules
+import { GameBuzzService } from './game-buzz.service';
 import SwiperCore, { SwiperOptions, Navigation, Mousewheel, Keyboard} from 'swiper';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
@@ -37,7 +37,7 @@ export class GameBuzzComponent implements OnInit {
     ongoingBuzz : Buzz = {};
 
     // Utilisateur actuel
-    currentPlayer : Player = {};
+    currentPlayer : Player | null = null;
 
     // Etat de la fin confrontation , si le secret est découvert ou non
     confrontationState = {
@@ -87,17 +87,19 @@ export class GameBuzzComponent implements OnInit {
         this.gameBuzzService.getPlayers()
             .subscribe(response => {
                 this.playersList = response;
-                // TODO Front : condition "canBuzz" et si son secret est découvert ou non
         });
 
         // On regarde si un buzz est en cours dans la maison
         this.gameBuzzService.getOngoingBuzz()
             .subscribe(response => {
                 this.ongoingBuzz = response;
+
+                // On doit recevoir dans tous les cas une réponse !
+                
                 setTimeout(() => {
 
                     // Si un buzz est en cours
-                    if(this.ongoingBuzz.acterPlayerId === this.currentPlayer.id) {
+                    if(this.currentPlayer && this.ongoingBuzz.acterPlayerId === this.currentPlayer.id) {
 
                         // ANCHOR Cas où l'user connecté A buzzé
 
@@ -113,7 +115,7 @@ export class GameBuzzComponent implements OnInit {
                         this.confrontation(this.step);
                         this.selectPlayer('player-slide-' + this.ongoingBuzz.targetPlayerId);
 
-                    } else if (this.ongoingBuzz.targetPlayerId === this.currentPlayer.id) {
+                    } else if (this.currentPlayer && this.ongoingBuzz.targetPlayerId === this.currentPlayer.id) {
 
                         // ANCHOR Cas où l'user connecté EST buzzé
 
@@ -128,7 +130,7 @@ export class GameBuzzComponent implements OnInit {
                         this.confrontation(this.step);
                         this.selectPlayer('player-slide-' + this.ongoingBuzz.acterPlayerId);
 
-                    } else if (this.ongoingBuzz.acterPlayerId != this.currentPlayer .id
+                    } else if (this.currentPlayer && this.ongoingBuzz.acterPlayerId != this.currentPlayer.id
                         && this.ongoingBuzz.targetPlayerId != this.currentPlayer.id  ) {
                         
                         // ANCHOR Cas où un buzz est en cours mais que l'utilisateur n'est pas concerné

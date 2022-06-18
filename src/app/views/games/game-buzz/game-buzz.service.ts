@@ -16,12 +16,12 @@ export class GameBuzzService {
 
 	constructor(private httpClient: HttpClient) { }
 
-	/** Récupérer un habitant */
+	/** Récupérer tous les habitants */
 	public getPlayers(): Observable<Player[]> {
 		return this.httpClient.get<Player[]>(this.getPlayersURL);
 	}
 
-	/** Récupérer tous les habitants */
+	/** Récupérer UN habitant */
 	public getCurrentPlayer(): Observable<Player> {
 		return this.httpClient.get<Player>(this.getCurrentPlayersURL);
 	}
