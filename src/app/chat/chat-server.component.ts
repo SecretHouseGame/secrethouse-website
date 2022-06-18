@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ChatServerService} from './chat-server.service';
+import {ChatMessage} from '../interfaces/chat-message';
 
 @Component({
 	selector: 'app-chat-server',
@@ -18,10 +19,16 @@ export class ChatServerComponent implements OnInit {
 	// Variables de Nico
 	newMessage!: string;
 	socketId: any;
-	currentUser: string = ''; // pseudo de l'utilisateur connecté
+	currentUser: boolean = false; // pseudo de l'utilisateur connecté
 	party = '';
 	arrayDiscussion = [];
-	messageList: { content: string, isCurrentUser: boolean, imageUrl:string }[] = [];
+	userDefaultAvatar : string = "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png";
+	messageList: ChatMessage[] = [
+		{content: "Salut ça va ?", isCurrentUser: false, imageUrl: this.userDefaultAvatar},
+		{content: "Oui salut ça va et toi ?", isCurrentUser: true, imageUrl: this.userDefaultAvatar},
+		{content: "Cool, il fait chaud..", isCurrentUser: false, imageUrl: this.userDefaultAvatar},
+		{content: "OUI", isCurrentUser: true, imageUrl: this.userDefaultAvatar}
+	];
 
 	constructor(private chatService: ChatServerService) {
 	}
@@ -31,7 +38,9 @@ export class ChatServerComponent implements OnInit {
 		localStorage.setItem('channel', this.channel);
 
 		this.chatService.getNewMessage().subscribe((message: string) => {
-			this.messageList.push({content: message, isCurrentUser: false, imageUrl: 'https://pkimgcdn.peekyou.com/dfd8bab38ab56d2b89dac1dad40b9e1e.jpeg'});
+			if(message){
+				this.messageList.push({content: message, isCurrentUser: false, imageUrl: this.userDefaultAvatar});
+			}
 		})
 	}
 
@@ -43,7 +52,7 @@ export class ChatServerComponent implements OnInit {
 		this.chatService.sendMessage(this.newMessage);
 		console.log(this.messageList);
 
-		this.messageList.push({content:this.newMessage, isCurrentUser: true, imageUrl: 'https://pkimgcdn.peekyou.com/dfd8bab38ab56d2b89dac1dad40b9e1e.jpeg'})
+		this.messageList.push({content:this.newMessage, isCurrentUser: true, imageUrl: this.userDefaultAvatar})
 
 		this.newMessage = '';
 

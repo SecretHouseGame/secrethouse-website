@@ -9,7 +9,7 @@
 	<div class="tab-content" id="pills-tabContent">
 		<div class="tab-pane fade card-body show active" id="zone-chat-tab-general" data-room="tag-general" role="tabpanel" aria-labelledby="tab-general" tabindex="0">
 			<div *ngFor="let msg of messageList">
-				<sh-chat-message [isCurrentUser]="msg.isCurrentUser" content="{{msg.content}}" imageUrl="{{msg.imageUrl}}">{{msg.content}}</sh-chat-message>
+				<sh-chat-message class="my-3" [isCurrentUser]="msg.isCurrentUser" content="{{msg.content}}" imageUrl="{{msg.imageUrl}}">{{msg.content}}</sh-chat-message>
 			</div>
 		</div>
 	</div>
