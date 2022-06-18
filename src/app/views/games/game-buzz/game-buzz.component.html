@@ -99,7 +99,7 @@
 			</div>
 
 			<div *ngIf="step > 1" class="chatroom-container">
-				<app-chat-server name="Confrontation"></app-chat-server>
+				<app-chat-server name="Confrontation" channel="tab-confrontation"></app-chat-server>
 				<div class="buzz-actions flex justify-between items-center" *ngIf="step === 3">
 					<sh-button color="primary" (click)="respondBuzz('false')">Refuser</sh-button>
 					<sh-button color="secondary" (click)="respondBuzz('almost')">C'est presque ça !</sh-button>
