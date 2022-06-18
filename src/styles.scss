@@ -205,3 +205,23 @@ sh-card.card-secondary {
 		}
 	}
 }
+
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: $bg-black;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: $brand-primary;
+
+	&:hover {
+		background: $brand-primary-light;
+	}
+}
