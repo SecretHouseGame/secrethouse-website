@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.0.6...v1.1.0) (2022-06-18)
+
+
+### Features
+
+* add msg component in chat ([9a5a24d](https://www.github.com/SecretHouseGame/secrethouse-website/commit/9a5a24dae41c365b3c249802adc7b79312deee12))
+* chat initialization ([d03d820](https://www.github.com/SecretHouseGame/secrethouse-website/commit/d03d8208e4ff1eaac142d94ab74fefc7fa6e57fc))
+
+
+### Bug Fixes
+
+* get channel name by input ([88c712d](https://www.github.com/SecretHouseGame/secrethouse-website/commit/88c712dc6d7fef26a6658b69ffd7ee63d1589762))
+* sendMessage and add message in chat ([d1570d2](https://www.github.com/SecretHouseGame/secrethouse-website/commit/d1570d24d6a8d22b537c8696fb2a79692f2307a1))
+* style & order for messages ([a7c4864](https://www.github.com/SecretHouseGame/secrethouse-website/commit/a7c486420d192fb564356539b3548f689eaa0762))
+* style for rooms tabs ([1a0ed79](https://www.github.com/SecretHouseGame/secrethouse-website/commit/1a0ed7962e852d223545f7ae0e524162d62b3fa6))
+
 ### [1.0.6](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.0.5...v1.0.6) (2022-06-16)
 
 
