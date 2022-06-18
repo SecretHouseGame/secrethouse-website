@@ -47,7 +47,9 @@ export class GameResidentsComponent implements OnInit {
 			avatar: '/assets/images/players/nathan.png'
 		},
 	]
-	selectedResident: Player = {}
+	selectedResident: Player = {
+		id: 0
+	}
 
 	items: listItem[] = []
 
