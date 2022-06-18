@@ -14,7 +14,7 @@ export class ChatServerService {
 
   socket = io('http://localhost:3000');
 
-  public sendMessage(message : string) {
+  public sendMessage(message : string, channel : string, senderUsername : string, targetUserId : number | null, senderUserId : number, gameId : number) {
     // Tab-general : dédié à la room
     // Fake-username : pseudo de l'utilisateur qui envoie le message
     // Fake useridto : peut être vide, mais envoyé à un user en particulier
@@ -22,7 +22,7 @@ export class ChatServerService {
     // Message : contenu du message envoyé
     // Identifiant de la game
 
-    this.socket.emit('tab-general', 'fake-username', 'fake-userIdTo', 'fake-userIdfrom', message, '123');
+    this.socket.emit(channel, senderUsername, targetUserId, senderUserId, message, gameId);
   }
 
   public getNewMessage = () => {
