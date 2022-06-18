@@ -21,6 +21,7 @@ export class ChatServerService {
     // userIdFrom : id de l'user qui envoie le message
     // Message : contenu du message envoyé
     // Identifiant de la game
+
     this.socket.emit('tab-general', 'fake-username', 'fake-userIdTo', 'fake-userIdfrom', message, '123');
   }
 

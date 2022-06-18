@@ -1,90 +1,115 @@
 @import "/node_modules/ngx-ds-secret-house/assets/scss/variables";
 
-#chatroom{
+$full-black : #000;
+
+#chatroom {
+
 	&.card {
-		position: fixed;
 		display: -ms-flexbox;
 		display: flex;
 		-ms-flex-direction: column;
 		flex-direction: column;
-		min-width: 0;
 		word-wrap: break-word;
-		background-color: $blue-dark;
+		background-color: #04293a;
 		background-clip: border-box;
-		border: 1px solid rgba(0, 0, 0, .125);
-		border-radius: .25rem;
-		margin: auto;
-		bottom: 0;
-		right: 3em;
-		width: 60%;
+		border: 2px solid $yellow;
+		margin: 0 auto;
+		min-width: 100%;
+		max-width: 500px;
 	}
-    .card-body {
-        height: 60vh;
-        overflow-y: scroll;
+
+	.card-body {
+		height: 40vh;
+		overflow-y: scroll;
+		display: flex;
+		flex-direction: column;
+		padding: 0.5em 1.25em;
+	}
+
+	#pills-tab {
+        border-bottom: 2px solid $yellow;
         display: flex;
-        flex-direction: column;
-        padding: 0.5em 1.25em;
-    }
-    .logged {
-        height: 10px;
-        width: 10px;
-        background-color: limegreen;
-        border-radius: 10px;
-        margin-top: 7px;
-        margin-right: 5px;
-    }
-    .list-client {
-        width: 100%;
-        background-color: #f7f7f7;
-        padding: 0;
-        height: 100vh;
-        overflow-y: scroll;
-        border-right: 1px solid #ced4da;
-    }
-    .list-client h2 {
-        padding: 0.25em 1em;
-    }
-    .list-client ul {
-        margin: 0;
-        padding: 0;
-    }
-    .list-client li {
-        text-decoration: none;
-        list-style: none;
-        background-color: white;
-        padding: 1em;
-        border-top: 1px solid #e9ebee;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-    .list-client li:hover {
-        background-color: #f1efef;
-        transition: 0.3s;
-    }
-    .col-9.discussion {
-        background-color: white;
-        height: 100vh;
-        overflow-y: scroll;
-        width: 100%;
-        padding: 0;
-        margin: 0;
-    }
-    .chat-header {
-        padding: 1em;
-        background-color: $blue;
-        border-bottom: 1px solid $yellow;
-    }
-    .chat {
-        position: absolute;
-        right: 0;
-        overflow: scroll;
-        display: flex;
-        flex-direction: column-reverse;
-        bottom: 4.4em;
-        width: 100%;
-        top: 5em;
-        padding: 1em
-    }
+
+		.nav-link {
+			padding: 10px 15px;
+            max-width: max-content;
+            font-weight: bold;
+            border-right: 2px solid $yellow;
+
+            &.active{
+                background-color: $yellow;
+            }
+		}
+	}
+
+	.logged {
+		height: 10px;
+		width: 10px;
+		background-color: limegreen;
+		border-radius: 10px;
+		margin-top: 7px;
+		margin-right: 5px;
+	}
+
+	.list-client {
+		width: 100%;
+		background-color: #f7f7f7;
+		padding: 0;
+		height: 100vh;
+		overflow-y: scroll;
+		border-right: 1px solid #ced4da;
+	}
+
+	.list-client h2 {
+		padding: 0.25em 1em;
+	}
+
+	.list-client ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	.list-client li {
+		text-decoration: none;
+		list-style: none;
+		background-color: white;
+		padding: 1em;
+		border-top: 1px solid #e9ebee;
+		cursor: pointer;
+		transition: 0.3s;
+	}
+
+	.list-client li:hover {
+		background-color: #f1efef;
+		transition: 0.3s;
+	}
+
+	.col-9.discussion {
+		background-color: white;
+		height: 100vh;
+		overflow-y: scroll;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+	}
+
+	.chat-header {
+		padding: 1em;
+		background-color: $blue;
+		border-bottom: 1px solid $yellow;
+	}
+
+	.chat {
+		position: absolute;
+		right: 0;
+		overflow: scroll;
+		display: flex;
+		flex-direction: column-reverse;
+		bottom: 4.4em;
+		width: 100%;
+		top: 5em;
+		padding: 1em
+	}
 
 	div#formulaire_chat.card-footer {
 		display: flex;
@@ -105,9 +130,10 @@
 
 			input#message-chat {
 				width: 80%;
-				background-color: $blue-dark;
+				background-color: #04293a;
 				padding: 0.25rem 0.5rem;
 			}
+
 			button {
 				background-color: $yellow;
 				padding: 0.25rem 0.5rem;

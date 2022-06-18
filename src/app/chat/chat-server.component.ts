@@ -14,6 +14,7 @@ export class ChatServerComponent implements OnInit {
 	});
 
 	@Input() type: string = "general";
+	@Input() name: string = "Général";
 	@Input() channel: string = "tab-general";
 
 	// Variables de Nico
@@ -34,9 +35,6 @@ export class ChatServerComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		localStorage.setItem('type', this.type);
-		localStorage.setItem('channel', this.channel);
-
 		this.chatService.getNewMessage().subscribe((message: string) => {
 			if(message){
 				this.messageList.push({content: message, isCurrentUser: false, imageUrl: this.userDefaultAvatar});
