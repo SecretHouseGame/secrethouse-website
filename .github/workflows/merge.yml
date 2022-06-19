@@ -23,5 +23,6 @@ jobs:
         # uses: pascalgn/automerge-action@01fb84a9d077930bf9d16d1f7fa3fe2ffe45aabe
         uses: pascalgn/automerge-action@v0.14.2
         env:
+          MERGE_METHOD: merge
           MERGE_LABELS: 'autorelease: pending'
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}

@@ -1,6 +1,84 @@
+@import "src/styles";
 
-:host {
-	h1 {
-		margin: 0;
+#dashboard {
+	.header {
+		margin: 4rem;
+		text-align: center;
+
+		h1, h2 {
+			margin-top: 0;
+		}
+
+		.title {
+			color: $brand-primary;
+		}
+
+		.subtitle {
+			color: $white;
+			margin-bottom: 0;
+		}
+	}
+
+	.content {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		column-gap: 4rem;
+
+		sh-card {
+			min-width: 425px;
+			max-width: 600px;
+			width: 100%;
+
+			h2 {
+				text-align: center;
+				color: $brand-primary;
+				margin: 1rem 0 1.5rem;
+			}
+
+			p {
+				color: $black;
+				text-align: left;
+			}
+
+			.card__action {
+				margin: 0 2rem 1rem;
+				display: flex;
+			}
+
+			&#create-game {
+				.card__action {
+					justify-content: center;
+				}
+			}
+
+			&#join-game {
+				.card {
+					background-color: $overlay;
+					border-color: $overlay;
+
+					p {
+						color: $white;
+					}
+
+					.card__action {
+						align-items: flex-end;
+						justify-content: space-between;
+
+						sh-input-text {
+							flex: 2;
+
+							.field-group {
+								text-align: left;
+
+								label {
+									color: $brand-primary !important;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }

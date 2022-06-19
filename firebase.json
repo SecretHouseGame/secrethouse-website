@@ -1,7 +1,7 @@
 {
   "hosting": {
     "site": "secret-house-69",
-    "public": "dist",
+	"public": "dist/secrethouse-website",
     "ignore": [
       "firebase.json",
       "**/.*",
