@@ -12,7 +12,7 @@ $full-black : #000;
     height: 100%;
     object-fit: cover;
     z-index: 0;
-    opacity: .15;
+    opacity: .075;
     pointer-events: none;
 }
 
@@ -52,6 +52,7 @@ $full-black : #000;
     
     .chatroom-container{
         min-width: 50%;
+        margin-bottom: 20px;
     
         .chatroom{
             width: 100%;
