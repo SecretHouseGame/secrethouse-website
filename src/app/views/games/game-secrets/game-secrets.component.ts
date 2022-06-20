@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Player } from "../../../interfaces/player";
 import { HttpService } from "../../../services/http.service";
+import { StoreService } from "../../../store/store.service";
 
 @Component({
 	selector: 'app-game-secrets',
@@ -9,15 +9,15 @@ import { HttpService } from "../../../services/http.service";
 	encapsulation: ViewEncapsulation.None
 })
 export class GameSecretsComponent implements OnInit {
-	players: Player[] = []
 
-	constructor (public httpService: HttpService) {
+	constructor (public httpService: HttpService, public storeService: StoreService) {
 	}
 
 	ngOnInit (): void {
-		this.httpService.getPlayers().subscribe((players) => {
-			this.players = players
-		})
+		this.httpService.getPlayers().subscribe()
 	}
 
+	get players () {
+		return this.storeService.players
+	}
 }
