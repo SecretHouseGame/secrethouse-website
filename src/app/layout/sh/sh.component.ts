@@ -73,7 +73,7 @@ export class ShComponent implements OnInit {
 				url: '/game/play/1/buzz',
 			},
 		] : [{
-			title: 'Acceuil',
+			title: 'Accueil',
 			icon: 'home-outline',
 			isActive: false,
 			url: '/game',

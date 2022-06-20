@@ -86,6 +86,27 @@ sh-navbar {
 			margin-bottom: 0.25rem;
 		}
 	}
+}
+
+h1 {
+	color: $yellow;
+}
+
+.form {
+	sh-input-text {
+		margin-bottom: 30px;
+		display: block;
+	}
+
+	sh-field-container {
+		input {
+			width: 100%;
+		}
+
+		label {
+			padding-right: 40px;
+		}
+	}
 
 	sh-navbar-section {
 		margin-bottom: 0.25rem;
@@ -233,7 +254,7 @@ sh-navbar {
 
 /* Track */
 ::-webkit-scrollbar-track {
-	background: $bg-black;
+	background: rgba(255, 255, 255, 0.15);
 }
 
 /* Handle */
@@ -252,6 +273,28 @@ sh-chat-message {
 
 		&.right {
 			float: right;
+			/* You can add global styles to this file, and also import other style files */
+			.form {
+				sh-input-text {
+					margin-bottom: 30px;
+					display: block;
+				}
+
+				sh-field-container {
+					label {
+						padding-right: 40px;
+					}
+				}
+
+				.btn {
+					margin-top: 10px;
+					width: 100%;
+
+					&__content {
+						justify-content: center;
+					}
+				}
+			}
 		}
 	}
 }
