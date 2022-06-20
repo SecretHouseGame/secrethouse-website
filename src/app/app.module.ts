@@ -10,14 +10,14 @@ import {FormsModule} from "@angular/forms";
 
 @NgModule({
 	declarations: [
-		AppComponent,
+		AppComponent
 	],
 	imports: [
 		RouterModule,
 		BrowserModule,
 		AppRoutingModule,
 		NgxDsSecretHouseModule,
-        HttpClientModule,
+		HttpClientModule,
 		FormsModule
 	],
 	providers: [],

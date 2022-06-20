@@ -1,0 +1,14 @@
+<div>
+	<div class="stepper">
+		<div class="step" *ngFor="let step of steps"
+			 [ngClass]="{
+		 	'active': activeStep === step.id,
+		 	'done': activeStep > step.id
+		 }">
+			<div class="step-indicator">{{ step.id }}</div>
+			<div class="step-label">{{ step.title }}</div>
+		</div>
+	</div>
+
+	<ng-content></ng-content>
+</div>
