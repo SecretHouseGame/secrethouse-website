@@ -14,6 +14,7 @@ import { GameRoomsComponent } from './game-rooms/game-rooms.component';
 import { GameSecretsComponent } from './game-secrets/game-secrets.component';
 import { GameBuzzComponent } from './game-buzz/game-buzz.component';
 import {ChatServerModule} from "../../chat/chat-server.module";
+import {GameCharacterComponent} from "./game-character/game-character.component";
 
 const routes: Routes = [
 	// TODO : Si on a pas join de game : on arrive sur créer / rejoindre une game
@@ -21,6 +22,7 @@ const routes: Routes = [
 	// TODO : Si on a join une game : on est redirect dans le lobby
 	{path: ':gameId/lobby', component: GameLobbyComponent},
 	{path: ':gameId/residents', component: GameResidentsComponent},
+	{path: ':gameId/character', component: GameCharacterComponent},
 	{path: ':gameId/rooms', component: GameRoomsComponent},
 	{path: ':gameId/secrets', component: GameSecretsComponent},
 	{path: ':gameId/buzz', component: GameBuzzComponent},
@@ -31,6 +33,7 @@ const routes: Routes = [
 		GameCreateComponent,
 		GameLobbyComponent,
 		GameResidentsComponent,
+		GameCharacterComponent,
 		GameRoomsComponent,
 		GameSecretsComponent,
 		GameBuzzComponent,
