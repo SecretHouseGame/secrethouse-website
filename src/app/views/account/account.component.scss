@@ -1,0 +1,14 @@
+@import "/node_modules/ngx-ds-secret-house/assets/scss/variables";
+
+.account-content {
+	display: flex;
+	justify-content: space-between;
+
+	.form {
+		width: 45%;
+
+		sh-field-container label {
+			color: $white;
+		}
+	}
+}

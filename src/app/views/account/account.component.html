@@ -1,1 +1,19 @@
-<p>account works!</p>
+<main>
+	<h1>Mon compte</h1>
+
+	<div class="account-content">
+		<div class="form">
+			<h2>Général</h2>
+			<sh-input-text label="Pseudo" id="pseudo" [control]="generalFormPseudo"></sh-input-text>
+			<sh-input-text label="Email" id="email" [control]="generalFormEmail"></sh-input-text>
+			<sh-button color="primary">Enregistrer</sh-button>
+		</div>
+		<div class="form">
+			<h2>Changer mon mot de passe</h2>
+			<sh-input-text label="Mot de passe" id="password" [control]="changePasswordFormPassword"></sh-input-text>
+			<sh-input-text label="Confirmation du mot de passe" id="confirm-password"
+				[control]="changePasswordFormConfirmPassword"></sh-input-text>
+			<sh-button color="primary">Changer mon mot de passe</sh-button>
+		</div>
+	</div>
+</main>
