@@ -59,9 +59,14 @@ sh-field-container select:active {
 	border-width: 1px !important;
 }
 
-sh-field-container input {
-	min-height: 36px;
-	max-height: 36px;
+sh-field-container {
+	margin-bottom: 30px;
+	display: block;
+
+	input {
+		min-height: 36px;
+		max-height: 36px;
+	}
 }
 
 sh-button button .btn__content {
