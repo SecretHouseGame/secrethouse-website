@@ -19,6 +19,23 @@ export class ShComponent implements OnInit {
 				},
 			],
 		},
+		{
+			title: 'Aide',
+			elements: [
+				{
+					title: 'Règles du jeu',
+					icon: 'information-circle-outline',
+					isActive: false,
+					url: '/rules',
+				},
+				{
+					title: 'Signaler un bug',
+					icon: 'chatbubble-ellipses-outline',
+					isActive: false,
+					url: '/contact',
+				},
+			],
+		},
 	]
 
 	constructor () {
@@ -56,7 +73,7 @@ export class ShComponent implements OnInit {
 				url: '/game/play/1/buzz',
 			},
 		] : [{
-			title: 'Acceuil',
+			title: 'Accueil',
 			icon: 'home-outline',
 			isActive: false,
 			url: '/game',
