@@ -84,7 +84,26 @@ sh-card .card {
 .lobby-content {
 	padding: 1rem 2rem;
 
-	sh-field-container label {
+	h2 {
+		margin-bottom: 2rem;
+	}
+
+	sh-field-container {
+		label {
 		color: $white;
+	}
+
+	input {
+		width: 100%;
+	}
+}
+
+	.input-container {
+		width: 45%;
+	}
+
+	.input-row-container {
+		display: flex;
+		justify-content: space-between;
 	}
 }
