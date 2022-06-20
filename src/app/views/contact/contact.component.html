@@ -12,5 +12,22 @@
 			<sh-input-textarea label="Message" placeholder="Ajoutez ici votre message" [control]="formContactMessage" id="contactMessage" name="formMessage" required></sh-input-textarea>
 		</div>
 		<sh-button color="primary" (click)="sendForm()">Envoyer</sh-button>
+		<div id="alert-zone">
+			<div *ngIf="isSent">
+				<sh-alert
+					content="Votre mail a été envoyé !"
+					type="success"
+					title="Succès"
+				></sh-alert>
+			</div>
+			<div *ngIf="hasAnError">
+				<sh-alert
+					content="Tous les champs sont demandés."
+					type="error"
+					title="Erreur"
+				></sh-alert>
+			</div>
+
+		</div>
 	</div>
 </div>

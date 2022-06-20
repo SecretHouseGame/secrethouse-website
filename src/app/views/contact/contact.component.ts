@@ -7,6 +7,8 @@ import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 	styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
+	isSent: boolean = false;
+	hasAnError: boolean = false;
 
 	formContact: FormGroup =  new FormGroup({
 		name: new FormControl('', Validators.required),
@@ -32,7 +34,18 @@ export class ContactComponent implements OnInit {
 	}
 
 	sendForm() {
-		console.log(this.formContact.value)
+		console.log(this.formContact.value);
+		if (this.formContact.valid) {
+			this.hasAnError = false;
+			setTimeout(() => {
+				this.isSent = true;
+			}, 500);
+			setTimeout(() => {
+				this.isSent = false;
+			}, 2000);
+		} else {
+			this.hasAnError = true;
+		}
 	}
 
 }
