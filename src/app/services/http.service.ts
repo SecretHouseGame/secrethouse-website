@@ -11,13 +11,14 @@ import { StoreService } from "../store/store.service";
 
 export class HttpService {
 	public fakeDbUrl = 'https://my-json-server.typicode.com/SecretHouseGame/secrethouse-fakedb'
+	public apiUrl = 'https://api.secrethouse.online/'
 
 	constructor (public httpClient: HttpClient, public storeService: StoreService) {
 	}
 
 	/** Récupérer tous les habitants */
 	public getPlayers(): Observable<Player[]> {
-		return this.httpClient.get<Player[]>(`${this.fakeDbUrl}/players`)
+		return this.httpClient.get<Player[]>(`${this.apiUrl}/players`)
 			.pipe(
 				tap((players) => {
 					this.storeService.savePlayers(players)
@@ -27,7 +28,7 @@ export class HttpService {
 
 	/** Récupérer toutes les salles de la maison */
 	public getRooms(): Observable<Room[]> {
-		return this.httpClient.get<Room[]>(`${this.fakeDbUrl}/rooms`)
+		return this.httpClient.get<Room[]>(`${this.apiUrl}/rooms`)
 			.pipe(
 				tap((rooms) => {
 					this.storeService.saveRooms(rooms)

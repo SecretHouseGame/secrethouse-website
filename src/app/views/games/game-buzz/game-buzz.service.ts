@@ -15,12 +15,12 @@ export class GameBuzzService {
 
 	/** Récupérer UN habitant */
 	public getCurrentPlayer(): Observable<Player> {
-		return this.httpClient.get<Player>(`${this.httpService.fakeDbUrl}/currentPlayer`);
+		return this.httpClient.get<Player>(`${this.httpService.apiUrl}/currentPlayer`);
 	}
 
 	/** Vérifie si un buzz est en cours */
 	public getOngoingBuzz(): Observable<Buzz> {
-		return this.httpClient.get<Buzz>(`${this.httpService.fakeDbUrl}/buzz`);
+		return this.httpClient.get<Buzz>(`${this.httpService.apiUrl}/buzz`);
 	}
 
 	/** Sauvegarde le buzz */
@@ -33,7 +33,7 @@ export class GameBuzzService {
 		// - selectedplayer : number (celui qui est buzzé)
 		// - selectedplayersecret : string
 
-		return this.httpClient.post<Buzz>(`${this.httpService.fakeDbUrl}/buzz`, {
+		return this.httpClient.post<Buzz>(`${this.httpService.apiUrl}/buzz`, {
 			formValues : formValues
 		});
 	}
@@ -43,7 +43,7 @@ export class GameBuzzService {
 		// TODO Back : Clore le buzz pour permettre de buzzer à nouveau
 
 		// renvoit une string : "true", "false", "almost"
-		return this.httpClient.post<string>(`${this.httpService.fakeDbUrl}/buzz`, {
+		return this.httpClient.post<string>(`${this.httpService.apiUrl}/buzz`, {
 			confirmState : confirmState,
 			buzzId : buzzId
 		});

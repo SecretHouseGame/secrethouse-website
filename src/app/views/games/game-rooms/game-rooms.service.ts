@@ -13,7 +13,7 @@ export class GameRoomsService {
 
   	/** Récupérer tous les pièces */
  	public getRoomPlayers(): Observable<Player[]> {
-		return this.httpClient.get<Player[]>(`${this.httpService.fakeDbUrl}/players`);
+		return this.httpClient.get<Player[]>(`${this.httpService.apiUrl}/players`);
 	}
 
 }
