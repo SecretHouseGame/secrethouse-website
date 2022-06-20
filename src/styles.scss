@@ -249,3 +249,17 @@ sh-chat-message{
 		}
 	}
 }
+
+#contact-page {
+	sh-input-text, sh-input-textarea{
+		color: black;
+
+		.field-group{
+			margin: 25px 0;
+		}
+
+		label{
+			color: $yellow;
+		}
+	}
+}
