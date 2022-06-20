@@ -4,12 +4,14 @@
 	display: flex;
 	position: relative;
 	width: 100%;
+	margin: 50px 0;
 
 	.step {
 		position: relative;
 		text-align: center;
 		padding: 0.5rem;
 		flex-basis: 100%;
+		cursor: pointer;
 
 		.step-indicator {
 			position: relative;
@@ -50,7 +52,8 @@
 			display: none;
 		}
 
-		&.active, &.done {
+		&.active,
+		&.done {
 			.step-indicator {
 				color: $white;
 				background-color: $yellow;
@@ -63,11 +66,25 @@
 			}
 
 			.step-indicator {
-				background-image: url("/assets/images/checkmark-outline.svg");background-position: center;
+				background-image: url("/assets/images/checkmark-outline.svg");
+				background-position: center;
 				background-repeat: no-repeat;
 				background-size: 70% auto;
 				font-size: 0;
 			}
 		}
+	}
+}
+
+sh-card .card {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.lobby-content {
+	padding: 1rem 2rem;
+
+	sh-field-container label {
+		color: $white;
 	}
 }

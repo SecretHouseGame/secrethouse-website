@@ -19,8 +19,7 @@ const routes: Routes = [
 	// TODO : Si on a pas join de game : on arrive sur créer / rejoindre une game
 	{path: '', component: GameCreateComponent},
 	// TODO : Si on a join une game : on est redirect dans le lobby
-	//{path: ':gameId/lobby', component: GameLobbyComponent},
-	{path: 'lobby', component: GameLobbyComponent},
+	{path: ':gameId/lobby', component: GameLobbyComponent},
 	{path: ':gameId/residents', component: GameResidentsComponent},
 	{path: ':gameId/rooms', component: GameRoomsComponent},
 	{path: ':gameId/secrets', component: GameSecretsComponent},

@@ -1,29 +1,42 @@
-<div class="game-lobby-page">
-	<div class="stepper">
-		<div class="step step-1" [ngClass]="{ 'active': activeStep == 1, 'done': activeStep > 1 }">
-			<div class="step-indicator">1</div>
-			<div class="step-label">Paramètres de la partie</div>
-		</div>
-		<div class="step step-2" [ngClass]="{ 'active': activeStep == 2, 'done': activeStep > 2 }">
-			<div class="step-indicator">2</div>
-			<div class="step-label">Création du personnage</div>
-		</div>
-		<div class="step step-3" [ngClass]="{ 'active': activeStep == 3, 'done': activeStep > 3 }">
-			<div class="step-indicator">3</div>
-			<div class="step-label">Lobby</div>
-		</div>
+<div class="game-lobby">
+	<div class="header">
+		<h1 class="sh-yellow">Paramétrez votre partie</h1>
 	</div>
 
 	<div class="content">
-		<div *ngIf="activeStep == 1">
-			<sh-input-text label="Nombre maximum de joueurs" id="maxPlayers"></sh-input-text>
-			<sh-input-text label="Interval entre les évènements (en heures)" id="intervalEvent"></sh-input-text>
+		<div class="stepper">
+			<div class="step step-1" [ngClass]="{ 'active': activeStep == 1, 'done': activeStep > 1 }" (click)="activeStep = 1">
+				<div class="step-indicator">1</div>
+				<div class="step-label">Paramètres de la partie</div>
+			</div>
+			<div class="step step-2" [ngClass]="{ 'active': activeStep == 2, 'done': activeStep > 2 }" (click)="activeStep = 2">
+				<div class="step-indicator">2</div>
+				<div class="step-label">Création du personnage</div>
+			</div>
+			<div class="step step-3" [ngClass]="{ 'active': activeStep == 3, 'done': activeStep > 3 }" (click)="activeStep = 3">
+				<div class="step-indicator">3</div>
+				<div class="step-label">Lobby</div>
+			</div>
 		</div>
-		<div *ngIf="activeStep == 2">
-			<sh-input-text label="Nom" id="name"></sh-input-text>
-			<sh-input-text label="Age" id="age"></sh-input-text>
-			<sh-input-text label="Sexe" id="sexe"></sh-input-text>
-			<sh-input-text label="Secret" id="secret"></sh-input-text>
-		</div>
+
+		<sh-card class="card-secondary">
+			<div class="lobby-content">
+				<div *ngIf="activeStep == 1">
+					<h2>Paramètres de la partie</h2>
+					<sh-input-text label="Nombre maximum de joueurs" id="maxPlayers"></sh-input-text>
+					<sh-input-text label="Interval entre les évènements (en heures)" id="intervalEvent"></sh-input-text>
+				</div>
+				<div *ngIf="activeStep == 2">
+					<h2>Création du personnage</h2>
+					<sh-input-text label="Nom" id="name"></sh-input-text>
+					<sh-input-text label="Age" id="age"></sh-input-text>
+					<sh-input-text label="Sexe" id="sexe"></sh-input-text>
+					<sh-input-text label="Secret" id="secret"></sh-input-text>
+				</div>
+				<div *ngIf="activeStep == 3">
+					<h2>Lobby</h2>
+				</div>
+			</div>
+		</sh-card>
 	</div>
 </div>
