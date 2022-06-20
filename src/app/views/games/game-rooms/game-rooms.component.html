@@ -24,7 +24,7 @@
 					<!-- Chatroom -->
 				</div>
 				<div class="chatroom-container">
-                    <app-chat-server [name]="selectedRoom.name" [channel]="'tab-room' + selectedRoom.id"></app-chat-server>
+                    <app-chat-server [id]="getChatServerId()" [roomName]="selectedRoom.name" [channel]="'tab-general'"></app-chat-server>
 				</div>
 				<div>
 					<sh-button (click)="resetRoom()" color="secondary">Sortir de la pièce</sh-button>
@@ -495,7 +495,7 @@
 					<p class="player-modal-line">{{viewPlayer.cagnotte}} €</p>
 					<p class="player-modal-line" *ngIf="viewPlayer.genre">{{viewPlayer.genre}}</p>
 					<p class="player-modal-line" *ngIf="!viewPlayer.genre">Inconnu</p>
-	
+
 					<p class="player-modal-line" *ngIf="!viewPlayer.canBeBuzzed">Découvert : "{{viewPlayer.secret}}"</p>
 					<p class="player-modal-line" *ngIf="viewPlayer.canBeBuzzed">Non découvert</p>
 				</div>
