@@ -35,6 +35,7 @@ export class GameCreateComponent implements OnInit {
 	createGame () {
 		const { parameters, character } = this.gameLobbyService
 		console.log(parameters, character)
+		// TODO: call api to send data and redirect to game lobby
 	}
 
 }

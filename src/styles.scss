@@ -59,6 +59,12 @@ sh-field-container select:active {
 	border-width: 1px !important;
 }
 
+sh-card {
+	&:not(.card-secondary) {
+		color: $black;
+	}
+}
+
 sh-field-container {
 	margin-bottom: 30px;
 	display: block;
