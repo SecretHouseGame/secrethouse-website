@@ -1,0 +1,34 @@
+<div class="game-character">
+	<div class="header">
+		<h1 class="sh-yellow">Mon personnage de jeu</h1>
+	</div>
+	<div class="content">
+		<div class="character-avatar">
+			<div class="character-avatar__box">
+				<img [src]="character.avatar" [alt]="character.name">
+			</div>
+		</div>
+		<div class="character-description">
+			<!--fixme : missing eye icon-->
+			<sh-card class="card-secondary">
+				<h2 class="leading-none">Catherine</h2>
+				<div class="character-fields__form">
+					<div class="character-fields__left">
+						<sh-input-text label="Name" id="name" [placeholder]="character.name ? character.name : 'Name'" [control]="formGroupName"></sh-input-text>
+						<!--fixme : missing control & placeholder-->
+						<sh-input-text label="Age" id="age" [placeholder]="character.age ? character.age : 'Age'" [control]="formGroupAge"></sh-input-text>
+						<sh-input-select label="Genre" id="genre" [control]="formGroupGenre" [options]="genders" ></sh-input-select>
+						<sh-input-textarea label="Secret" id="secret" [placeholder]="character.secret ? character.secret : 'Secret'" [control]="formGroupSecret"></sh-input-textarea>
+					</div>
+					<div class="characters-fields__right">
+						<!--fixme : missing control & placeholder-->
+						<sh-input-file label="Avatar du personnage" id="avatar" state="none"></sh-input-file>
+						<!--fixme : missing control & placeholder-->
+						<sh-input-textarea label="Biographie" id="bio" [placeholder]="character.bio ? character.bio : 'Biographie'" [control]="formGroupBio"></sh-input-textarea>
+					</div>
+					<sh-button color="primary" [outline]="false" [disabled]="false" [loading]="false" (click)="updateCharacter">Enregistrer</sh-button>
+				</div>
+			</sh-card>
+		</div>
+	</div>
+</div>
