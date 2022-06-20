@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Player } from "../../../interfaces/player";
 import { listItem } from 'ngx-ds-secret-house/lib/components/interfaces/list-item'
 import { HttpService } from "../../../services/http.service";
+import { StoreService } from "../../../store/store.service";
 
 @Component({
 	selector: 'app-game-residents',
@@ -10,28 +11,33 @@ import { HttpService } from "../../../services/http.service";
 	encapsulation: ViewEncapsulation.None
 })
 export class GameResidentsComponent implements OnInit {
-	players: Player[] = []
 	items: listItem[] = []
 	selectedResident: Player = {
 		id: 0
 	}
 
-	constructor (public httpService: HttpService) {
+	constructor (public httpService: HttpService, public storeService: StoreService) {
 	}
 
 	ngOnInit (): void {
-		this.httpService.getPlayers().subscribe((players) => {
-			this.players = players
-			this.selectedResident = players[0]
+		this.httpService.getPlayers().subscribe(() => {
+			this.setupItemsList()
+		})
+	}
 
-			players.forEach((resident) => {
-				this.items.push(<listItem>{
-					text: resident.name,
-					img: {
-						src: resident.avatar,
-						alt: 'img'
-					}
-				})
+	get players () {
+		return this.storeService.players
+	}
+
+	setupItemsList () {
+		this.selectedResident = this.players[0]
+		this.players.forEach((resident) => {
+			this.items.push(<listItem>{
+				text: resident.name,
+				img: {
+					src: resident.avatar,
+					alt: 'img'
+				}
 			})
 		})
 	}

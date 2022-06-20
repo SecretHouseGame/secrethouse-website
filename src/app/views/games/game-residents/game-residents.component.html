@@ -46,8 +46,8 @@
 						</div>
 						<div id="resident-description__secret" class="mb-8">
 							<h3 class="resident-description__title mb-3">Secret</h3>
-							<p class="text-sm" [ngClass]="{ 'italic': !selectedResident.isEliminated }">
-								{{ selectedResident.isEliminated ? selectedResident.secret : 'Secret non découvert' }}
+							<p class="text-sm" [ngClass]="{ 'italic': !selectedResident.secret }">
+								{{ selectedResident.secret ? selectedResident.secret : 'Secret non découvert' }}
 							</p>
 						</div>
 					</div>
