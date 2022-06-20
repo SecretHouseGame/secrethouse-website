@@ -3,14 +3,14 @@
 		<li class="nav-item" role="presentation">
 			<button class="nav-link active" id="tab-general" data-type="private_message" data-channel_id="tab-general" data-bs-toggle="pill" data-bs-target="#zone-chat-tab-general"
 				type="button" role="tab" aria-controls="pills-home" aria-selected="true" onclick="setChannel(this)">
-				{{name}}
+				{{roomName}}
 			</button>
 		</li>
 	</ul>
 	<div class="tab-content" id="pills-tabContent">
-		<div class="tab-pane fade card-body show active" id="zone-chat-tab-general" data-room="tag-general" role="tabpanel" aria-labelledby="tab-general" tabindex="0">
+		<div class="tab-pane fade card-body show active" [id]="id" data-room="tag-general" role="tabpanel" aria-labelledby="tab-general" tabindex="0">
 			<div *ngFor="let msg of messageList">
-				<sh-chat-message class="my-3" [isCurrentUser]="msg.isCurrentUser" content="{{msg.content}}" imageUrl="{{msg.imageUrl}}">{{msg.content}}</sh-chat-message>
+				<sh-chat-message class="my-3" [isCurrentUser]="msg.isCurrentUser" [content]="msg.message" [imageUrl]="msg.avatar">{{msg.message}}</sh-chat-message>
 			</div>
 		</div>
 	</div>

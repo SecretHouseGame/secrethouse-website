@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { io } from "socket.io-client";
-import { ChatMessage } from '../interfaces/chat-message';
 
 @Injectable({
   providedIn: 'root',
@@ -12,23 +11,26 @@ export class ChatServerService {
   public message$: BehaviorSubject<string> = new BehaviorSubject('');
   constructor() {}
 
-  socket = io('http://localhost:3000');
+  socket = io('http://141.94.246.164:3000');
 
-  public sendMessage(message : string, channel : string, senderUsername : string, targetUserId : number | null, senderUserId : number, gameId : number) {
-    // Tab-general : dédié à la room
-    // Fake-username : pseudo de l'utilisateur qui envoie le message
-    // Fake useridto : peut être vide, mais envoyé à un user en particulier
-    // userIdFrom : id de l'user qui envoie le message
-    // Message : contenu du message envoyé
-    // Identifiant de la game
-
-    this.socket.emit(channel, senderUsername, targetUserId, senderUserId, message, gameId);
+  public sendMessage(
+	  channel : string,
+	  gameId : string,
+	  roomId : string,
+	  senderUsername : string,
+	  senderAvatar : string | undefined,
+	  message : string,
+	  senderUserId : number,
+	  targetUserId : number | null
+  ) {
+	  console.debug(channel, gameId, roomId, senderUsername, senderAvatar, message, senderUserId, targetUserId);
+	  this.socket.emit(channel, gameId, roomId, senderUsername, senderAvatar, message, senderUserId, targetUserId);
   }
 
-  public getNewMessage = () => {
-    this.socket.on('message_123', (data) => {
-      console.log(data);
-		  this.message$.next(data.message);
+  //partyId, roomId, username, avatar, message, fromUserId, toUserId, type
+  public getNewMessage = (gameId : string, roomId : string) => {
+    this.socket.on('message_'+ gameId + '_' + roomId, (data: object) => {
+		  this.message$.next(JSON.stringify(data));
     });
 
     return this.message$.asObservable();
