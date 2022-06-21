@@ -1,1 +1,28 @@
-<p>game-create works!</p>
+<div class="game-lobby">
+	<div class="header">
+		<h1 class="sh-yellow">Créer votre partie</h1>
+		<p>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur tempora impedit accusantium odio
+			dolorem, voluptates, perferendis excepturi.
+		</p>
+	</div>
+	<div class="content">
+		<app-stepper>
+			<sh-card class="card-secondary">
+				<div class="lobby-content mx-4 my-2">
+					<app-lobby-step-params *ngIf="activeStep === 1"></app-lobby-step-params>
+					<app-lobby-step-character *ngIf="activeStep === 2"></app-lobby-step-character>
+				</div>
+			</sh-card>
+		</app-stepper>
+		<div class="flex justify-center mt-6">
+			<sh-button
+				class="btn__validate"
+				color="primary"
+				[disabled]="!isStepperValidated"
+				(click)="createGame()">
+				Créer la partie
+			</sh-button>
+		</div>
+	</div>
+</div>

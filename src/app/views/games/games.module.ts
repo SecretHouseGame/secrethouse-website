@@ -13,8 +13,15 @@ import { GameResidentsComponent } from './game-residents/game-residents.componen
 import { GameRoomsComponent } from './game-rooms/game-rooms.component';
 import { GameSecretsComponent } from './game-secrets/game-secrets.component';
 import { GameBuzzComponent } from './game-buzz/game-buzz.component';
-import {ChatServerModule} from "../../chat/chat-server.module";
-import {GameCharacterComponent} from "./game-character/game-character.component";
+import { ChatServerModule } from "../../chat/chat-server.module";
+import { GameCharacterComponent } from "./game-character/game-character.component";
+
+// Components
+import { StepperComponent } from "../../components/stepper/stepper.component";
+import { LobbyStepParamsComponent } from './game-lobby/steps/lobby-step-params/lobby-step-params.component';
+import { LobbyStepCharacterComponent } from './game-lobby/steps/lobby-step-character/lobby-step-character.component';
+import { LobbyStepLobbyComponent } from './game-lobby/steps/lobby-step-lobby/lobby-step-lobby.component';
+import { PlayerPortraitComponent } from "../../components/player-portrait/player-portrait.component";
 
 const routes: Routes = [
 	// TODO : Si on a pas join de game : on arrive sur créer / rejoindre une game
@@ -37,17 +44,28 @@ const routes: Routes = [
 		GameRoomsComponent,
 		GameSecretsComponent,
 		GameBuzzComponent,
+		StepperComponent,
+		LobbyStepParamsComponent,
+		LobbyStepCharacterComponent,
+		LobbyStepLobbyComponent,
+		PlayerPortraitComponent
 	],
-    imports: [
-        CommonModule,
-        NgxSkeletonLoaderModule,
-        RouterModule.forChild(routes),
-        SwiperModule,
-        NgxDsSecretHouseModule,
-        FormsModule,
-        ReactiveFormsModule,
-        ChatServerModule
-    ]
+	imports: [
+		CommonModule,
+		NgxSkeletonLoaderModule,
+		RouterModule.forChild(routes),
+		SwiperModule,
+		NgxDsSecretHouseModule,
+		FormsModule,
+		ReactiveFormsModule,
+		ChatServerModule
+	],
+	exports: [
+		StepperComponent,
+		LobbyStepParamsComponent,
+		LobbyStepCharacterComponent,
+		PlayerPortraitComponent
+	]
 })
 
 export class GamesModule {

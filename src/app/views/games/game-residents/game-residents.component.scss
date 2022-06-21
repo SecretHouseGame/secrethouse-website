@@ -1,6 +1,6 @@
 @import "src/styles";
 
-$residentHeight: 500px;
+$residentHeight: 450px;
 
 .game-residents {
 	.header {
@@ -19,36 +19,47 @@ $residentHeight: 500px;
 		width: 100%;
 
 		#residents-list {
-			min-width: 250px;
+			min-width: 275px;
+			max-height: 550px;
+			overflow-y: auto;
 
 			sh-list {
-				sh-list-item {
-					margin-bottom: 1rem;
+				.list {
+					margin-top: -.25rem;
 
-					.list__item {
-						background-color: transparent;
-						border: 1px solid $white;
+					sh-list-item {
+						margin-bottom: 1rem;
+						margin-right: 1rem;
 
-						color: $white;
-
-						transition: $transition;
-
-						.list__item__icon ion-icon {
-							transition: all .5s;
-						}
-					}
-
-					&:hover, &.selected {
 						.list__item {
-							border-color: $brand-primary;
+							background-color: transparent;
+							border: 1px solid $white;
 
-							.list__item__icon {
-								color: $brand-primary;
+							color: $white;
 
-								ion-icon {
-									transform: rotate(180deg);
+							transition: $transition;
+
+							.list__item__icon ion-icon {
+								transition: all .5s;
+							}
+						}
+
+						&:hover, &.selected {
+							.list__item {
+								border-color: $brand-primary;
+
+								.list__item__icon {
+									color: $brand-primary;
+
+									ion-icon {
+										transform: rotate(180deg);
+									}
 								}
 							}
+						}
+
+						&:last-child {
+							margin-bottom: 0;
 						}
 					}
 				}
@@ -62,7 +73,7 @@ $residentHeight: 500px;
 				min-height: $residentHeight;
 
 				h2 {
-					margin: 1.5rem 2rem 0;
+					margin: .5rem 1rem 0;
 				}
 
 				.resident-details {
@@ -77,15 +88,17 @@ $residentHeight: 500px;
 
 						&__block {
 							position: absolute;
-							bottom: -4rem;
+							bottom: -1.75rem;
 							left: -4rem;
 
 							border: 2px solid $brand-primary;
 							background-color: rgba(255, 255, 255, .25);
 
-							min-height: $residentHeight;
+							min-height: 19rem;
+							min-width: 13rem;
 
 							img {
+								width: 24rem;
 								min-height: inherit;
 								max-height: $residentHeight;
 							}
@@ -96,7 +109,7 @@ $residentHeight: 500px;
 						min-height: inherit;
 						width: 55%;
 
-						padding: 1rem 2rem;
+						padding: 1rem 0 1rem 1.5rem;
 
 						&__title {
 							color: $brand-primary;

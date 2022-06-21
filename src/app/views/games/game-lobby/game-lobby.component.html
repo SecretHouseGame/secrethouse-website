@@ -1,1 +1,19 @@
-<p>game-lobby works!</p>
+<div class="game-lobby">
+	<div class="header">
+		<h1 class="sh-yellow">Lobby de la partie</h1>
+		<p>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur tempora impedit accusantium odio
+			dolorem, voluptates, perferendis excepturi.
+		</p>
+	</div>
+
+	<div class="content">
+		<app-stepper>
+			<div class="lobby-content mx-4 my-2">
+				<app-lobby-step-params *ngIf="activeStep === 1"></app-lobby-step-params>
+				<app-lobby-step-character *ngIf="activeStep === 2"></app-lobby-step-character>
+				<app-lobby-step-lobby *ngIf="activeStep === 3"></app-lobby-step-lobby>
+			</div>
+		</app-stepper>
+	</div>
+</div>

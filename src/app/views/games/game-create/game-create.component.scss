@@ -1,0 +1,28 @@
+@import "src/styles";
+
+.game-lobby {
+	.header {
+		margin-bottom: 2rem;
+
+		h1 {
+			color: $brand-primary;
+			margin-bottom: 1rem;
+		}
+	}
+
+	label {
+		color: $brand-primary !important;
+	}
+
+	.btn__validate {
+		width: 300px;
+
+		button {
+			width: 100%;
+
+			.btn__content {
+				justify-content: center;
+			}
+		}
+	}
+}

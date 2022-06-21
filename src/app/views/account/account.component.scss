@@ -1,0 +1,19 @@
+@import "/node_modules/ngx-ds-secret-house/assets/scss/variables";
+
+.account-content {
+	display: flex;
+	justify-content: space-between;
+
+	sh-card {
+		margin-top: 40px;
+		width: 48%;
+
+		h2 {
+			margin-bottom: 20px;
+		}
+
+		sh-field-container label {
+			color: $white;
+		}
+	}
+}
