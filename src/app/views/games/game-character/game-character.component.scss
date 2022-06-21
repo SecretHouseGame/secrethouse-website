@@ -1,5 +1,7 @@
 @import "src/styles";
 
+$characterHeight: 450px;
+
 .game-character {
 	.header {
 		margin-bottom: 3rem;
@@ -12,14 +14,56 @@
 		column-gap: 6rem;
 		width: 100%;
 
-		.character-avatar {
-			flex: 1;
-			min-width: 250px;
-		}
+		sh-card {
+			width: 100%;
 
-		.character-description {
-			flex:2;
-			display: flex;
+			.card {
+				min-height: $characterHeight;
+				padding: 2rem;
+
+				h2 {
+					margin-bottom: 40px;
+				}
+
+				.character-details {
+					min-height: inherit;
+					display: flex;
+					align-items: flex-start;
+					justify-content: space-between;
+					column-gap: 6rem;
+
+					.character-avatar {
+						min-height: inherit;
+
+						&__box {
+							border: 2px solid $brand-primary;
+							background-color: rgba(255, 255, 255, 0.25);
+
+							min-height: $characterHeight;
+							min-width: 290px;
+
+							img {
+								min-height: inherit;
+								max-height: $characterHeight;
+							}
+						}
+					}
+
+					.character-fields__form {
+						flex: 1;
+
+						sh-field-container {
+							label {
+								color: $brand-primary;
+							}
+
+							select {
+								color: black;
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
