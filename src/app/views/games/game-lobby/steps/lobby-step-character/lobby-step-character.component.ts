@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { SelectOption } from 'ngx-ds-secret-house/lib/components/interfaces/select-option';
+import { RadioOption } from "ngx-ds-secret-house/lib/components/interfaces/radio-option";
 import { GameLobbyService } from '../../game-lobby.service';
 import { GameLobbyStepService } from '../step.service';
 
@@ -14,10 +14,28 @@ export class LobbyStepCharacterComponent implements OnInit {
 
 	validated: boolean = false;
 
-	genders: SelectOption[] = [
-		{ id: '0', name: 'Homme', value: 'MALE' },
-		{ id: '1', name: 'Femme', value: 'FEMALE' },
-		{ id: '2', name: 'Autre', value: 'OTHER' },
+	genders: RadioOption[] = [
+		{
+			id: "option-male",
+			value: "male",
+			text: "Homme",
+			disabled: false,
+			checked: true
+		},
+		{
+			id: "option-female",
+			value: "female",
+			text: "Femme",
+			disabled: false,
+			checked: false
+		},
+		{
+			id: "option-other",
+			value: "other",
+			text: "Autre",
+			disabled: false,
+			checked: false
+		},
 	];
 
 	characterFormGrp: FormGroup = new FormGroup({
@@ -32,12 +50,13 @@ export class LobbyStepCharacterComponent implements OnInit {
 		bio: new FormControl('', []),
 	});
 
-	constructor(
+	constructor (
 		public gameLobbyService: GameLobbyService,
 		public stepService: GameLobbyStepService
-	) {}
+	) {
+	}
 
-	ngOnInit(): void {
+	ngOnInit (): void {
 		this.characterFormGrp.setValue({
 			name: this.gameLobbyService.character.name,
 			age: this.gameLobbyService.character.age,
@@ -56,10 +75,6 @@ export class LobbyStepCharacterComponent implements OnInit {
 		return this.characterFormGrp.get('age') as FormControl;
 	}
 
-	get formGender () {
-		return this.characterFormGrp.get('gender') as FormControl;
-	}
-
 	get formSecret () {
 		return this.characterFormGrp.get('secret') as FormControl;
 	}
@@ -70,6 +85,14 @@ export class LobbyStepCharacterComponent implements OnInit {
 
 	get formBio () {
 		return this.characterFormGrp.get('bio') as FormControl;
+	}
+
+	changeGender (eventTarget: any) {
+		if (eventTarget.value) {
+			this.characterFormGrp.patchValue({
+				'gender': eventTarget.value
+			})
+		}
 	}
 
 	validate () {

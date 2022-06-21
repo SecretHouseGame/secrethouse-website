@@ -36,6 +36,10 @@ export class LobbyStepLobbyComponent implements OnInit {
 		return this.storeService.players.slice(0, parseInt(this.lobbyService.parameters.maxPlayers))
 	}
 
+	characterGender () {
+		return this.character.gender === 'male' ? 'Homme' : (this.character.gender === 'female' ? 'Femme' : 'Autre')
+	}
+
 	goToStep (stepNumber: number) {
 		this.stepService.activeStep = stepNumber
 	}
