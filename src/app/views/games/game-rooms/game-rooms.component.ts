@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { GameRoomsService } from './game-rooms.service';
-import { Room } from '../../../interfaces/room';
-import { RoomGame } from '../../../interfaces/room_game';
-import { Player } from '../../../interfaces/player';
 import { ModalService } from 'ngx-ds-secret-house';
+import { Player } from '../../../interfaces/player';
+import { Room } from '../../../interfaces/room';
+import { HttpService } from "../../../services/http.service";
+import { StoreService } from "../../../store/store.service";
+import { GameRoomsService } from './game-rooms.service';
+import slugify from "slugify";
 
 @Component({
 	selector: 'app-game-rooms',
@@ -11,25 +13,29 @@ import { ModalService } from 'ngx-ds-secret-house';
 	styleUrls: ['./game-rooms.component.scss']
 })
 export class GameRoomsComponent implements OnInit {
-	roomsList : Array<Room> = [];
 	selectedRoom : Room | null = null;
 	playersInRoom : Array<Player> = [];
 	viewPlayer : Player | null = null;
 
-	constructor (private gameRoomsService : GameRoomsService, private modalService : ModalService ) {}
+	constructor (public httpService: HttpService, public storeService: StoreService, private gameRoomsService : GameRoomsService, private modalService : ModalService ) {}
 
 	ngOnInit (): void {
-
 		// On récupère la liste des pièces
-		this.gameRoomsService.getRooms()
-			.subscribe(response => {
-				this.roomsList = response;
-		});
+		this.httpService.getRooms().subscribe()
+	}
+
+	get roomsList () {
+		return this.storeService.rooms
+	}
+
+	getChatServerId() {
+		// @ts-ignore
+		return `zone-chat-${slugify(this.selectedRoom.name)}`
 	}
 
 	// Lorsqu'on survole une pièce (animation de style)
 	overRoom(roomClassName : string){
-		var foundRooms = document.querySelectorAll('.' + roomClassName);
+		const foundRooms = document.querySelectorAll('.' + roomClassName);
 		if(foundRooms) foundRooms.forEach(function(e) {
 			e.classList.toggle('hover');
 		});
@@ -52,9 +58,9 @@ export class GameRoomsComponent implements OnInit {
 
 						// On affiche le nouvel écran (transition CSS)
 						document.querySelector('.room-selected')?.classList.add('viewable');
-				});
+					});
 
-			}, 300);
+			}, 300)
 		}
 	}
 
@@ -65,7 +71,7 @@ export class GameRoomsComponent implements OnInit {
 		setTimeout(() => {
 			this.selectedRoom = null;
 			document.querySelector('.room-not-selected')?.classList.add('viewable');
-		}, 300);
+		}, 300)
 	}
 
 	// Lorsqu'on veux voir le profil d'un joueur
