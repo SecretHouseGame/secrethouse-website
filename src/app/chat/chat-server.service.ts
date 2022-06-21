@@ -11,7 +11,7 @@ export class ChatServerService {
   public message$: BehaviorSubject<string> = new BehaviorSubject('');
   constructor() {}
 
-  socket = io('http://141.94.246.164:3000');
+  socket = io('https://websocket.secrethouse.online');
 
   public sendMessage(
 	  channel : string,
