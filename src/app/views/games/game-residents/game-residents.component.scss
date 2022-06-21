@@ -3,10 +3,14 @@
 $residentHeight: 450px;
 
 .game-residents {
-	.header {
+	.header-container {
+		display: flex;
+		flex-direction: row;
 		margin-bottom: 2rem;
+		justify-content: space-between;
+		align-items: center;
 
-		h1 {
+		.header > h1 {
 			color: $brand-primary;
 			margin-bottom: 1rem;
 		}

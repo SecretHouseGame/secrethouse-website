@@ -1,8 +1,14 @@
 <div class="game-residents">
-	<div class="header">
-		<h1 class="sh-yellow">Les résidents de la maison</h1>
-		<p>Retouvez ici la liste de tous les résidents de la maison ainsi que leurs informations respectives</p>
+	<div class="header-container">
+		<div class="header">
+			<h1 class="sh-yellow">Les résidents de la maison</h1>
+			<p>Retouvez ici la liste de tous les résidents de la maison ainsi que leurs informations respectives</p>
+		</div>
+		<a href="/game/play/1/character" class="link">
+			<sh-button color="primary" [outline]="false" [disabled]="false" [loading]="false">Mon personnage</sh-button>
+		</a>
 	</div>
+
 	<div class="content">
 		<div id="residents-list">
 			<sh-list>

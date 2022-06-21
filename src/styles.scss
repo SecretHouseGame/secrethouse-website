@@ -323,3 +323,17 @@ sh-chat-message {
 		color: black;
 	}
 }
+
+.game-character {
+	sh-input-text, sh-input-textarea, sh-input-select, sh-input-file{
+		color: black;
+
+		.field-group{
+			margin: 25px 0;
+		}
+
+		label{
+			color: $yellow;
+		}
+	}
+}

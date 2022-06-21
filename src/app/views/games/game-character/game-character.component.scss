@@ -1,6 +1,6 @@
 @import "src/styles";
 
-$characterHeight: 450px;
+$residentHeight: 500px;
 
 .game-character {
 	.header {
@@ -10,58 +10,55 @@ $characterHeight: 450px;
 	.content {
 		display: flex;
 		flex-direction: row;
-		align-items: flex-start;
+		align-items: center;
 		column-gap: 6rem;
 		width: 100%;
 
-		sh-card {
+		.character-avatar {
+			flex: 1;
+			width: 100%;
+			min-height: $residentHeight;
+
+			&__box {
+				border: 2px solid $brand-primary;
+				min-height: $residentHeight;
+
+				img {
+					min-height: inherit;
+					max-height: $residentHeight;
+				}
+			}
+		}
+
+		.character-description {
+			flex: 2;
 			width: 100%;
 
-			.card {
-				min-height: $characterHeight;
+			.card-secondary {
 				padding: 2rem;
 
-				h2 {
-					margin-bottom: 40px;
+				sh-button {
+					margin-bottom: 40px	;
+				}
+			}
+
+			.character-fields {
+				display: flex;
+				flex-direction: row;
+				margin-bottom: 50px;
+
+				&__left {
+					flex: 1;
+
+					input, select, textarea {
+						max-width: 300px;
+					}
 				}
 
-				.character-details {
-					min-height: inherit;
+				&__right {
+					flex: 1;
 					display: flex;
-					align-items: flex-start;
-					justify-content: space-between;
-					column-gap: 6rem;
-
-					.character-avatar {
-						min-height: inherit;
-
-						&__box {
-							border: 2px solid $brand-primary;
-							background-color: rgba(255, 255, 255, 0.25);
-
-							min-height: $characterHeight;
-							min-width: 290px;
-
-							img {
-								min-height: inherit;
-								max-height: $characterHeight;
-							}
-						}
-					}
-
-					.character-fields__form {
-						flex: 1;
-
-						sh-field-container {
-							label {
-								color: $brand-primary;
-							}
-
-							select {
-								color: black;
-							}
-						}
-					}
+					justify-content: start;
 				}
 			}
 		}
