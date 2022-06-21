@@ -1,1 +1,33 @@
-<p>contact works!</p>
+<div id="contact-page" class="my-5">
+	<div class="contact-container">
+		<div class="contact-content">
+			<h1 class="contact-title my-3">Nous contacter</h1>
+			<p class="contact-description">
+				Vous souhaitez participer au projet ? Vous avez une question concernant l'utilisation de vos données ? Vous avez trouvé un bug ? Envoyez nous un message et nous vous recontacterons
+			</p>
+		</div>
+		<div class="form-container">
+			<sh-input-text label="Nom complet" placeholder="Nom et prénom" [control]="formContactName" id="contactName" name="formName" required></sh-input-text>
+			<sh-input-text label="Adresse mail" placeholder="adresse@mail.fr" [control]="formContactMail" id="contactMail" name="formMail" required></sh-input-text>
+			<sh-input-textarea label="Message" placeholder="Ajoutez ici votre message" [control]="formContactMessage" id="contactMessage" name="formMessage" required></sh-input-textarea>
+		</div>
+		<sh-button color="primary" (click)="sendForm()">Envoyer</sh-button>
+		<div id="alert-zone">
+			<div *ngIf="isSent">
+				<sh-alert
+					content="Votre mail a été envoyé !"
+					type="success"
+					title="Succès"
+				></sh-alert>
+			</div>
+			<div *ngIf="hasAnError">
+				<sh-alert
+					content="Tous les champs sont demandés."
+					type="error"
+					title="Erreur"
+				></sh-alert>
+			</div>
+
+		</div>
+	</div>
+</div>

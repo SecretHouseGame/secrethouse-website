@@ -1,0 +1,46 @@
+@import "src/styles";
+
+.game-lobby {
+	.header {
+		margin-bottom: 2rem;
+
+		h1 {
+			color: $brand-primary;
+			margin-bottom: 1rem;
+		}
+	}
+
+	label {
+		color: $brand-primary !important;
+	}
+
+	sh-field-container {
+		select {
+			color: black;
+		}
+	}
+
+	#character-details {
+		p {
+			font-size: 1.125rem;
+			line-height: 1;
+			color: $brand-primary;
+		}
+
+		span {
+			font-size: .975rem;
+		}
+	}
+
+	.btn__validate {
+		width: 300px;
+
+		button {
+			width: 100%;
+
+			.btn__content {
+				justify-content: center;
+			}
+		}
+	}
+}

@@ -56,7 +56,7 @@
 	<form class="form-container" [formGroup]="buzzForm" (ngSubmit)="submit()" *ngIf="isBuzzVisible()">
 		<div class="cards-list" [ngClass]="{'cannot-buzz': this.currentPlayer && !this.currentPlayer.canBuzz}">
 			<div *ngIf="!contentLoaded" class="cards-swiper cards-loading">
-				<ngx-skeleton-loader class="player-card" count="5" appearance="line" animation="pulse" [theme]="{
+				<ngx-skeleton-loader class="player-card" count="3" appearance="line" animation="pulse" [theme]="{
 					height: '400px',
 					width: '275px',
 					'border-radius': 0,
@@ -85,7 +85,7 @@
 				<sh-input-text *ngIf="step === 1" [label]="'Je pense que son secret est...'" name="selectedPlayerSecret"
 					name="selectedPlayerSecret" id="selectedPlayerSecret" [control]="formSelectedPlayerSecret" required>
 				</sh-input-text>
-				<sh-button *ngIf="step === 1" color="primary" type="submit">Valider</sh-button>
+				<sh-button *ngIf="step === 1" color="primary" type="submit" (click)="submit()">Valider</sh-button>
 				<p *ngIf="step === 2">
 					Je pense que son secret est...
 					<br>
@@ -100,7 +100,7 @@
 
 			<div *ngIf="step > 1" class="chatroom-container">
 				<app-chat-server name="Confrontation" channel="tab-confrontation"></app-chat-server>
-				<div class="buzz-actions flex justify-between items-center" *ngIf="step === 3">
+				<div class="buzz-actions flex justify-between items-center mt-5" *ngIf="step === 3 || 1">
 					<sh-button color="primary" (click)="respondBuzz('false')">Refuser</sh-button>
 					<sh-button color="secondary" (click)="respondBuzz('almost')">C'est presque ça !</sh-button>
 					<sh-button color="primary" (click)="respondBuzz('true')">Confirmer</sh-button>

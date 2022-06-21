@@ -1,38 +1,336 @@
 @import "/node_modules/ngx-ds-secret-house/assets/scss/variables";
 
-body {
-	h1 {
-		color: $yellow;
-		font-size: 3rem;
-	}
+// @property rules only required for animation
+@property --dx {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+@property --dy {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
 
-	.hero{
+
+@-webkit-keyframes motion {
+    0% {
+      --dx: -25;
+      --dy: -25;
+    }
+    20% {
+      --dx: 25;
+      --dy: -25;
+    }
+    40% {
+      --dx: 25;
+      --dy: 25;
+    }
+    60% {
+      --dx: -25;
+      --dy: 25;
+    }
+    80% {
+      --dx: 0;
+      --dy: 0;
+    }
+    100% {
+      --dx: -25;
+      --dy: -25;
+    }
+  }
+  
+  @keyframes motion {
+    0% {
+      --dx: -25;
+      --dy: -25;
+    }
+    20% {
+      --dx: 25;
+      --dy: -25;
+    }
+    40% {
+      --dx: 25;
+      --dy: 25;
+    }
+    60% {
+      --dx: -25;
+      --dy: 25;
+    }
+    80% {
+      --dx: 0;
+      --dy: 0;
+    }
+    100% {
+      --dx: -25;
+      --dy: -25;
+    }
+  }
+
+body {
+
+	.hero {
+		overflow: hidden;
+		position: relative;
+        border-bottom: 2px solid $yellow;
+
+		&::before {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0px;
+			width: 600px;
+			height: 500px;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-image: url('/assets/images/svg/secret-crop-01.svg');
+			filter: contrast(0.5);
+			display: flex;
+			justify-content: flex-start;
+			transition: all .15s;
+			z-index: 0;
+			opacity: .3;
+
+			-webkit-filter: drop-shadow(0px 0px 5px #222);
+			filter: drop-shadow(0px 0px 5px #222);
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			right: -200px;
+			width: 600px;
+			height: 500px;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-image: url('/assets/images/svg/secret-crop-02.svg');
+			filter: contrast(0.5);
+			display: flex;
+			justify-content: flex-end;
+			transition: all .15s;
+			z-index: 0;
+			opacity: .3;
+
+			-webkit-filter: drop-shadow(0px 0px 5px #222);
+			filter: drop-shadow(0px 0px 5px #222);
+		}
+
 		display: flex;
+		flex-direction: column;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: center;
 		padding: 15vh;
+
+		h1 {
+			color: $yellow;
+			font-size: 3rem;
+
+			.title-sub {
+				line-height: 1;
+				font-size: 25px;
+				letter-spacing: 6px;
+			}
+		}
 
 		.logo {
 			max-width: 600px;
 			width: 50vw;
 
-			img{
+			img {
 				width: 100%;
 				object-fit: contain;
 			}
 		}
 
+		.title-separator {
+			width: 200px;
+			height: 2px;
+			background-color: $yellow;
+			margin: 40px 0;
+		}
+
 		.top-content {
+			margin: 20px 0 100px;
+
 			.btn {
-				margin-right: 30px;
+				&:first-of-type {
+					margin-right: 20px;
+				}
 			}
 		}
 	}
+
+    .section-container{
+		min-height: 70vh;
+        margin: 100px 0;
+        border-bottom: 2px solid $yellow;
+        padding-bottom: 100px;
+    }
+
+	#players {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+    
+		h2 {
+			color: $yellow;
+		}
+
+		@mixin black-gradient {
+			background: linear-gradient(to left, rgba(18, 18, 18, .0) 0%, rgba(18, 18, 18, 1) 100%);
+		}
+
+		// Styling
+		.slider {
+			background: rgb(18, 18, 18);
+			box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
+			margin: 20px auto;
+			overflow: hidden;
+			position: relative;
+			width: 1200px;
+
+            $animationSpeed: 60s;
+    
+            // Animation
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+    
+                100% {
+                    transform: translateX(calc(-250px * 7))
+                }
+            }
+
+            &.second-slider{
+                // Animation
+                @keyframes scroll {
+                    0% {
+                        transform: translateX(0);
+                    }
+        
+                    100% {
+                        transform: translateX(calc(-400px * 7))
+                    }
+                }
+            }
+
+			&::before,
+			&::after {
+				@include black-gradient;
+				content: "";
+				height: 350px;
+				position: absolute;
+				width: 200px;
+				z-index: 2;
+			}
+
+			&::after {
+				right: 0;
+				top: 0;
+				transform: rotateZ(180deg);
+			}
+
+			&::before {
+				left: 0;
+				top: 0;
+			}
+
+			.slide-track {
+				animation: scroll $animationSpeed linear infinite;
+				display: flex;
+				width: calc(250px * 14);
+			}
+
+			.slide {
+				width: 280px;
+                height: 200px;
+                border: 1px solid $yellow;
+                margin: 0 10px;
+                position: relative;
+                overflow: hidden;
+                transition: all .1s;
+
+                img{
+                    position: absolute;
+                    top: 0;
+                    -webkit-filter: brightness(0);
+                    filter: brightness(0);
+                }
+
+                &:hover{
+                    background-color: $yellow;
+                }
+			}
+		}
+
+	}
+
+    #house{
+        position: relative;
+        $image-url: '/assets/images/house-plan.jpg';
+        --width: 800;
+        --height: 533;
+        --rad: 10;
+        --mag: 1.1;
+        --dx: 0;
+        --dy: 0;
+
+        .magnify {
+            position: absolute;
+            width: calc(var(--width) * 1px);
+            height: calc(var(--height) * 1px);
+            transform-origin: 50% 50% 0;
+            transform: translate(calc(var(--dx)*1%), calc(var(--dy)*1%));
+            animation: motion infinite linear 20s;
+            transition: all .5s;
+          }
+
+          .magnify::after {
+            position: absolute;
+            content: '';
+            background-image: url($image-url);
+            background-repeat: no-repeat;
+            background-size: contain;
+            filter: invert(1);
+            transform-origin: 50% 50% 0;
+            clip-path: circle(calc(var(--rad)*1%) at calc(50% + (var(--dx)*1%)) calc(50% + (var(--dy)*1%)));
+            transform: translate(calc(var(--dx)*var(--mag)*(-1%)), calc(var(--dy)*var(--mag)*(-1%))) scale(var(--mag));
+            width: calc(var(--width) * 1px);
+            height: calc(var(--height) * 1px);
+            animation: motion infinite linear 20s;
+            transition: all .5s;
+        }
+
+        .house-model-container{
+            position: relative;
+            max-width: max-content;
+            margin: 0 auto;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .house-model{
+                width: 800px;
+            }
+    
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0; left: 0; bottom: 0; right: 0;
+                background: radial-gradient(transparent, #121212);
+            }
+              
+        }
+    }
 }
 
 .modal-container .modal-content {
 	width: unset !important;
-    min-width: 500px;
+	min-width: 500px;
 	padding: 70px 100px !important;
 
 	h1 {

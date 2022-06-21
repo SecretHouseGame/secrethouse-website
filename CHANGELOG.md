@@ -1,5 +1,29 @@
 # Changelog
 
+### [1.2.1](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.2.0...v1.2.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* chat server ([44724e5](https://www.github.com/SecretHouseGame/secrethouse-website/commit/44724e517e6d734b7bce3a72dc8cec0cb240243c))
+* fonts ([518f660](https://www.github.com/SecretHouseGame/secrethouse-website/commit/518f660c9c63d3a3fc2f39d0786b1f15fb09d17d))
+
+## [1.2.0](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.1.0...v1.2.0) (2022-06-20)
+
+
+### Features
+
+* add chatroom to rooms ([5ba1177](https://www.github.com/SecretHouseGame/secrethouse-website/commit/5ba11773e33cf1c029bcdb637f85e56cbbbb24a9))
+* add home screen & players screen ([5ee4096](https://www.github.com/SecretHouseGame/secrethouse-website/commit/5ee40960043f7fef87c7392bf5864856721fba73))
+* add house section ([e5e1e6b](https://www.github.com/SecretHouseGame/secrethouse-website/commit/e5e1e6be1d069b222e8f8ef61d2172591b9e5aa1))
+* change variable name of chat and fix avatar ([efaffef](https://www.github.com/SecretHouseGame/secrethouse-website/commit/efaffef140b090f750305f3ff9841950222b754e))
+
+
+### Bug Fixes
+
+* button must be in link ([755d909](https://www.github.com/SecretHouseGame/secrethouse-website/commit/755d909eddb484f003cde961cfa73acdc06d7f8f))
+* input text color for chat ([370ac28](https://www.github.com/SecretHouseGame/secrethouse-website/commit/370ac28204e2bc1ff114510f276bc4f42aba60a0))
+
 ## [1.1.0](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.0.6...v1.1.0) (2022-06-18)
 
 

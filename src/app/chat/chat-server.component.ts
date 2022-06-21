@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ChatServerService} from './chat-server.service';
 import {ChatMessage} from '../interfaces/chat-message';
 import {Player} from '../interfaces/player';
+import slugify from "slugify";
 
 @Component({
 	selector: 'app-chat-server',
@@ -14,7 +15,8 @@ export class ChatServerComponent implements OnInit {
 		newMessage: new FormControl('', Validators.required)
 	});
 
-	@Input() name: string = "Général";
+	@Input() id: string = "tab-general";
+	@Input() roomName: string = "Général";
 	@Input() channel: string = "tab-general";
 
 	// Variables de Nico
@@ -29,25 +31,43 @@ export class ChatServerComponent implements OnInit {
 		"canBuzz": true,
 		"canBeBuzzed": true
 	};
-	party = '';
+	party :string = '123';
 	arrayDiscussion = [];
+
 	userDefaultAvatar : string = "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png";
-	messageList: ChatMessage[] = [
-		{content: "Salut ça va ?", isCurrentUser: false, imageUrl: this.userDefaultAvatar},
-		{content: "Oui salut ça va et toi ?", isCurrentUser: true, imageUrl: this.userDefaultAvatar},
-		{content: "Cool, il fait chaud..", isCurrentUser: false, imageUrl: this.userDefaultAvatar},
-		{content: "OUI", isCurrentUser: true, imageUrl: this.userDefaultAvatar}
-	];
+	messageList: ChatMessage[] = [];
 
 	constructor(private chatService: ChatServerService) {
 	}
 
 	ngOnInit() {
-		this.chatService.getNewMessage().subscribe((message: string) => {
-			if(message){
-				this.messageList.push({content: message, isCurrentUser: false, imageUrl: this.userDefaultAvatar});
-			}
+		this.chatService.getNewMessage(this.party, slugify(this.roomName)).subscribe((data: string) => {
+			console.debug(data);
+            if(data){
+                let chatMessage: ChatMessage = JSON.parse(data);
+                console.debug(chatMessage);
+                if(chatMessage){
+                    this.messageList.push(chatMessage);
+                }
+                this.chatScroll();
+            }
 		})
+	}
+
+	chatScroll () {
+		let chat : HTMLElement | null;
+
+		if (this.channel === 'tab-general') {
+			chat = document.querySelector('#zone-chat-' + slugify(this.roomName));
+		} else {
+			chat = document.querySelector('#zone-chat-' + this.channel);
+		}
+
+		if (chat) {
+			chat.scroll({
+				top: chat.scrollHeight, behavior: "smooth"
+			})
+		}
 	}
 
 	get formNewMessage() {
@@ -56,13 +76,35 @@ export class ChatServerComponent implements OnInit {
 
 	sendMessage() {
 		if(this.currentUser && this.currentUser.name){
-			this.chatService.sendMessage(this.newMessage, this.channel, this.currentUser.name, null, this.currentUser.id, 123);
+			let message: ChatMessage = {
+				channel: this.channel,
+				gameId: this.party,
+				roomId: slugify(this.roomName),
+				username: this.currentUser.name,
+				avatar: this.currentUser.avatar,
+				message: this.newMessage,
+				fromUserId: this.currentUser.id,
+				targetUserId: null,
+				isCurrentUser: true
+			}
 
-			this.messageList.push({content:this.newMessage, isCurrentUser: true, imageUrl: this.userDefaultAvatar})
-	
+			this.chatService.sendMessage(
+				this.channel,
+				this.party,
+				slugify(this.roomName),
+				this.currentUser.name,
+				this.currentUser.avatar,
+				this.newMessage,
+				this.currentUser.id,
+				null
+			);
+
+			this.messageList.push(message);
+
 			this.newMessage = '';
+			this.chatScroll();
 		}
-	
+
 		return false;
 	}
 
