@@ -23,14 +23,6 @@ export class HttpService {
 		return this.httpClient.put<Player>(`${this.fakeDbUrl}/currentPlayer`, body);
 	}
 
-	/** Récupérer le personnage du joueur **/
-	public getCurrentPlayer(): Observable<Player> {
-		return this.httpClient.get<Player>(`${this.fakeDbUrl}/currentPlayer`)
-	}
-	public updateCurrentPlayer(body: object): Observable<Player> {
-		return this.httpClient.put<Player>(`${this.fakeDbUrl}/currentPlayer`, body);
-	}
-
 	/** Récupérer tous les habitants */
 	public getPlayers(): Observable<Player[]> {
 		return this.httpClient.get<Player[]>(`${this.fakeDbUrl}/players`)
