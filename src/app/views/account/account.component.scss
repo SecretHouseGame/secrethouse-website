@@ -4,8 +4,13 @@
 	display: flex;
 	justify-content: space-between;
 
-	.form {
-		width: 45%;
+	sh-card {
+		margin-top: 40px;
+		width: 48%;
+
+		h2 {
+			margin-bottom: 20px;
+		}
 
 		sh-field-container label {
 			color: $white;
