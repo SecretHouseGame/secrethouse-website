@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { SelectOption } from 'ngx-ds-secret-house/lib/components/interfaces/select-option';
+import { RadioOption } from "ngx-ds-secret-house/lib/components/interfaces/radio-option";
 import { GameLobbyService } from '../../game-lobby.service';
 import { GameLobbyStepService } from '../step.service';
 
@@ -10,12 +10,32 @@ import { GameLobbyStepService } from '../step.service';
 	styleUrls: ['./lobby-step-character.component.scss'],
 })
 export class LobbyStepCharacterComponent implements OnInit {
+	@Input() isInLobby: boolean = false
+
 	validated: boolean = false;
 
-	genders: SelectOption[] = [
-		{ id: '0', name: 'Homme', value: 'MALE' },
-		{ id: '1', name: 'Femme', value: 'FEMALE' },
-		{ id: '2', name: 'Autre', value: 'OTHER' },
+	genders: RadioOption[] = [
+		{
+			id: "option-male",
+			value: "male",
+			text: "Homme",
+			disabled: false,
+			checked: true
+		},
+		{
+			id: "option-female",
+			value: "female",
+			text: "Femme",
+			disabled: false,
+			checked: false
+		},
+		{
+			id: "option-other",
+			value: "other",
+			text: "Autre",
+			disabled: false,
+			checked: false
+		},
 	];
 
 	characterFormGrp: FormGroup = new FormGroup({
@@ -30,12 +50,13 @@ export class LobbyStepCharacterComponent implements OnInit {
 		bio: new FormControl('', []),
 	});
 
-	constructor(
+	constructor (
 		public gameLobbyService: GameLobbyService,
 		public stepService: GameLobbyStepService
-	) {}
+	) {
+	}
 
-	ngOnInit(): void {
+	ngOnInit (): void {
 		this.characterFormGrp.setValue({
 			name: this.gameLobbyService.character.name,
 			age: this.gameLobbyService.character.age,
@@ -46,37 +67,40 @@ export class LobbyStepCharacterComponent implements OnInit {
 		});
 	}
 
-	get formName() {
+	get formName () {
 		return this.characterFormGrp.get('name') as FormControl;
 	}
 
-	get formAge() {
+	get formAge () {
 		return this.characterFormGrp.get('age') as FormControl;
 	}
 
-	get formGender() {
-		return this.characterFormGrp.get('gender') as FormControl;
-	}
-
-	get formSecret() {
+	get formSecret () {
 		return this.characterFormGrp.get('secret') as FormControl;
 	}
 
-	get formPicture() {
+	get formPicture () {
 		return this.characterFormGrp.get('picture') as FormControl;
 	}
 
-	get formBio() {
+	get formBio () {
 		return this.characterFormGrp.get('bio') as FormControl;
 	}
 
-	validate() {
+	changeGender (eventTarget: any) {
+		if (eventTarget.value) {
+			this.characterFormGrp.patchValue({
+				'gender': eventTarget.value
+			})
+		}
+	}
+
+	validate () {
 		if (this.characterFormGrp.valid) {
 			// TODO: back validation
-			this.validated = true;
-			this.gameLobbyService.character =
-				this.characterFormGrp.getRawValue();
-			this.stepService.validateStep(true);
+			this.validated = true
+			this.gameLobbyService.character = this.characterFormGrp.getRawValue()
+			this.stepService.validateStep(true, this.isInLobby)
 		} else {
 			// TODO: show errors
 			this.validated = false;

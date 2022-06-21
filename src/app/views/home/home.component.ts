@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from "@angular/router";
 import { ModalService } from 'ngx-ds-secret-house';
 
 @Component({
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
 		password: new FormControl(),
 	});
 
-	constructor (private modalService: ModalService) {
+	constructor (private modalService: ModalService, private router: Router) {
 	}
 
 	ngOnInit (): void {
@@ -54,4 +55,7 @@ export class HomeComponent implements OnInit {
 		return this.loginFormGrp.get('password') as FormControl;
 	}
 
+	goToPlay () {
+		this.router.navigate(['/game'])
+	}
 }

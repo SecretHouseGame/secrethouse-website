@@ -11,7 +11,7 @@
 		<app-stepper>
 			<div class="lobby-content mx-4 my-2">
 				<app-lobby-step-params *ngIf="activeStep === 1"></app-lobby-step-params>
-				<app-lobby-step-character *ngIf="activeStep === 2"></app-lobby-step-character>
+				<app-lobby-step-character *ngIf="activeStep === 2" [isInLobby]="true"></app-lobby-step-character>
 				<app-lobby-step-lobby *ngIf="activeStep === 3"></app-lobby-step-lobby>
 			</div>
 		</app-stepper>

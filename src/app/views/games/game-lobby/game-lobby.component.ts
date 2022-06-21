@@ -29,5 +29,7 @@ export class GameLobbyComponent implements OnInit {
 		]
 
 		this.stepService.activeStep = 3
+
+		this.gameLobbyService.setupDefaultValue()
 	}
 }

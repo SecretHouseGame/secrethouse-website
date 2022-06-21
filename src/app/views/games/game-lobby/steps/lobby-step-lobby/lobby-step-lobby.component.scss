@@ -14,7 +14,13 @@
 }
 
 .players-list__title {
-	color: $brand-secondary;
+	color: $brand-primary;
+}
+
+#character-details__picture {
+	img {
+		max-width: 175px;
+	}
 }
 
 #lobby-actions {
