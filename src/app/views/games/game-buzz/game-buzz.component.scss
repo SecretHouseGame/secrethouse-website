@@ -34,7 +34,7 @@ $full-black : #000;
 
     &::before{
         content: "";
-        position: fixed;
+        position: absolute;
         bottom: 0;
         left: 0px;
         width: 50%;
@@ -53,7 +53,7 @@ $full-black : #000;
 
     &::after{
         content: "";
-        position: fixed;
+        position: absolute;
         bottom: 0;
         right: -100px;
         width: 600px;
@@ -133,7 +133,7 @@ $full-black : #000;
                 text-align: left;
                 z-index: 5;
             }
-    
+
             .player-image{
                 z-index: -1;
             }
@@ -164,11 +164,11 @@ $full-black : #000;
         &.is-selected{
             outline: 2px solid $yellow;
             background: $bg-black;
-    
+
             .player-image{
                 filter: none;
             }
-    
+
             .player-name{
                 color: $yellow;
             }
@@ -180,7 +180,7 @@ $full-black : #000;
             margin-right: 20px;
             background-color: white;
         }
-        
+
         .player-name{
             text-transform: uppercase;
             text-align: left;
@@ -189,7 +189,7 @@ $full-black : #000;
             color: $white;
             margin-top: 20px;
         }
-    
+
         .player-image{
             filter: brightness(0%);
             position: absolute;
@@ -225,7 +225,7 @@ $default-border:$white;
 .swiper-instruction{
     margin: 0 auto;
 	text-align: center;
-        
+
     .menu-indicator {
         width: 300px;
         margin: 0 auto;

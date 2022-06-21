@@ -17,7 +17,7 @@ $full-black : #000;
 }
 
 .game-rooms{
-    z-index: 1;
+	z-index: 402342342;
 
     .page-introduction{
         margin-bottom: 50px;
@@ -35,25 +35,25 @@ $full-black : #000;
     .room-selected{
         margin-top: 30px;
     }
-    
+
     .room-players{
         display: flex;
         flex-direction: column;
         cursor: pointer;
         max-height: 500px;
         overflow-y: scroll;
-    
+
         .room-player{
             padding: 7px 15px;
             margin: 5px 0;
             background-color: rgba($full-black, .5);
         }
     }
-    
+
     .chatroom-container{
         min-width: 50%;
         margin-bottom: 20px;
-    
+
         .chatroom{
             width: 100%;
             min-height: 500px;
@@ -3284,35 +3284,35 @@ $full-black : #000;
                 transform-origin: bottom left;
                 transform: rotateX(-90deg) translateZ(6.1vw)
             }
-    
+
             .e5__back {
                 width: 9.5vw;
                 height: 5vw;
                 transform-origin: top left;
                 transform: rotateX(-90deg) rotateY(180deg) translateX(-9.5vw) translateY(-5vw)
             }
-    
+
             .e5__right {
                 width: 11.1vw;
                 height: 5vw;
                 transform-origin: top left;
                 transform: rotateY(90deg) rotateZ(-90deg) translateZ(9.5vw) translateX(-11.1vw) translateY(-5vw)
             }
-    
+
             .e5__left {
                 width: 11.1vw;
                 height: 5vw;
                 transform-origin: top left;
                 transform: rotateY(-90deg) rotateZ(90deg) translateY(-5vw)
             }
-    
+
             .e5__top {
                 width: 9.5vw;
                 height: 11.1vw;
                 transform-origin: top left;
                 transform: translateZ(5vw)
             }
-    
+
             .e5__bottom {
                 width: 9.5vw;
                 height: 11.1vw;
@@ -3326,12 +3326,12 @@ $full-black : #000;
         .room-cuisine, .room-piscine, .room-chambre, .room-balcon, .room-sdb, .room-salon, .room-terrasse, .room-salon, .room-confessionnal{
             transition: all .2s;
             cursor: pointer;
-    
+
             &.hover{
                 background-color: rgba($yellow, .8) !important;
             }
         }
-        
+
     }
 
 }
