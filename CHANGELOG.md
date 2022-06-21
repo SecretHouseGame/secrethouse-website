@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.2.1](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.2.0...v1.2.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* chat server ([44724e5](https://www.github.com/SecretHouseGame/secrethouse-website/commit/44724e517e6d734b7bce3a72dc8cec0cb240243c))
+* fonts ([518f660](https://www.github.com/SecretHouseGame/secrethouse-website/commit/518f660c9c63d3a3fc2f39d0786b1f15fb09d17d))
+
 ## [1.2.0](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.1.0...v1.2.0) (2022-06-20)
 
 
