@@ -1,0 +1,22 @@
+<sh-card class="card-secondary">
+	<h2 class="mb-3">Création du personnage</h2>
+	<div class="input-row-container">
+		<div class="input-container">
+			<sh-input-text label="Nom" id="name" [disabled]="validated" [control]="formName"></sh-input-text>
+			<sh-input-text label="Age" id="age" [disabled]="validated" [control]="formAge"></sh-input-text>
+			<sh-input-text label="Genre" id="gender" [disabled]="validated" [control]="formGender"></sh-input-text>
+			<sh-input-text label="Secret" id="secret" [disabled]="validated" [control]="formSecret"></sh-input-text>
+		</div>
+
+		<div class="input-container">
+			<sh-input-file label="Avatar du personnage" id="picture" [control]="formPicture">
+			</sh-input-file>
+			<sh-input-textarea label="Biographie" [disabled]="validated" id="bio" [control]="formBio">
+			</sh-input-textarea>
+		</div>
+	</div>
+	<div class="flex justify-between mr-4">
+		<sh-button color="primary" [outline]="true" (click)="stepService.cancelStep()">Paramètres</sh-button>
+		<sh-button color="primary" (click)="validate()" [disabled]="validated">Valider</sh-button>
+	</div>
+</sh-card>

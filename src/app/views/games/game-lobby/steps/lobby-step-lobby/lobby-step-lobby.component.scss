@@ -1,0 +1,32 @@
+@import "src/styles";
+
+#share-code {
+	.share-code__text {
+		color: $brand-secondary-light;
+		font-weight: bold;
+	}
+}
+
+.players-list {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 1rem;
+}
+
+.players-list__title {
+	color: $brand-secondary;
+}
+
+#lobby-actions {
+	.btn__validate {
+		width: 300px;
+
+		button {
+			width: 100%;
+
+			.btn__content {
+				justify-content: center;
+			}
+		}
+	}
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { GameLobbyService } from "./game-lobby.service";
+import { GameLobbyStepService } from "./steps/step.service";
 
 @Component({
 	selector: 'app-game-lobby',
@@ -8,50 +9,25 @@ import { FormControl, FormGroup } from '@angular/forms';
 	encapsulation: ViewEncapsulation.None
 })
 export class GameLobbyComponent implements OnInit {
-	activeStep: number = 1;
 
-	paramFormGrp: FormGroup = new FormGroup({
-		maxPlayers: new FormControl(),
-		intervalEvent: new FormControl(),
-	});
+	constructor (public stepService: GameLobbyStepService, public gameLobbyService: GameLobbyService) {
+	}
 
-	personnageFormGrp: FormGroup = new FormGroup({
-		name: new FormControl(),
-		age: new FormControl(),
-		gender: new FormControl(),
-		secret: new FormControl(),
-		picture: new FormControl(),
-		bio: new FormControl(),
-	});
+	get steps () {
+		return this.stepService.steps
+	}
 
-	constructor () {
+	get activeStep () {
+		return this.stepService.activeStep
 	}
 
 	ngOnInit (): void {
-	}
+		this.stepService.steps = [
+			{id: 1, title: 'Paramètres de la partie'},
+			{id: 2, title: 'Création du personnage'},
+			{id: 3, title: 'Lobby'},
+		]
 
-	get paramFormMaxPlayers() {
-		return this.paramFormGrp.get('maxPlayers') as FormControl;
-	}
-	get paramFormIntervalEvent() {
-		return this.paramFormGrp.get('intervalEvent') as FormControl;
-	}
-	get personnageFormName() {
-		return this.personnageFormGrp.get('name') as FormControl;
-	}
-	get personnageFormAge() {
-		return this.personnageFormGrp.get('age') as FormControl;
-	}
-	get personnageFormGender() {
-		return this.personnageFormGrp.get('gender') as FormControl;
-	}
-	get personnageFormSecret() {
-		return this.personnageFormGrp.get('secret') as FormControl;
-	}
-	get personnageFormPicture() {
-		return this.personnageFormGrp.get('picture') as FormControl;
-	}
-	get personnageFormBio() {
-		return this.personnageFormGrp.get('bio') as FormControl;
+		this.stepService.activeStep = 3
 	}
 }
