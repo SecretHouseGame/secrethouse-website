@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Pages enfant
 import { RouterModule, Routes } from "@angular/router";
-import { PlayerPortraitComponent } from "../../components/player-portrait/player-portrait.component";
 import { GameCreateComponent } from './game-create/game-create.component';
 import { GameLobbyComponent } from './game-lobby/game-lobby.component';
 import { GameResidentsComponent } from './game-residents/game-residents.component';
@@ -22,6 +21,7 @@ import { StepperComponent } from "../../components/stepper/stepper.component";
 import { LobbyStepParamsComponent } from './game-lobby/steps/lobby-step-params/lobby-step-params.component';
 import { LobbyStepCharacterComponent } from './game-lobby/steps/lobby-step-character/lobby-step-character.component';
 import { LobbyStepLobbyComponent } from './game-lobby/steps/lobby-step-lobby/lobby-step-lobby.component';
+import { PlayerPortraitComponent } from "../../components/player-portrait/player-portrait.component";
 
 const routes: Routes = [
 	// TODO : Si on a pas join de game : on arrive sur créer / rejoindre une game
