@@ -21,6 +21,13 @@ export class GameBuzzService {
 	/** Vérifie si un buzz est en cours */
 	public getOngoingBuzz(): Observable<Buzz> {
 		return this.httpClient.get<Buzz>(`${this.httpService.fakeDbUrl}/buzz`);
+
+        // "buzz" : {
+        //     "buzzId" : 4545,
+        //     "targetPlayerId" : 15,
+        //     "acterPlayerId" : 1,
+        //     "secretGuessed" : "elle a fait le djihad"
+        //  },
 	}
 
 	/** Sauvegarde le buzz */

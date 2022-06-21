@@ -43,12 +43,14 @@ export class ChatServerComponent implements OnInit {
 	ngOnInit() {
 		this.chatService.getNewMessage(this.party, slugify(this.roomName)).subscribe((data: string) => {
 			console.debug(data);
-			let chatMessage: ChatMessage = JSON.parse(data);
-			console.debug(chatMessage);
-			if(chatMessage){
-				this.messageList.push(chatMessage);
-			}
-			this.chatScroll();
+            if(data){
+                let chatMessage: ChatMessage = JSON.parse(data);
+                console.debug(chatMessage);
+                if(chatMessage){
+                    this.messageList.push(chatMessage);
+                }
+                this.chatScroll();
+            }
 		})
 	}
 

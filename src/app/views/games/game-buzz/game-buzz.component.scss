@@ -10,7 +10,10 @@ $full-black : #000;
 
 .page-introduction{
     z-index: 1;
-    max-width: 800px;
+
+    p{
+        max-width: 800px;
+    }
 }
 
 #ongoing-buzz, #closed-buzz{
@@ -45,6 +48,7 @@ $full-black : #000;
         justify-content: flex-start;
         transition: all .15s;
         z-index: 0;
+        pointer-events: none;
     }
 
     &::after{
@@ -63,6 +67,7 @@ $full-black : #000;
         justify-content: flex-end;
         transition: all .15s;
         z-index: 0;
+        pointer-events: none;
     }
 
     &.buzzed{
