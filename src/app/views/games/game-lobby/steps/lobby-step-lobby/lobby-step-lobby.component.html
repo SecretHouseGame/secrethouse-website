@@ -8,33 +8,29 @@
 			<div class="w-1/2">
 				<div id="character-details__name" class="flex align-bottom space-x-6 mb-4">
 					<p class="resident-description__title">Nom</p>
-					<span class="text-sm">Catherine</span>
+					<span class="text-sm">{{ character.name }}</span>
 				</div>
 				<div id="character-details__age" class="flex align-bottom space-x-6 mb-4">
 					<p class="resident-description__title">Âge</p>
-					<span class="text-sm">25 ans</span>
+					<span class="text-sm">{{ character.age }} ans</span>
 				</div>
 				<div id="character-details__gender" class="flex align-bottom space-x-6 mb-4">
 					<p class="resident-description__title">Genre</p>
-					<span class="text-sm">Femme</span>
+					<span class="text-sm">{{ character.gender }}</span>
 				</div>
 				<div id="character-details__secret" class="mb-4">
 					<p class="resident-description__title mb-2">Secret</p>
-					<span class="text-sm">enjs</span>
+					<span class="text-sm">{{ character.secret }}</span>
 				</div>
 				<div id="character-details__bio">
 					<p class="resident-description__title mb-2">Biographie</p>
-					<span class="text-sm">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					Consequuntur tempora impedit accusantium odio
-					dolorem, voluptates, perferendis excepturi.
-				</span>
+					<span class="text-sm">{{ character.bio }}</span>
 				</div>
 			</div>
 			<div class="w-1/2">
 				<div id="character-details__picture" class="mb-2">
 					<p class="resident-description__title">Photo</p>
-					<span>photo</span>
+					<img [src]="character.picture" alt="picture" />
 				</div>
 			</div>
 		</div>
@@ -60,7 +56,11 @@
 </sh-card>
 
 <div id="lobby-actions" class="flex items-center justify-between mt-6">
-	<sh-button class="btn__validate" color="secondary">{{ isAdmin ? 'Fermer la partie': 'Quitter la partie' }}</sh-button>
-	<sh-button class="btn__validate" color="primary">Lancer la partie</sh-button>
+	<sh-button class="btn__validate" color="secondary" (click)="leaveGame()">
+		{{ isAdmin ? 'Fermer la partie': 'Quitter la partie' }}
+	</sh-button>
+	<sh-button *ngIf="isAdmin" class="btn__validate" color="primary" (click)="startGame()">
+		Lancer la partie
+	</sh-button>
 </div>
 

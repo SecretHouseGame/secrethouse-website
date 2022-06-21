@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { GameService } from "../../services/game.service";
 
 @Component({
 	selector: 'app-sh',
@@ -38,16 +40,16 @@ export class ShComponent implements OnInit {
 		},
 	]
 
-	constructor () {
+	constructor (public gameService: GameService, private router: Router) {
 	}
 
-	isUserPlayingGame () {
+	get isPlaying () {
 		// TODO: call api function to check if user is already in a game
-		return true;
+		return this.gameService.isPlaying;
 	}
 
-	ngOnInit (): void {
-		const menuElements = this.isUserPlayingGame() ? [
+	get menuElements (): any[] {
+		const menuElements = this.isPlaying ? [
 			{
 				title: 'Habitants',
 				icon: 'people-outline',
@@ -79,10 +81,16 @@ export class ShComponent implements OnInit {
 			url: '/game',
 		}]
 
-		this.navbarSections.unshift({
-			title: 'La maison des secrets',
-			elements: menuElements
-		},)
+		return [
+			{ title: 'La maison des secrets', elements: menuElements },
+			...this.navbarSections
+		]
 	}
 
+	ngOnInit (): void {
+		const routesPlaying = ['residents', 'character', 'rooms', 'secrets', 'buzz']
+		if (routesPlaying.find(route => this.router.url.includes(route))) {
+			this.gameService.isPlaying = true
+		}
+	}
 }
