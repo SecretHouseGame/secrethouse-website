@@ -14,6 +14,12 @@
 		color: $brand-primary !important;
 	}
 
+	sh-field-container {
+		select {
+			color: black;
+		}
+	}
+
 	#character-details {
 		p {
 			font-size: 1.125rem;
