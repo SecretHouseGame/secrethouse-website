@@ -94,10 +94,11 @@ $residentHeight: 450px;
 							border: 2px solid $brand-primary;
 							background-color: rgba(255, 255, 255, .25);
 
-							min-height: $residentHeight;
-							min-width: 290px;
+							min-height: 19rem;
+							min-width: 13rem;
 
 							img {
+								width: 24rem;
 								min-height: inherit;
 								max-height: $residentHeight;
 							}
