@@ -1,5 +1,7 @@
 @import "src/styles";
 
+$residentHeight: 500px;
+
 .game-character {
 	.header {
 		margin-bottom: 3rem;
@@ -8,18 +10,57 @@
 	.content {
 		display: flex;
 		flex-direction: row;
-		align-items: flex-start;
+		align-items: center;
 		column-gap: 6rem;
 		width: 100%;
 
 		.character-avatar {
 			flex: 1;
-			min-width: 250px;
+			width: 100%;
+			min-height: $residentHeight;
+
+			&__box {
+				border: 2px solid $brand-primary;
+				min-height: $residentHeight;
+
+				img {
+					min-height: inherit;
+					max-height: $residentHeight;
+				}
+			}
 		}
 
 		.character-description {
-			flex:2;
-			display: flex;
+			flex: 2;
+			width: 100%;
+
+			.card-secondary {
+				padding: 2rem;
+
+				sh-button {
+					margin-bottom: 40px	;
+				}
+			}
+
+			.character-fields {
+				display: flex;
+				flex-direction: row;
+				margin-bottom: 50px;
+
+				&__left {
+					flex: 1;
+
+					input, select, textarea {
+						max-width: 300px;
+					}
+				}
+
+				&__right {
+					flex: 1;
+					display: flex;
+					justify-content: start;
+				}
+			}
 		}
 	}
 }

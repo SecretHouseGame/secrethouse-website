@@ -251,7 +251,7 @@ sh-chat-message{
 }
 
 .game-character {
-	sh-input-text, sh-input-textarea{
+	sh-input-text, sh-input-textarea, sh-input-select, sh-input-file{
 		color: black;
 
 		.field-group{
