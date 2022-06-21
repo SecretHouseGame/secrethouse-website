@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3.0](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.2.1...v1.3.0) (2022-06-21)
+
+
+### Features
+
+* remove fake data for buzz so full process can be tested ([a35a523](https://www.github.com/SecretHouseGame/secrethouse-website/commit/a35a5233982e917ca5f8b9e7bec29ef1aadd9c53))
+
+
+### Bug Fixes
+
+* resident img size ([126dfa3](https://www.github.com/SecretHouseGame/secrethouse-website/commit/126dfa374eb0ad0f9506a48e07e9b2c74179b82a))
+* style in buzz page ([75589b6](https://www.github.com/SecretHouseGame/secrethouse-website/commit/75589b63455d99c8240e4bc33bbec6d2845c024a))
+
 ### [1.2.1](https://www.github.com/SecretHouseGame/secrethouse-website/compare/v1.2.0...v1.2.1) (2022-06-21)
 
 
