@@ -1,6 +1,11 @@
+import {Player} from "./player";
+import {Event} from "./event";
+
 export interface Buzz {
-    buzzId ?: number,
-    targetPlayerId ?: number,
-    acterPlayerId ?: number,
-    secretGuessed ?: string,
+	id: number,
+	buzzer: Player,
+	event: Event,
+	target: Player,
+	secret: string,
+	status: string
 }

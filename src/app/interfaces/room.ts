@@ -1,6 +1,6 @@
 export interface Room {
     id: number,
     name: string,
-    isSecret ?: boolean,
+    isSecret: boolean,
     image ?: string
 }

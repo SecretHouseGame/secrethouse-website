@@ -20,9 +20,7 @@ export class GameCharacterComponent implements OnInit {
 	]
 
 	// fixme : missing age & bio in interface player
-	character: Player = {
-		id: 0,
-	};
+	character: Player | undefined;
 
 	formGroup: FormGroup = new FormGroup({
 		name: new FormControl(),
@@ -44,24 +42,24 @@ export class GameCharacterComponent implements OnInit {
 
 			this.formGroup.setValue({
 				name: this.character.name ? this.character.name : "Name",
-				age: this.character.age ? this.character.age : "Age",
-				genre: this.character.genre ? this.character.genre : "Genre",
+				//age: this.character.age ? this.character.age : "Age",
+				genre: this.character.gender ? this.character.gender : "Genre",
 				secret: this.character.secret ? this.character.secret : "Secret",
-				avatar: this.character.avatar ? this.character.avatar : "/assets/images/players/catherine.png",
-				bio: this.character.bio ? this.character.bio : "Bio"
+				//avatar: this.character.avatar ? this.character.avatar : "/assets/images/players/catherine.png",
+				//bio: this.character.bio ? this.character.bio : "Bio"
 			})
 		})
 
 	}
 
-	// todo : missing avatar
+	// todo : missing age, bio avatar
 	get formGroupName() {
 		return this.formGroup.get('name') as FormControl;
 	}
 
-	get formGroupAge() {
+	/*get formGroupAge() {
 		return this.formGroup.get('age') as FormControl;
-	}
+	}*/
 
 	get formGroupGenre() {
 		return this.formGroup.get('genre') as FormControl;
@@ -71,20 +69,25 @@ export class GameCharacterComponent implements OnInit {
 		return this.formGroup.get('secret') as FormControl;
 	}
 
-	get formGroupBio() {
+	/*get formGroupBio() {
 		return this.formGroup.get('bio') as FormControl;
-	}
+	}*/
 
 	updateCharacter(): void {
-		let updatedCurrentPlayer = this.character;
-		updatedCurrentPlayer.name = this.formGroupName.value;
-		updatedCurrentPlayer.age = this.formGroupAge.value;
-		updatedCurrentPlayer.genre = this.formGroupGenre.value;
-		updatedCurrentPlayer.secret = this.formGroupSecret.value;
-		updatedCurrentPlayer.bio = this.formGroupBio.value;
-		updatedCurrentPlayer.name = this.formGroupName.value;
+		if (!this.character) {
+			console.log("Character undefined");
+		} else {
 
-		this.httpService.updateCurrentPlayer(updatedCurrentPlayer);
-		this.character = updatedCurrentPlayer;
+			let updatedCurrentPlayer = this.character;
+			updatedCurrentPlayer.name = this.formGroupName.value;
+			//updatedCurrentPlayer.age = this.formGroupAge.value;
+			updatedCurrentPlayer.gender = this.formGroupGenre.value;
+			updatedCurrentPlayer.secret = this.formGroupSecret.value;
+			//updatedCurrentPlayer.bio = this.formGroupBio.value;
+			updatedCurrentPlayer.name = this.formGroupName.value;
+
+			this.httpService.updateCurrentPlayer(updatedCurrentPlayer);
+			this.character = updatedCurrentPlayer;
+		}
 	}
 }
