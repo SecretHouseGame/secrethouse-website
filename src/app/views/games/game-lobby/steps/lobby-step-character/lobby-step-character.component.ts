@@ -4,6 +4,8 @@ import {RadioOption} from "ngx-ds-secret-house/lib/components/interfaces/radio-o
 import {GameLobbyService} from '../../game-lobby.service';
 import {GameLobbyStepService} from '../step.service';
 import {HttpService} from "../../../../../services/http.service";
+import {Router} from "@angular/router";
+import {SocketService} from "../../../../../services/socket.service";
 
 @Component({
 	selector: 'app-lobby-step-character',
@@ -47,14 +49,14 @@ export class LobbyStepCharacterComponent implements OnInit {
 		]),
 		gender: new FormControl('', [Validators.required]),
 		secret: new FormControl('', [Validators.required]),
-		picture: new FormControl('', []),
-		bio: new FormControl('', []),
 	});
 
 	constructor (
 		public gameLobbyService: GameLobbyService,
 		public stepService: GameLobbyStepService,
-		public httpService: HttpService
+		public httpService: HttpService,
+		public router:Router,
+		//public socketService:SocketService
 	) {
 	}
 
@@ -64,8 +66,6 @@ export class LobbyStepCharacterComponent implements OnInit {
 			age: this.gameLobbyService.character.age,
 			gender: this.gameLobbyService.character.gender,
 			secret: this.gameLobbyService.character.secret,
-			picture: this.gameLobbyService.character.picture,
-			bio: this.gameLobbyService.character.bio,
 		});
 	}
 
@@ -85,14 +85,6 @@ export class LobbyStepCharacterComponent implements OnInit {
 		return this.characterFormGrp.get('secret') as FormControl;
 	}
 
-	get formPicture () {
-		return this.characterFormGrp.get('picture') as FormControl;
-	}
-
-	get formBio () {
-		return this.characterFormGrp.get('bio') as FormControl;
-	}
-
 	changeGender (eventTarget: any) {
 		if (eventTarget.value) {
 			this.characterFormGrp.patchValue({
@@ -107,21 +99,13 @@ export class LobbyStepCharacterComponent implements OnInit {
 			this.validated = true
 			this.gameLobbyService.character = this.characterFormGrp.getRawValue()
 			this.stepService.validateStep(true, this.isInLobby);
-
-			if (localStorage.getItem("gameCode")) {
-				this.httpService.createPlayer(
-					this.formName.value,
-					this.formSecret.value,
-					this.formGender.value,
-					localStorage.getItem("gameCode") ?? "OTHER"
-				).subscribe(value => {
-					if (value.dataToSend.gameId) {
-						localStorage.setItem("gameId", value.dataToSend.gameId);
-					}
-				});
-			} else {
-				console.log("ERROR");
-			}
+			this.httpService.createPlayer(
+				this.formName.value,
+				this.formSecret.value,
+				this.formGender.value,
+			).subscribe(() => {
+				this.router.navigate(['/game/play/1/lobby']);
+			});
 		} else {
 			// TODO: show errors
 			this.validated = false;

@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators } from "@angular/forms";
+import {HttpService} from "../../services/http.service";
+import {Router} from "@angular/router";
 
 @Component({
 	selector: 'app-dashboard',
@@ -12,7 +14,7 @@ export class DashboardComponent implements OnInit {
 		Validators.required
 	])
 
-	constructor () {
+	constructor (public httpService:HttpService, public router:Router) {
 	}
 
 	ngOnInit (): void {
@@ -22,12 +24,16 @@ export class DashboardComponent implements OnInit {
 		return this.gameCode.valid
 	}
 
+	createGame(){
+		this.httpService.createGame(2,222,30).subscribe(()=>{
+			this.router.navigate(['/game/play']);
+		})
+
+	}
+
 	joinGame () {
 		if (this.isGameCodeValid()) {
 			console.log(this.gameCode.value)
-
-			// api call to validate game code
-			// if ok, navigate to game lobby
 		}
 	}
 }

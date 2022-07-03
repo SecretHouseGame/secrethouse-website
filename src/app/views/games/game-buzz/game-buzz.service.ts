@@ -5,6 +5,7 @@ import { Buzz } from '../../../interfaces/buzz';
 import { Observable } from 'rxjs';
 import { HttpService } from "../../../services/http.service";
 import {FormControl, Validators} from "@angular/forms";
+import {StoreService} from "../../../store/store.service";
 
 @Injectable({
 	providedIn: 'root'
@@ -12,7 +13,7 @@ import {FormControl, Validators} from "@angular/forms";
 
 export class GameBuzzService {
 
-	constructor(private httpClient: HttpClient, public httpService: HttpService) { }
+	constructor(private httpClient: HttpClient, public httpService: HttpService, public storeService:StoreService) { }
 
 	/** Récupérer UN habitant */
 	public getCurrentPlayer(): Observable<Player> {
@@ -43,7 +44,7 @@ export class GameBuzzService {
 		}
 		const options = {
 			headers: new HttpHeaders()
-				.set('Authorization',  `Basic ${localStorage.getItem("accessToken")}`)
+				.set('token',  `${this.storeService.token}`)
 		}
 
 		return this.httpClient.post<any>(`${this.httpService.dbUrl}/buzz`, body, options);

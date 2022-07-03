@@ -11,17 +11,6 @@ export class ShComponent implements OnInit {
 
 	navbarSections: any = [
 		{
-			title: 'Mon profil',
-			elements: [
-				{
-					title: 'Mon compte',
-					icon: 'person-outline',
-					isActive: false,
-					url: '/game/account',
-				},
-			],
-		},
-		{
 			title: 'Aide',
 			elements: [
 				{
@@ -74,12 +63,7 @@ export class ShComponent implements OnInit {
 				isActive: false,
 				url: '/game/play/1/buzz',
 			},
-		] : [{
-			title: 'Accueil',
-			icon: 'home-outline',
-			isActive: false,
-			url: '/game',
-		}]
+		] : null;
 
 		return [
 			{ title: 'La maison des secrets', elements: menuElements },

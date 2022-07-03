@@ -23,13 +23,11 @@ export class GameLobbyComponent implements OnInit {
 
 	ngOnInit (): void {
 		this.stepService.steps = [
-			{id: 1, title: 'Paramètres de la partie'},
-			{id: 2, title: 'Création du personnage'},
-			{id: 3, title: 'Lobby'},
+			{id: 1, title: 'Création du personnage'},
+			{id: 2, title: 'Lobby'},
 		]
 
-		this.stepService.activeStep = 3
+		this.stepService.activeStep = 2
 
-		this.gameLobbyService.setupDefaultValue()
 	}
 }

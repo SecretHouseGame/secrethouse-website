@@ -4,6 +4,7 @@ import {ChatServerService} from './chat-server.service';
 import {ChatMessage} from '../interfaces/chat-message';
 import {Player} from '../interfaces/player';
 import slugify from "slugify";
+import {data} from "autoprefixer";
 
 @Component({
 	selector: 'app-chat-server',
@@ -40,8 +41,9 @@ export class ChatServerComponent implements OnInit {
 	}
 
 	ngOnInit() {
+
 		this.chatService.getNewMessage(this.party, slugify(this.roomName)).subscribe((data: string) => {
-			console.debug(data);
+
             if(data){
                 let chatMessage: ChatMessage = JSON.parse(data);
                 console.debug(chatMessage);
@@ -86,7 +88,8 @@ export class ChatServerComponent implements OnInit {
 				isCurrentUser: true
 			} as ChatMessage;
 
-			this.chatService.sendMessage(
+
+			/* this.chatService.sendMessage(
 				this.channel,
 				this.party,
 				slugify(this.roomName),
@@ -94,7 +97,7 @@ export class ChatServerComponent implements OnInit {
 				this.newMessage,
 				this.currentUser.id,
 				null
-			);
+			);*/
 
 			this.messageList.push(message);
 

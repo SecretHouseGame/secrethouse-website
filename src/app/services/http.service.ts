@@ -4,6 +4,8 @@ import {Observable, tap} from "rxjs";
 import {Player} from "../interfaces/player";
 import {Room} from "../interfaces/room";
 import {StoreService} from "../store/store.service";
+import {User} from "../interfaces/user";
+import {SocketService} from "./socket.service";
 
 @Injectable({
 	providedIn: 'root'
@@ -14,59 +16,70 @@ export class HttpService {
 	// public dbUrl = 'https://my-json-server.typicode.com/SecretHouseGame/secrethouse-fakedb'
 	public dbUrl = 'http://localhost:3000';
 
-	constructor(public httpClient: HttpClient, public storeService: StoreService) {
+	constructor(public httpClient: HttpClient, public storeService: StoreService, public socketService:SocketService) {
 	}
 
 	public login(email: string, password: string): Observable<any> {
-		return this.httpClient.post<any>(`${this.dbUrl}/login`, {
+		return this.httpClient.post<any>(`${this.dbUrl}/auth/login`, {
 			"email": email,
 			"password": password
-		});
+		}).pipe(
+			tap((token) => {
+				this.storeService.token= token
+			})
+		);
 	}
 
 	public register(username: string, email: string, password: string): Observable<any> {
-		return this.httpClient.post<any>(`${this.dbUrl}/register`, {
+		return this.httpClient.post<string>(`${this.dbUrl}/auth/register`, {
 			"username": username,
 			"email": email,
 			"password": password
-		});
+		}).pipe(
+			tap((token) => {
+				this.storeService.token= token
+			})
+		);
 	}
 
 	// FIXME !
 	public createGame(maxPlayers : number, eventIntervalQty: number, eliminationDelayQty : number):Observable<any> {
 		const options = {
 			headers: new HttpHeaders()
-				.set('Authorization',  `Basic ${localStorage.getItem("accessToken")}`)
+				.set('token',  `${this.storeService.token}`)
 		}
 
-		return this.httpClient.post<any>(`${this.dbUrl}/games`, {
+		return this.httpClient.post<string>(`${this.dbUrl}/games`, {
 			"maxPlayers": maxPlayers,
 			"eventIntervalQty": eventIntervalQty,
 			"eliminationDelayQty": eliminationDelayQty
-		}, options)
+		}, options).pipe(
+			tap((code) => {
+				console.log(code);
+				this.storeService.gameCode= code
+			})
+		);
 	}
 
-	public joinGame(): Observable<number> {
+	public createPlayer(name: string, secret: string, gender: string) : Observable<any> {
 		const options = {
 			headers: new HttpHeaders()
-				.set('Authorization',  `Basic ${localStorage.getItem("accessToken")}`)
+				.set('token',  `${this.storeService.token}`)
 		}
 
-		return this.httpClient.get<number>(`${this.dbUrl}/`, options);
-	}
-
-	public createPlayer(name: string, secret: string, gender: string, gameCode: string) : Observable<any> {
-		const options = {
-			headers: new HttpHeaders()
-				.set('Authorization',  `Basic ${localStorage.getItem("accessToken")}`)
-		}
-
-		return this.httpClient.post<any>(`${this.dbUrl}/players`, {
+		return this.httpClient.post<Player>(`${this.dbUrl}/players`, {
 			"name": name,
 			"secret": secret,
 			"gender": gender,
-			"gameCode": gameCode
-		}, options);
+			"gameCode": this.storeService.gameCode
+		}, options).pipe(
+			tap((player) => {
+				console.log(player);
+				this.storeService.currentPlayer= player;
+				this.storeService.gameId= player.game;
+				this.socketService.joinGame();
+			})
+		);
 	}
 
 	// todo : get currently waiting for a game to start
@@ -75,7 +88,7 @@ export class HttpService {
 	public getGameResidents(gameId: number) : Observable<Player[]> {
 		const options = {
 			headers: new HttpHeaders()
-				.set('Authorization',  `Basic ${localStorage.getItem("accessToken")}`)
+				.set('token',  `${this.storeService.token}`)
 		}
 
 		return this.httpClient.get<Player[]>(`${this.dbUrl}/games/${gameId}/players`, options);
@@ -84,7 +97,7 @@ export class HttpService {
 	public getSecrets(gameId: number) : Observable<any> {
 		const options = {
 			headers: new HttpHeaders()
-				.set('Authorization',  `Basic ${localStorage.getItem("accessToken")}`)
+				.set('token',  `${this.storeService.token}`)
 		}
 
 		return this.httpClient.get<any>(`${this.dbUrl}/games/${gameId}/secrets`, options);
@@ -94,7 +107,7 @@ export class HttpService {
 	public getCurrentPlayer(): Observable<Player> {
 		const options = {
 			headers: new HttpHeaders()
-				.set('Authorization',  `Basic ${localStorage.getItem("accessToken")}`)
+				.set('token',  `${this.storeService.token}`)
 		}
 		return this.httpClient.get<Player>(`${this.dbUrl}/currentPlayer`, options)
 	}
@@ -102,7 +115,7 @@ export class HttpService {
 	public updateCurrentPlayer(body: object): Observable<Player> {
 		const options = {
 			headers: new HttpHeaders()
-				.set('Authorization',  `Basic ${localStorage.getItem("accessToken")}`)
+				.set('token',  `${this.storeService.token}`)
 		}
 		return this.httpClient.put<Player>(`${this.dbUrl}/currentPlayer`, body, options);
 	}
@@ -111,7 +124,7 @@ export class HttpService {
 	public getPlayers(): Observable<any> {
 		const options = {
 			headers: new HttpHeaders()
-				.set('Authorization',  `Basic ${localStorage.getItem("accessToken")}`)
+				.set('token',  `${this.storeService.token}`)
 		}
 		return this.httpClient.get<any>(`${this.dbUrl}/players`, options)
 			.pipe(
@@ -125,7 +138,7 @@ export class HttpService {
 	public getRooms(): Observable<Room[]> {
 		const options = {
 			headers: new HttpHeaders()
-				.set('Authorization',  `Basic ${localStorage.getItem("accessToken")}`)
+				.set('token',  `${this.storeService.token}`)
 		}
 		return this.httpClient.get<Room[]>(`${this.dbUrl}/rooms`, options)
 			.pipe(

@@ -16,7 +16,6 @@ export class LobbyStepLobbyComponent implements OnInit {
 	isAdmin: boolean = true
 
 	constructor (
-		public stepService: GameLobbyStepService,
 		public lobbyService: GameLobbyService,
 		public httpService: HttpService,
 		public storeService: StoreService,
@@ -32,6 +31,10 @@ export class LobbyStepLobbyComponent implements OnInit {
 		return this.lobbyService.character
 	}
 
+	get gameCode (){
+		return this.storeService.gameCode
+	}
+
 	get players () {
 		return this.storeService.players.slice(0, parseInt(this.lobbyService.parameters.maxPlayers))
 	}
@@ -40,16 +43,10 @@ export class LobbyStepLobbyComponent implements OnInit {
 		return this.character.gender === 'male' ? 'Homme' : (this.character.gender === 'female' ? 'Femme' : 'Autre')
 	}
 
-	goToStep (stepNumber: number) {
-		this.stepService.activeStep = stepNumber
-	}
 
 	startGame () {
 		this.gameService.isPlaying = true
 		this.router.navigate(['/game/play/1/residents'])
 	}
 
-	leaveGame () {
-		this.router.navigate(['/game'])
-	}
 }

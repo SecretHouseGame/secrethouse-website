@@ -10,8 +10,8 @@ export interface Player {
 	secret: string,
 	// todo : handle avatar?: string,
 	gender: string,
-	user : User,
-	game : Game,
+	user : number,
+	game : number,
 
 	isReady?: boolean,
 	isBuzzed?: boolean,

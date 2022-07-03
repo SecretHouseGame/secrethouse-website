@@ -57,7 +57,7 @@ export class LobbyStepParamsComponent implements OnInit {
 			this.stepService.validateStep()
 
 			this.httpService.createGame(this.formMaxPlayers.value, this.formIntervalEvent.value, this.formIntervalElimination.value).subscribe(data => {
-				if (data.dataToSend.code) localStorage.setItem("gameCode", data.dataToSend.code);
+				localStorage.setItem("gameCode", data);
 			});
 		} else {
 			// TODO: show errors

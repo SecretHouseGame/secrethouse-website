@@ -1,9 +1,5 @@
 <sh-card class="card-secondary mb-10">
 	<div id="character-details" class="mx-2">
-		<div class="flex items-center justify-between mb-2">
-			<h2 class="mb-3">Mon personnage</h2>
-			<sh-button color="primary" (click)="goToStep(2)">Modifier</sh-button>
-		</div>
 		<div class="flex space-x-10">
 			<div class="w-1/2">
 				<div id="character-details__name" class="flex align-bottom space-x-6 mb-4">
@@ -22,29 +18,15 @@
 					<p class="resident-description__title mb-2">Secret</p>
 					<span class="text-sm">{{ character.secret }}</span>
 				</div>
-				<div id="character-details__bio">
-					<p class="resident-description__title mb-2">Biographie</p>
-					<span class="text-sm">{{ character.bio }}</span>
-				</div>
-			</div>
-			<div class="w-1/2">
-				<div id="character-details__picture" class="mb-2">
-					<p class="resident-description__title">Photo</p>
-					<img src="./assets/images/players/catherine.png" alt="picture" />
-				</div>
 			</div>
 		</div>
 	</div>
 </sh-card>
 
 <sh-card>
-	<div class="flex items-center justify-between">
-		<h2 class="mb-3 sh-yellow">Partie en attente de lancement</h2>
-		<sh-button *ngIf="isAdmin" color="primary" [outline]="true" (click)="goToStep(1)">Paramètres de la partie</sh-button>
-	</div>
 	<div id="share-code" class="flex items-center space-x-6 mb-4">
 		<p class="share-code__title">Code de partage</p>
-		<span class="share-code__text">#DEIOF8768YFEHF</span>
+		<span class="share-code__text">{{ gameCode }}</span>
 	</div>
 	<h4 class="players-list__title underline mb-2">Liste des participants</h4>
 	<div class="players-list">
@@ -56,9 +38,6 @@
 </sh-card>
 
 <div id="lobby-actions" class="flex items-center justify-between mt-6">
-	<sh-button class="btn__validate" color="secondary" (click)="leaveGame()">
-		{{ isAdmin ? 'Fermer la partie': 'Quitter la partie' }}
-	</sh-button>
 	<sh-button *ngIf="isAdmin" class="btn__validate" color="primary" (click)="startGame()">
 		Lancer la partie
 	</sh-button>

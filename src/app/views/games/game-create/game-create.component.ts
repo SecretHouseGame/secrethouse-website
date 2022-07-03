@@ -28,16 +28,9 @@ export class GameCreateComponent implements OnInit {
 
 	ngOnInit (): void {
 		this.stepService.steps = [
-			{id: 1, title: 'Paramètres de la partie'},
-			{id: 2, title: 'Création du personnage'}
+			{id: 1, title: 'Création du personnage'},
+			{id: 2, title: 'Lobby'}
 		]
-	}
-
-	createGame () {
-		const { parameters, character } = this.gameLobbyService
-		console.log(parameters, character)
-		// TODO: call api to send data and redirect to game lobby
-		this.router.navigate(['/game/play/1/lobby'])
 	}
 
 }

@@ -10,19 +10,10 @@
 		<app-stepper>
 			<sh-card class="card-secondary">
 				<div class="lobby-content mx-4 my-2">
-					<app-lobby-step-params *ngIf="activeStep === 1"></app-lobby-step-params>
-					<app-lobby-step-character *ngIf="activeStep === 2"></app-lobby-step-character>
+					<app-lobby-step-character *ngIf="activeStep === 1"></app-lobby-step-character>
+					<app-lobby-step-lobby *ngIf="activeStep === 2"></app-lobby-step-lobby>
 				</div>
 			</sh-card>
 		</app-stepper>
-		<div class="flex justify-center mt-6">
-			<sh-button
-				class="btn__validate"
-				color="primary"
-				[disabled]="!isStepperValidated"
-				(click)="createGame()">
-				Créer la partie
-			</sh-button>
-		</div>
 	</div>
 </div>

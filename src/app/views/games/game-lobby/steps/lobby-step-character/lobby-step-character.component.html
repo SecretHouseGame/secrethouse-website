@@ -8,16 +8,8 @@
 			<sh-input-textarea label="Secret" id="secret" [disabled]="validated" [control]="formSecret">
 			</sh-input-textarea>
 		</div>
-
-		<div class="input-container">
-			<sh-input-file label="Avatar du personnage" disabled=true id="picture" [control]="formPicture">
-			</sh-input-file>
-			<sh-input-textarea label="Biographie" [disabled]=true id="bio" [control]="formBio">
-			</sh-input-textarea>
-		</div>
 	</div>
 	<div class="flex justify-between mr-4">
-		<sh-button color="primary" [outline]="true" (click)="stepService.cancelStep()">Paramètres</sh-button>
 		<sh-button color="primary" (click)="validate()" [disabled]="validated">Valider</sh-button>
 	</div>
 </sh-card>

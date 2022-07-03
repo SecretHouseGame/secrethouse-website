@@ -3,6 +3,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from "@angular/router";
 import {ModalService} from 'ngx-ds-secret-house';
 import {HttpService} from "../../services/http.service";
+import {User} from "../../interfaces/user";
 
 @Component({
 	selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
 	registerFormGrp: FormGroup = new FormGroup({
 		email: new FormControl(),
 		password: new FormControl(),
-		confirmPassword: new FormControl(),
+		username: new FormControl(),
 	});
 
 	loginFormGrp: FormGroup = new FormGroup({
@@ -70,25 +71,13 @@ export class HomeComponent implements OnInit {
 
 	handleLogin() {
 		this.httpService.login(this.loginFormEmail.value, this.loginFormPassword.value).subscribe((data) => {
-			if (data.dataToSend.token) {
-				console.log("Got the token !");
-				localStorage.setItem("accessToken", data.dataToSend.token);
-				this.router.navigate(['/game']);
-			}
+			this.router.navigate(['/game']);
 		});
 	}
 
 	handleRegister() {
-		if (this.registerFormPassword === this.registerFormConfirmPassword.value) {
-			this.httpService.register(this.registerFormUsername.value, this.registerFormEmail.value, this.registerFormPassword.value).subscribe((data) => {
-				if (data.dataToSend.token) {
-					console.log("Got the token !");
-					localStorage.setItem("accessToken", data.dataToSend.token);
-				}
-			});
+		this.httpService.register(this.registerFormUsername.value, this.registerFormEmail.value, this.registerFormPassword.value).subscribe((data) => {
 			this.router.navigate(['/game']);
-		} else {
-			console.log("Different passwords supplied");
-		}
+		});
 	}
 }
