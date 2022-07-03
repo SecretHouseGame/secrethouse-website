@@ -24,12 +24,7 @@ $full-black : #000;
     }
 
     .room-selected, .room-not-selected{
-        opacity: 0;
-        transition: all .3s;
 
-        &.viewable{
-            opacity: 1;
-        }
     }
 
     .room-selected{

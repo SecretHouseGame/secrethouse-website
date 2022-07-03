@@ -4,8 +4,6 @@ import {Observable, tap} from "rxjs";
 import {Player} from "../interfaces/player";
 import {Room} from "../interfaces/room";
 import {StoreService} from "../store/store.service";
-import {User} from "../interfaces/user";
-import {SocketService} from "./socket.service";
 
 @Injectable({
 	providedIn: 'root'
@@ -16,7 +14,7 @@ export class HttpService {
 	// public dbUrl = 'https://my-json-server.typicode.com/SecretHouseGame/secrethouse-fakedb'
 	public dbUrl = 'http://localhost:3000';
 
-	constructor(public httpClient: HttpClient, public storeService: StoreService, public socketService:SocketService) {
+	constructor(public httpClient: HttpClient, public storeService: StoreService) {
 	}
 
 	public login(email: string, password: string): Observable<any> {

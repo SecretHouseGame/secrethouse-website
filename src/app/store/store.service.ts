@@ -35,4 +35,8 @@ export class StoreService {
 	saveRooms = (rooms: Room[]) => {
 		this.rooms = rooms
 	}
+
+	saveCurrentRoom = (room:string) =>{
+		this.currentRoom = room;
+	}
 }

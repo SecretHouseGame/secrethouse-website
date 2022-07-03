@@ -21,7 +21,6 @@ export class GameRoomsComponent implements OnInit {
 
 	ngOnInit (): void {
 		// On récupère la liste des pièces
-		this.httpService.getRooms().subscribe()
 	}
 
 	get roomsList () {
@@ -43,26 +42,16 @@ export class GameRoomsComponent implements OnInit {
 
 	// Lorsqu'on accède à une pièce
 	accessRoom( roomName : string ) {
-		let foundRoom =  this.roomsList.find(o => o.name.toLowerCase() === roomName.toLowerCase()) as Room;
+		let foundRoom =  this.roomsList.find(o => o.name.toLowerCase() === roomName.toLowerCase()) as Room
+		this.storeService.saveCurrentRoom(foundRoom.name);
 		console.log(foundRoom);
-		if(foundRoom){
-			document.querySelector('.room-not-selected')?.classList.remove('viewable');
-			setTimeout(() => {
-				// Sélectionne la room et display l'écran avec chat
-				this.selectedRoom = foundRoom;
-				document.querySelector('.room-selected')?.classList.add('viewable');
-			}, 300)
-		}
+		this.selectedRoom = foundRoom;
 	}
 
 	// On quitte une pièce
 	resetRoom(){
-		// Ajouter une classe pour transition
-		document.querySelector('.room-selected')?.classList.remove('viewable');
-		setTimeout(() => {
-			this.selectedRoom = null;
-			document.querySelector('.room-not-selected')?.classList.add('viewable');
-		}, 300)
+		this.selectedRoom = null;
+		//this.storeService.saveCurrentRoom("");
 	}
 
 	// Lorsqu'on veux voir le profil d'un joueur
