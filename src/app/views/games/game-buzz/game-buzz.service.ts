@@ -1,9 +1,10 @@
 import { Injectable} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Player } from '../../../interfaces/player';
 import { Buzz } from '../../../interfaces/buzz';
 import { Observable } from 'rxjs';
 import { HttpService } from "../../../services/http.service";
+import {FormControl, Validators} from "@angular/forms";
 
 @Injectable({
 	providedIn: 'root'
@@ -15,12 +16,12 @@ export class GameBuzzService {
 
 	/** Récupérer UN habitant */
 	public getCurrentPlayer(): Observable<Player> {
-		return this.httpClient.get<Player>(`${this.httpService.fakeDbUrl}/currentPlayer`);
+		return this.httpClient.get<Player>(`${this.httpService.dbUrl}/currentPlayer`);
 	}
 
 	/** Vérifie si un buzz est en cours */
 	public getOngoingBuzz(): Observable<Buzz> {
-		return this.httpClient.get<Buzz>(`${this.httpService.fakeDbUrl}/buzz`);
+		return this.httpClient.get<Buzz>(`${this.httpService.dbUrl}/buzz`);
 
         // "buzz" : {
         //     "buzzId" : 4545,
@@ -31,27 +32,36 @@ export class GameBuzzService {
 	}
 
 	/** Sauvegarde le buzz */
-	public sendBuzz(formValues: any) {
+	public createBuzz(currentPlayer: number, selectedPlayer: number, selectedPlayerSecret: string) {
 		// TODO Back : doit retirer cagnotte et bloquer autres buzz
 
-		console.log(formValues);
-		// formValues contient ces valeurs :
-		// - currentplayer : number (celui qui buzz)
-		// - selectedplayer : number (celui qui est buzzé)
-		// - selectedplayersecret : string
+		const body = {
+			"content": "",
+			"gameId": localStorage.getItem("gameId"),
+			"secret": selectedPlayerSecret,
+			"targetId": selectedPlayer
+		}
+		const options = {
+			headers: new HttpHeaders()
+				.set('Authorization',  `Basic ${localStorage.getItem("accessToken")}`)
+		}
 
-		return this.httpClient.post<Buzz>(`${this.httpService.fakeDbUrl}/buzz`, {
-			formValues : formValues
-		});
+		return this.httpClient.post<any>(`${this.httpService.dbUrl}/buzz`, body, options);
 	}
 
 	public respondBuzz(confirmState : string, buzzId : number): Observable<any> {
 		// TODO Back : Ajouter notif aux autres utilisateurs !
 		// TODO Back : Clore le buzz pour permettre de buzzer à nouveau
 
+		let status: string = '';
+		if (confirmState === "true") {
+			status = "CORRECT";
+		} else {
+			status = "WRONG";
+		}
 		// renvoit une string : "true", "false", "almost"
-		return this.httpClient.post<string>(`${this.httpService.fakeDbUrl}/buzz`, {
-			confirmState : confirmState,
+		return this.httpClient.post<string>(`${this.httpService.dbUrl}/buzzs/${buzzId}`, {
+			status : status,
 			buzzId : buzzId
 		});
 	}

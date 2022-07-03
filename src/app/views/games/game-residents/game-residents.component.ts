@@ -12,9 +12,7 @@ import { StoreService } from "../../../store/store.service";
 })
 export class GameResidentsComponent implements OnInit {
 	items: listItem[] = []
-	selectedResident: Player = {
-		id: 0
-	}
+	selectedResident: Player = {} as Player;
 
 	constructor (public httpService: HttpService, public storeService: StoreService) {
 	}
@@ -35,7 +33,7 @@ export class GameResidentsComponent implements OnInit {
 			this.items.push(<listItem>{
 				text: resident.name,
 				img: {
-					src: resident.avatar,
+					src: "./assets/images/players/catherine.png",
 					alt: 'img'
 				}
 			})
@@ -43,7 +41,7 @@ export class GameResidentsComponent implements OnInit {
 	}
 
 	getResidentGenderTranslation (gender: string) {
-		return gender === 'male' ? 'Homme' : 'Femme'
+		return gender === 'MALE' ? 'Homme' : 'Femme'
 	}
 
 	selectResident (residentId: number) {

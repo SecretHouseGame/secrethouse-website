@@ -25,12 +25,11 @@ export class ChatServerComponent implements OnInit {
 	currentUser: Player = {
 		"id":1,
 		"name":"Catherine",
-		"avatar":"/assets/images/players/catherine.png",
-		"cagnotte":0,
+		"jackpot":0,
 		"secret":"",
 		"canBuzz": true,
 		"canBeBuzzed": true
-	};
+	} as Player;
 	party :string = '123';
 	arrayDiscussion = [];
 
@@ -81,19 +80,17 @@ export class ChatServerComponent implements OnInit {
 				gameId: this.party,
 				roomId: slugify(this.roomName),
 				username: this.currentUser.name,
-				avatar: this.currentUser.avatar,
 				message: this.newMessage,
 				fromUserId: this.currentUser.id,
 				targetUserId: null,
 				isCurrentUser: true
-			}
+			} as ChatMessage;
 
 			this.chatService.sendMessage(
 				this.channel,
 				this.party,
 				slugify(this.roomName),
 				this.currentUser.name,
-				this.currentUser.avatar,
 				this.newMessage,
 				this.currentUser.id,
 				null

@@ -18,13 +18,12 @@ export class ChatServerService {
 	  gameId : string,
 	  roomId : string,
 	  senderUsername : string,
-	  senderAvatar : string | undefined,
 	  message : string,
 	  senderUserId : number,
 	  targetUserId : number | null
   ) {
-	  console.debug(channel, gameId, roomId, senderUsername, senderAvatar, message, senderUserId, targetUserId);
-	  this.socket.emit(channel, gameId, roomId, senderUsername, senderAvatar, message, senderUserId, targetUserId);
+	  console.debug(channel, gameId, roomId, senderUsername, message, senderUserId, targetUserId);
+	  this.socket.emit(channel, gameId, roomId, senderUsername, message, senderUserId, targetUserId);
   }
 
   //partyId, roomId, username, avatar, message, fromUserId, toUserId, type

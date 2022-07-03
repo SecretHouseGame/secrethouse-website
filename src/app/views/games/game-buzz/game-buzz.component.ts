@@ -36,10 +36,10 @@ export class GameBuzzComponent implements OnInit {
 	*/
 
 	// Permet d'identifier si un buzz en cours
-	ongoingBuzz: Buzz = {};
+	ongoingBuzz: Buzz = {} as Buzz;
 
 	// Utilisateur actuel
-	currentPlayer: Player | null = null;
+	currentPlayer: Player = {} as Player;
 
 	// Etat de la fin confrontation , si le secret est découvert ou non
 	confrontationState = {
@@ -91,8 +91,8 @@ export class GameBuzzComponent implements OnInit {
 			});
 
 		// On récupère la liste des habitants pour les afficher dans le swiper (même si celui-ci est verrouillé !)
-		this.httpService.getPlayers().subscribe((players) => {
-			this.playersList = players;
+		this.httpService.getPlayers().subscribe((data) => {
+			this.playersList = data.dataToSend;
 		})
 
 		// On regarde si un buzz est en cours dans la maison
@@ -103,44 +103,44 @@ export class GameBuzzComponent implements OnInit {
                 console.log(this.ongoingBuzz);
 
 				// On doit recevoir dans tous les cas une réponse !
-                    
+
 				setTimeout(() => {
 
-                    if(this.ongoingBuzz.buzzId){
+                    if(this.ongoingBuzz.id){
                         // Si un buzz est en cours
-                        if (this.currentPlayer && this.ongoingBuzz.acterPlayerId === this.currentPlayer.id) {
+                        if (this.currentPlayer && this.ongoingBuzz.buzzer.id === this.currentPlayer.id) {
 
                             // ANCHOR Cas où l'user connecté A buzzé
 
                             // buzz en cours, on doit donc afficher les boutons refuser / confirmer
                             this.step = 2;
                             this.buzzForm = new FormGroup({
-                                currentPlayer: new FormControl(this.ongoingBuzz.acterPlayerId, Validators.required),
-                                selectedPlayer: new FormControl(this.ongoingBuzz.targetPlayerId, Validators.required),
-                                selectedPlayerSecret: new FormControl(this.ongoingBuzz.secretGuessed, Validators.required),
+                                currentPlayer: new FormControl(this.ongoingBuzz.buzzer, Validators.required),
+                                selectedPlayer: new FormControl(this.ongoingBuzz.target, Validators.required),
+                                selectedPlayerSecret: new FormControl(this.ongoingBuzz.secret, Validators.required),
                             });
 
                             // Chargement delayed pour éviter un bug d'affichage (slides non chargées)
                             this.confrontation(this.step);
-                            this.selectPlayer('player-slide-' + this.ongoingBuzz.targetPlayerId);
+                            this.selectPlayer('player-slide-' + this.ongoingBuzz.target);
 
-                        } else if (this.currentPlayer && this.ongoingBuzz.targetPlayerId === this.currentPlayer.id) {
+                        } else if (this.currentPlayer && this.ongoingBuzz.target.id === this.currentPlayer.id) {
 
                             // ANCHOR Cas où l'user connecté EST buzzé
 
                             this.step = 3;
                             this.buzzForm = new FormGroup({
-                                currentPlayer: new FormControl(this.ongoingBuzz.targetPlayerId, Validators.required),
-                                selectedPlayer: new FormControl(this.ongoingBuzz.acterPlayerId, Validators.required),
-                                selectedPlayerSecret: new FormControl(this.ongoingBuzz.secretGuessed, Validators.required),
+                                currentPlayer: new FormControl(this.ongoingBuzz.target, Validators.required),
+                                selectedPlayer: new FormControl(this.ongoingBuzz.buzzer, Validators.required),
+                                selectedPlayerSecret: new FormControl(this.ongoingBuzz.secret, Validators.required),
                             });
 
                             // Chargement delayed pour éviter un bug d'affichage (slides non chargées)
                             this.confrontation(this.step);
-                            this.selectPlayer('player-slide-' + this.ongoingBuzz.acterPlayerId);
+                            this.selectPlayer('player-slide-' + this.ongoingBuzz.buzzer);
 
-                        } else if (this.currentPlayer && this.ongoingBuzz.acterPlayerId != this.currentPlayer.id
-                            && this.ongoingBuzz.targetPlayerId != this.currentPlayer.id) {
+                        } else if (this.currentPlayer && this.ongoingBuzz.buzzer.id != this.currentPlayer.id
+                            && this.ongoingBuzz.target.id != this.currentPlayer.id) {
 
                             // ANCHOR Cas où un buzz est en cours mais que l'utilisateur n'est pas concerné
                             // Blocage de l'accès
@@ -165,8 +165,11 @@ export class GameBuzzComponent implements OnInit {
 
 	// Envoi du formulaire de buzz
 	submit () {
-		this.gameBuzzService.sendBuzz(this.buzzForm.value);
-        this.ongoingBuzz.buzzId = 1443;
+		this.gameBuzzService.createBuzz(this.currentPlayer.id, this.formSelectedPlayer.value, this.formSelectedPlayerSecret.value).subscribe(data => {
+			if (data.dataToSend) {
+				this.ongoingBuzz.id = data.dataToSend.id;
+			}
+		});
 		this.confrontation(2);
 	}
 
@@ -183,17 +186,14 @@ export class GameBuzzComponent implements OnInit {
 
 	// Réponse lorsqu'on valide ou non le secret buzzé
 	respondBuzz (type: string /* "false", "true" ou "almost" */) {
-		if (this.ongoingBuzz.buzzId) {
-			this.gameBuzzService.respondBuzz(type, this.ongoingBuzz.buzzId).subscribe(
+		if (this.ongoingBuzz.id) {
+			this.gameBuzzService.respondBuzz(type, this.ongoingBuzz.id).subscribe(
 				response => {
 					console.log(response);
 
 					// TODO Modifier ce code lorsque relié au back
-					if (response.confirmState === "almost") {
-						this.confrontationState = {
-							success: false, // true ou false
-							close: true, // true ou false
-						}
+					if (response.confirmState === "almost" || response.confirmState === "false") {
+						this.confrontationState = {success: false, close: false};
 					} else if (response.confirmState === "true") {
 						this.confrontationState = {
 							success: true, // true ou false
@@ -205,7 +205,6 @@ export class GameBuzzComponent implements OnInit {
 							close: false, // true ou false
 						}
 					}
-					;
 
 					// Etape post-confrontation
 					this.step = -2;
@@ -216,7 +215,7 @@ export class GameBuzzComponent implements OnInit {
     // Pour tester les pages
     cancelBuzz() {
         this.step = 1;
-        this.ongoingBuzz = {};
+        this.ongoingBuzz = {} as Buzz;
 
         this.confrontationState = {
             success: false, // découvert ou non
@@ -227,6 +226,6 @@ export class GameBuzzComponent implements OnInit {
     setCurrentPlayer(){
         this.currentPlayer = {
             id : 2,
-        }
+        } as Player;
     }
 }

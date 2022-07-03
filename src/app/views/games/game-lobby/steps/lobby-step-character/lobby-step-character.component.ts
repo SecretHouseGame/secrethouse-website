@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { RadioOption } from "ngx-ds-secret-house/lib/components/interfaces/radio-option";
-import { GameLobbyService } from '../../game-lobby.service';
-import { GameLobbyStepService } from '../step.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {RadioOption} from "ngx-ds-secret-house/lib/components/interfaces/radio-option";
+import {GameLobbyService} from '../../game-lobby.service';
+import {GameLobbyStepService} from '../step.service';
+import {HttpService} from "../../../../../services/http.service";
 
 @Component({
 	selector: 'app-lobby-step-character',
@@ -17,21 +18,21 @@ export class LobbyStepCharacterComponent implements OnInit {
 	genders: RadioOption[] = [
 		{
 			id: "option-male",
-			value: "male",
+			value: "MALE",
 			text: "Homme",
 			disabled: false,
 			checked: true
 		},
 		{
 			id: "option-female",
-			value: "female",
+			value: "FEMALE",
 			text: "Femme",
 			disabled: false,
 			checked: false
 		},
 		{
 			id: "option-other",
-			value: "other",
+			value: "OTHER",
 			text: "Autre",
 			disabled: false,
 			checked: false
@@ -52,7 +53,8 @@ export class LobbyStepCharacterComponent implements OnInit {
 
 	constructor (
 		public gameLobbyService: GameLobbyService,
-		public stepService: GameLobbyStepService
+		public stepService: GameLobbyStepService,
+		public httpService: HttpService
 	) {
 	}
 
@@ -73,6 +75,10 @@ export class LobbyStepCharacterComponent implements OnInit {
 
 	get formAge () {
 		return this.characterFormGrp.get('age') as FormControl;
+	}
+
+	get formGender () {
+		return this.characterFormGrp.get('gender') as FormControl;
 	}
 
 	get formSecret () {
@@ -100,7 +106,22 @@ export class LobbyStepCharacterComponent implements OnInit {
 			// TODO: back validation
 			this.validated = true
 			this.gameLobbyService.character = this.characterFormGrp.getRawValue()
-			this.stepService.validateStep(true, this.isInLobby)
+			this.stepService.validateStep(true, this.isInLobby);
+
+			if (localStorage.getItem("gameCode")) {
+				this.httpService.createPlayer(
+					this.formName.value,
+					this.formSecret.value,
+					this.formGender.value,
+					localStorage.getItem("gameCode") ?? "OTHER"
+				).subscribe(value => {
+					if (value.dataToSend.gameId) {
+						localStorage.setItem("gameId", value.dataToSend.gameId);
+					}
+				});
+			} else {
+				console.log("ERROR");
+			}
 		} else {
 			// TODO: show errors
 			this.validated = false;

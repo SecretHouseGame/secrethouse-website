@@ -20,7 +20,7 @@ export class GameCharacterComponent implements OnInit {
 	]
 
 	// fixme : missing age & bio in interface player
-	character: Player | undefined;
+	character: Player = {} as Player;
 
 	formGroup: FormGroup = new FormGroup({
 		name: new FormControl(),

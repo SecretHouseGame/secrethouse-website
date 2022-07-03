@@ -152,18 +152,19 @@
 <sh-modal>
 	<div *ngIf="isRegister; else login" [formGroup]="registerFormGrp">
 		<h1>Inscription</h1>
+		<sh-input-text label="Pseudo" id="username" [control]="registerFormUsername"></sh-input-text>
 		<sh-input-text label="Email" id="email" [control]="registerFormEmail"></sh-input-text>
-		<sh-input-text label="Mot de passe" id="password" [control]="registerFormPassword"></sh-input-text>
-		<sh-input-text label="Confirmation du mot de passe" id="confirm-password"
+		<sh-input-text type="password" label="Mot de passe" id="password" [control]="registerFormPassword"></sh-input-text>
+		<sh-input-text type="password" label="Confirmation du mot de passe" id="confirm-password"
 			[control]="registerFormConfirmPassword"></sh-input-text>
-		<sh-button color="primary" (click)="goToPlay()">S'inscrire</sh-button>
+		<sh-button color="primary" (click)="handleRegister()">S'inscrire</sh-button>
 	</div>
 	<ng-template #login>
 		<div [formGroup]="loginFormGrp">
 			<h1>Connexion</h1>
 			<sh-input-text label="Email" id="email" [control]="loginFormEmail"></sh-input-text>
 			<sh-input-text label="Mot de passe" id="password" [control]="loginFormPassword"></sh-input-text>
-			<sh-button color="primary" (click)="goToPlay()">Se connecter</sh-button>
+			<sh-button color="primary" (click)="handleLogin()">Se connecter</sh-button>
 		</div>
 	</ng-template>
 </sh-modal>

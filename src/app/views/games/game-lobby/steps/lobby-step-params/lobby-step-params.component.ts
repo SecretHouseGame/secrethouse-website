@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { GameLobbyService } from "../../game-lobby.service";
-import { GameLobbyStepService } from "../step.service";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {GameLobbyService} from "../../game-lobby.service";
+import {GameLobbyStepService} from "../step.service";
+import {HttpService} from "../../../../../services/http.service";
 
 @Component({
 	selector: 'app-lobby-step-params',
@@ -20,31 +21,44 @@ export class LobbyStepParamsComponent implements OnInit {
 			Validators.required,
 			Validators.pattern("^[0-9]*$")
 		]),
+		intervalElimination: new FormControl('', [
+			Validators.required,
+			Validators.pattern("^[0-9]*$")
+		]),
 	});
 
-	constructor (public stepService: GameLobbyStepService, public gameLobbyService: GameLobbyService) {
+	constructor(public stepService: GameLobbyStepService, public gameLobbyService: GameLobbyService, public httpService: HttpService) {
 	}
 
 	get formMaxPlayers() {
 		return this.parametersFormGrp.get('maxPlayers') as FormControl;
 	}
+
 	get formIntervalEvent() {
 		return this.parametersFormGrp.get('intervalEvent') as FormControl;
 	}
 
-	ngOnInit (): void {
+	get formIntervalElimination() {
+		return this.parametersFormGrp.get('intervalElimination') as FormControl;
+	}
+
+	ngOnInit(): void {
 		this.parametersFormGrp.setValue({
 			'maxPlayers': this.gameLobbyService.parameters.maxPlayers,
 			'intervalEvent': this.gameLobbyService.parameters.intervalEvent
 		})
 	}
 
-	validate () {
+	validate() {
 		if (this.parametersFormGrp.valid) {
 			// TODO: back validation
 			this.validated = true;
 			this.gameLobbyService.parameters = this.parametersFormGrp.getRawValue()
 			this.stepService.validateStep()
+
+			this.httpService.createGame(this.formMaxPlayers.value, this.formIntervalEvent.value, this.formIntervalElimination.value).subscribe(data => {
+				if (data.dataToSend.code) localStorage.setItem("gameCode", data.dataToSend.code);
+			});
 		} else {
 			// TODO: show errors
 			this.validated = false

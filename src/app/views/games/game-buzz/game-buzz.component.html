@@ -69,8 +69,8 @@
 				<ng-template swiperSlide *ngFor="let player of playersList">
 					<label [for]="'player-slide-' + player.id" [ngClass]="{'cannot-be-buzzed': !player.canBeBuzzed}">
 						<div class="slide-container noselect"
-							[ngClass]="{'is-selected' : (formSelectedPlayer.value === player.id || ongoingBuzz.targetPlayerId == player.id) && step > 1 }">
-							<img class="player-image" [src]="player.avatar" alt="" />
+							[ngClass]="{'is-selected' : (formSelectedPlayer.value === player.id || ongoingBuzz.target.id == player.id) && step > 1 }">
+							<img class="player-image" src="./assets/images/players/catherine.png" alt="" />
 							<input [formControl]="formSelectedPlayer" [disabled]="!player.canBeBuzzed"
 								(change)="selectPlayer('player-slide-' + player.id)" class="player-input" type="radio"
 								[id]="'player-slide-' + player.id" [value]="player.id" name="target" hidden />
@@ -94,7 +94,7 @@
 				<p *ngIf="step === 3">
 					Pense que votre secret est :
 					<br>
-					<i>{{ ongoingBuzz.secretGuessed }}</i>
+					<i>{{ ongoingBuzz.secret.toLowerCase() }}</i>
 				</p>
 			</div>
 
