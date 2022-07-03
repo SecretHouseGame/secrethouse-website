@@ -44,22 +44,13 @@ export class GameRoomsComponent implements OnInit {
 	// Lorsqu'on accède à une pièce
 	accessRoom( roomName : string ) {
 		let foundRoom =  this.roomsList.find(o => o.name.toLowerCase() === roomName.toLowerCase()) as Room;
-
+		console.log(foundRoom);
 		if(foundRoom){
 			document.querySelector('.room-not-selected')?.classList.remove('viewable');
 			setTimeout(() => {
 				// Sélectionne la room et display l'écran avec chat
 				this.selectedRoom = foundRoom;
-
-				// Récupération de la liste des habitants dans la pièce
-				this.gameRoomsService.getRoomPlayers()
-					.subscribe(response => {
-						this.playersInRoom = response;
-
-						// On affiche le nouvel écran (transition CSS)
-						document.querySelector('.room-selected')?.classList.add('viewable');
-					});
-
+				document.querySelector('.room-selected')?.classList.add('viewable');
 			}, 300)
 		}
 	}

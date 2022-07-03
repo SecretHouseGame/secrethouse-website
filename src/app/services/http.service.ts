@@ -77,7 +77,7 @@ export class HttpService {
 				console.log(player);
 				this.storeService.currentPlayer= player;
 				this.storeService.gameId= player.game;
-				this.socketService.joinGame();
+				//this.socketService.joinGame();
 			})
 		);
 	}

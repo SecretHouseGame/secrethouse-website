@@ -9,7 +9,15 @@ import {User} from "../interfaces/user";
 export class StoreService {
 
 	players: Player[] = []
-	rooms: Room[] = [];
+	rooms: Room[] = [
+		<Room>{id:1,name:"terrasse"},
+		<Room>{id:1,name:"cuisine"},
+		<Room>{id:1,name:"balcon"},
+		<Room>{id:1,name:"salle de bain"},
+		<Room>{id:1,name:"salon"},
+		<Room>{id:1,name:"chambre"},
+		<Room>{id:1,name:"piscine"},
+	];
 	user: User = {} as User;
 	gameId:number = 0;
 	gameCode: string = "";

@@ -5,7 +5,6 @@ import {GameLobbyService} from '../../game-lobby.service';
 import {GameLobbyStepService} from '../step.service';
 import {HttpService} from "../../../../../services/http.service";
 import {Router} from "@angular/router";
-import {SocketService} from "../../../../../services/socket.service";
 
 @Component({
 	selector: 'app-lobby-step-character',
@@ -56,7 +55,6 @@ export class LobbyStepCharacterComponent implements OnInit {
 		public stepService: GameLobbyStepService,
 		public httpService: HttpService,
 		public router:Router,
-		//public socketService:SocketService
 	) {
 	}
 
