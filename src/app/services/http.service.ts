@@ -4,6 +4,7 @@ import {Observable, tap} from "rxjs";
 import {Player} from "../interfaces/player";
 import {Room} from "../interfaces/room";
 import {StoreService} from "../store/store.service";
+import {Game} from "../interfaces/game";
 
 @Injectable({
 	providedIn: 'root'
@@ -23,7 +24,8 @@ export class HttpService {
 			"password": password
 		}).pipe(
 			tap((token) => {
-				this.storeService.token= token
+				console.log(token);
+				this.storeService.saveToken(token);
 			})
 		);
 	}
@@ -35,12 +37,12 @@ export class HttpService {
 			"password": password
 		}).pipe(
 			tap((token) => {
-				this.storeService.token= token
+				console.log(token);
+				this.storeService.saveToken(token);
 			})
 		);
 	}
 
-	// FIXME !
 	public createGame(maxPlayers : number, eventIntervalQty: number, eliminationDelayQty : number):Observable<any> {
 		const options = {
 			headers: new HttpHeaders()
@@ -54,7 +56,7 @@ export class HttpService {
 		}, options).pipe(
 			tap((code) => {
 				console.log(code);
-				this.storeService.gameCode= code
+				this.storeService.saveGameCode(code);
 			})
 		);
 	}
@@ -72,65 +74,67 @@ export class HttpService {
 			"gameCode": this.storeService.gameCode
 		}, options).pipe(
 			tap((player) => {
-				console.log(player);
-				this.storeService.currentPlayer= player;
-				this.storeService.gameId= player.game;
-				//this.socketService.joinGame();
+				this.storeService.saveCurrentPlayer(player);
+				this.storeService.saveGameId(player.game.id);
 			})
 		);
 	}
 
-	// todo : get currently waiting for a game to start
-
-	// todo : game id dans l'url ?
-	public getGameResidents(gameId: number) : Observable<Player[]> {
+	public getGame(gameCode:string) : Observable<Game> {
+		gameCode = gameCode.replace("#","");
 		const options = {
 			headers: new HttpHeaders()
 				.set('token',  `${this.storeService.token}`)
 		}
 
-		return this.httpClient.get<Player[]>(`${this.dbUrl}/games/${gameId}/players`, options);
+		return this.httpClient.get<Game>(`${this.dbUrl}/games/${gameCode}`, options).pipe(
+			tap((game) => {
+				console.log(game.id);
+				this.storeService.saveGameId(game.id);
+				this.storeService.saveGameCode(game.code);
+			})
+		);
 	}
 
-	public getSecrets(gameId: number) : Observable<any> {
+	public getSecrets() : Observable<any> {
 		const options = {
 			headers: new HttpHeaders()
 				.set('token',  `${this.storeService.token}`)
 		}
-
+		const gameId = this.storeService.gameId;
 		return this.httpClient.get<any>(`${this.dbUrl}/games/${gameId}/secrets`, options);
 	}
 
-	/** Récupérer le personnage du joueur **/
-	public getCurrentPlayer(): Observable<Player> {
-		const options = {
-			headers: new HttpHeaders()
-				.set('token',  `${this.storeService.token}`)
-		}
-		return this.httpClient.get<Player>(`${this.dbUrl}/currentPlayer`, options)
-	}
-
-	public updateCurrentPlayer(body: object): Observable<Player> {
-		const options = {
-			headers: new HttpHeaders()
-				.set('token',  `${this.storeService.token}`)
-		}
-		return this.httpClient.put<Player>(`${this.dbUrl}/currentPlayer`, body, options);
-	}
-
 	/** Récupérer tous les habitants */
-	public getPlayers(): Observable<any> {
+	public getPlayers(): Observable<Player[]> {
 		const options = {
 			headers: new HttpHeaders()
 				.set('token',  `${this.storeService.token}`)
 		}
-		return this.httpClient.get<any>(`${this.dbUrl}/players`, options)
+		const gameId = this.storeService.gameId;
+		return this.httpClient.get<Player[]>(`${this.dbUrl}/games/${gameId}/players`, options)
 			.pipe(
 				tap((players) => {
-					this.storeService.savePlayers(players)
+					console.log(players);
+					this.storeService.playersSource.next(players)
 				})
 			);
 	}
+
+	public getPlayer(id:number): Observable<Player> {
+		const options = {
+			headers: new HttpHeaders()
+				.set('token',  `${this.storeService.token}`)
+		}
+		return this.httpClient.get<Player>(`${this.dbUrl}/players/${id}`, options)
+			.pipe(
+				tap((player) => {
+					this.storeService.addPlayer(player)
+				})
+			);
+	}
+
+
 
 	/** Récupérer toutes les salles de la maison */
 	public getRooms(): Observable<Room[]> {
@@ -145,6 +149,4 @@ export class HttpService {
 				})
 			)
 	}
-
-	// todo : update players when updated currentPlayer
 }

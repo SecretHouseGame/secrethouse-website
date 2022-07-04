@@ -17,9 +17,9 @@ export class GameSecretsComponent implements OnInit {
 	}
 
 	ngOnInit (): void {
-		if (localStorage.getItem("gameId")) {
-			this.httpService.getSecrets(parseInt(localStorage.getItem("gameId") ?? "1")).subscribe(value => {
-				value.dataToSend.forEach((secret: Secret) => {
+		if (this.storeService.gameId) {
+			this.httpService.getSecrets().subscribe(value => {
+				value.forEach((secret: Secret) => {
 					this.items.push(<Secret>{
 						name: secret.name,
 						secret: secret.secret
@@ -27,7 +27,7 @@ export class GameSecretsComponent implements OnInit {
 				})
 			})
 		} else {
-			console.log("no gameid found in localstorage");
+			console.log("no gameId found");
 		}
 	}
 }

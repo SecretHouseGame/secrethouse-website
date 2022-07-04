@@ -1,10 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ChatServerService} from './chat-server.service';
 import {ChatMessage} from '../interfaces/chat-message';
-import {Player} from '../interfaces/player';
 import slugify from "slugify";
-import {data} from "autoprefixer";
+import {StoreService} from "../store/store.service";
+import {SocketService} from "../services/socket.service";
 
 @Component({
 	selector: 'app-chat-server',
@@ -22,36 +21,20 @@ export class ChatServerComponent implements OnInit {
 
 	// Variables de Nico
 	newMessage!: string;
-	socketId: any;
-	currentUser: Player = {
-		"id":1,
-		"name":"Catherine",
-		"jackpot":0,
-		"secret":"",
-		"canBuzz": true,
-		"canBeBuzzed": true
-	} as Player;
-	party :string = '123';
-	arrayDiscussion = [];
 
 	userDefaultAvatar : string = "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png";
 	messageList: ChatMessage[] = [];
 
-	constructor(private chatService: ChatServerService) {
+	constructor(private storeService:StoreService, private socketService:SocketService) {
 	}
 
 	ngOnInit() {
-
-		this.chatService.getNewMessage(this.party, slugify(this.roomName)).subscribe((data: string) => {
-
-            if(data){
-                let chatMessage: ChatMessage = JSON.parse(data);
-                console.debug(chatMessage);
-                if(chatMessage){
-                    this.messageList.push(chatMessage);
-                }
-                this.chatScroll();
-            }
+		this.storeService.getIncomingMessage().subscribe((message) =>{
+			if(message.message){
+				console.debug(message);
+				this.messageList.push(message);
+				this.chatScroll();
+			}
 		})
 	}
 
@@ -76,36 +59,10 @@ export class ChatServerComponent implements OnInit {
 	}
 
 	sendMessage() {
-		if(this.currentUser && this.currentUser.name){
-			let message: ChatMessage = {
-				channel: this.channel,
-				gameId: this.party,
-				roomId: slugify(this.roomName),
-				username: this.currentUser.name,
-				message: this.newMessage,
-				fromUserId: this.currentUser.id,
-				targetUserId: null,
-				isCurrentUser: true
-			} as ChatMessage;
-
-
-			/* this.chatService.sendMessage(
-				this.channel,
-				this.party,
-				slugify(this.roomName),
-				this.currentUser.name,
-				this.newMessage,
-				this.currentUser.id,
-				null
-			);*/
-
-			this.messageList.push(message);
-
-			this.newMessage = '';
-			this.chatScroll();
-		}
-
-		return false;
+		this.storeService.setIncomingMessage(this.newMessage, true,this.storeService.currentPlayer.name);
+		this.socketService.sendMessage(this.newMessage);
+		this.newMessage = '';
+		this.chatScroll();
 	}
 
 }

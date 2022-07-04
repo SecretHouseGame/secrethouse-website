@@ -6,6 +6,7 @@ import { HttpService } from "../../../services/http.service";
 import { StoreService } from "../../../store/store.service";
 import { GameRoomsService } from './game-rooms.service';
 import slugify from "slugify";
+import {SocketService} from "../../../services/socket.service";
 
 @Component({
 	selector: 'app-game-rooms',
@@ -17,10 +18,17 @@ export class GameRoomsComponent implements OnInit {
 	playersInRoom : Array<Player> = [];
 	viewPlayer : Player | null = null;
 
-	constructor (public httpService: HttpService, public storeService: StoreService, private gameRoomsService : GameRoomsService, private modalService : ModalService ) {}
+	constructor (
+		public httpService: HttpService,
+		public storeService: StoreService,
+		private gameRoomsService : GameRoomsService,
+		private modalService : ModalService,
+		private socketService: SocketService) {}
 
 	ngOnInit (): void {
-		// On récupère la liste des pièces
+		this.storeService.getPlayersInRoom().subscribe((players)=>{
+			this.playersInRoom = players;
+		})
 	}
 
 	get roomsList () {
@@ -43,15 +51,17 @@ export class GameRoomsComponent implements OnInit {
 	// Lorsqu'on accède à une pièce
 	accessRoom( roomName : string ) {
 		let foundRoom =  this.roomsList.find(o => o.name.toLowerCase() === roomName.toLowerCase()) as Room
-		this.storeService.saveCurrentRoom(foundRoom.name);
-		console.log(foundRoom);
-		this.selectedRoom = foundRoom;
+		if(foundRoom){
+			this.socketService.joinRoom(foundRoom.name);
+			this.selectedRoom = foundRoom;
+		}
 	}
 
 	// On quitte une pièce
 	resetRoom(){
+		this.socketService.leaveRoom(<string>this.selectedRoom?.name);
+		this.storeService.cleanIncomingMessage();
 		this.selectedRoom = null;
-		//this.storeService.saveCurrentRoom("");
 	}
 
 	// Lorsqu'on veux voir le profil d'un joueur

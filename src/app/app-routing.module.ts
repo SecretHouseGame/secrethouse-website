@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {LoginGuard} from "./services/guard/LoginGuard";
 
 const routes: Routes = [
 	{
 		path: 'game',
 		loadChildren: () => import('./layout/sh/sh.module')
-			.then((module) => module.ShModule)
+			.then((module) => module.ShModule),
+		canActivate:[LoginGuard]
 	},
 	{
 		path: '',

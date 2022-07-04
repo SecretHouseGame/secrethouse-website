@@ -18,9 +18,7 @@ export class GameResidentsComponent implements OnInit {
 	}
 
 	ngOnInit (): void {
-		this.httpService.getPlayers().subscribe(() => {
-			this.setupItemsList()
-		})
+		this.setupItemsList()
 	}
 
 	get players () {

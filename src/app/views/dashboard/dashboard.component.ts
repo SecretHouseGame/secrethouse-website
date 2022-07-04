@@ -33,7 +33,9 @@ export class DashboardComponent implements OnInit {
 
 	joinGame () {
 		if (this.isGameCodeValid()) {
-			console.log(this.gameCode.value)
+			this.httpService.getGame(this.gameCode.value).subscribe(()=>{
+				this.router.navigate(['/game/play']);
+			})
 		}
 	}
 }

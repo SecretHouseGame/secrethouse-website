@@ -3,6 +3,7 @@ import {User} from './user';
 
 export interface Game {
     id : number,
+    code : string,
     maxPlayers : number,
     startDate : DatePipe,
     endDate : DatePipe,

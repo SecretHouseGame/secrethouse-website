@@ -6,7 +6,7 @@ import { NgxDsSecretHouseModule } from 'ngx-ds-secret-house';
 import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
-	{ path: '', component: HomeComponent }
+	{ path: '', component: HomeComponent}
 ]
 
 @NgModule({
